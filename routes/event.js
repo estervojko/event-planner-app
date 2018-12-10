@@ -1,10 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const { Event } = require('../models');
+const { Event, User } = require('../models');
 
 const eventRouter = express.Router();
 eventRouter.use(bodyParser.json());
 
+//EVENT ONLY ROUTES
 eventRouter.get('/', async (req, res) => {
   try {
     const events = await Event.findAll();
@@ -64,6 +65,20 @@ eventRouter.put('/:id', async(req, res) => {
     })
   } catch (e) {
     console.log('Server could not process request to UPDATE event', e)
+    res.sendStatus(404);
+  }
+})
+
+//EVENT USER ROUTES
+eventRouter.get('/:id/users', async(req, res) => {
+  try {
+    const event = await Event.findByPk(req.params.id);
+    const users = await event.getUsers();
+    res.json({
+      users
+    })
+  } catch (e) {
+    console.log('Server could not process request to UPDATE event', e);
     res.sendStatus(404);
   }
 })

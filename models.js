@@ -25,8 +25,15 @@ User.beforeCreate( async(user, options) => {
 
 const Event = sequelize.define('event',
   {
-    name: Sequelize.TEXT
+    title: Sequelize.TEXT,
+    description: Sequelize.TEXT,
+    start_date: Sequelize.DATE,
+    end_date: Sequelize.DATE,
+    address: Sequelize.TEXT
   });
+
+User.belongsToMany(Event);
+Event.belongsToMany(User);
 
 module.exports = {
   Event,
