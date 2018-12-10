@@ -8,6 +8,28 @@ const jwt = require('jsonwebtoken');
 const SECRET = "test token if it works";
 const sign = (payload) => jwt.sign(payload, SECRET);
 
+//utilities for passport
+const JwtStrategy = require('passport-jwt').Strategy;
+const ExtractJwt = require('passport-jwt').ExtractJwt;
+const bcrypt = require('bcrypt');
+const passport = require('passport');
+
+const opts = {
+  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+  secretOrKey: SECRET
+};
+
+passport.use(new JwtStrategy(opts, async (payload, done) => {
+  try {
+    const user = await User.findByPk(payload.id);
+    return done(null, user);
+  } catch(e) {
+    return done(e, false);
+  }
+}));
+
+
+//server
 const {Event, User} = require('./models')
 
 const app = express();
@@ -39,6 +61,16 @@ app.post('/users', async (req, res) => {
   }
 });
 
+//test if passport works
+app.get('/events', passport.authenticate('jwt', { session: false }), (req, res) => {
+  res.json({msg: 'logged in'});
+});
+
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
 })
+
+module.exports = {
+  passport,
+  sign
+};
