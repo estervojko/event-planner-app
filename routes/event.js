@@ -41,6 +41,19 @@ eventRouter.post('/', async(req, res) => {
   }
 })
 
+eventRouter.delete('/:id', async(req, res) => {
+  try {
+    const event = await Event.findByPk(req.params.id);
+    await event.destroy();
+    res.json({
+      event
+    })
+  } catch (e) {
+    console.log('Server could not process request to DELETE event', e)
+    res.sendStatus(404);
+  }
+})
+
 module.exports = {
   eventRouter
 }
