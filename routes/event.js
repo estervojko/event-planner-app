@@ -54,6 +54,20 @@ eventRouter.delete('/:id', async(req, res) => {
   }
 })
 
+eventRouter.put('/:id', async(req, res) => {
+  try {
+    const event = await Event.findByPk(req.params.id);
+    await event.update(req.body);
+    const updatedEvent = await Event.findByPk(req.params.id);
+    res.json({
+      updatedEvent
+    })
+  } catch (e) {
+    console.log('Server could not process request to UPDATE event', e)
+    res.sendStatus(404);
+  }
+})
+
 module.exports = {
   eventRouter
 }
