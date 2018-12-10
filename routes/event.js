@@ -29,6 +29,18 @@ eventRouter.get('/:id', async(req, res) => {
   }
 })
 
+eventRouter.post('/', async(req, res) => {
+  try {
+    const event = await Event.create(req.body);
+    res.json({
+      event
+    })
+  } catch (e) {
+    console.log('Server could not process request to POST event', e)
+    res.sendStatus(404);
+  }
+})
+
 module.exports = {
   eventRouter
 }
