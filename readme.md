@@ -1,3 +1,8 @@
+Landing page design
+
+It's time to GET BUSY - the brand new event planner that makes you the center of the party! Once you log in, you can search for events in your vicinity, join up on various events and presentations and even create your own events! You can even see all the events you made and organize yourself. Finally, our easy-to-use interface will always remind you when the next big shindig is happening soon!
+
+![Landing page design](https://github.com/estervojko/event-planner-app/blob/ester-production/planning/Landing%20page%20Wireframe.png?raw=true)
 
 Overview of Planning Materials
 
@@ -18,3 +23,11 @@ Entity Relationship Diagram
 This is initial planing for the routes of the app
 
 Routes:
+
+Routes for events
+
+![Routes for events](https://github.com/estervojko/event-planner-app/blob/ester-production/planning/Routes1.jpg?raw=true)
+
+Routes for users
+
+![Routes for users](https://github.com/estervojko/event-planner-app/blob/ester-production/planning/Routes2.jpg?raw=true)
