@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import NavBar from './components/NavBar';
 import './App.css';
 
 class App extends Component {
@@ -17,14 +18,7 @@ class App extends Component {
     return (
       <div className="App">
         <nav className = 'nav'>
-          <h4>SEARCH</h4>
-          <input
-          type="text"
-          value="search"
-          className = "search"
-          />
-          <p>||</p>
-          <h4>LOGIN</h4>
+        <NavBar />
         {/*create an element for the dropdown Menu*/}
         </nav>
       </div>

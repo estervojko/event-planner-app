@@ -2,19 +2,18 @@
   text-align: center;
 }
 
-nav{
+.navBar{
   background-color: #002642;
   color: #E5DADA;
   display: flex;
   flex-flow: row;
-  justify-content: space-between;
+  justify-content: space-around;
+  justify-content: flex-end;
 
 }
 
-nav input{
+.navBar input{
   width:auto;
   height:20px;
-}
-.nav {
-  justify-content: flex-end;
+  margin-top: 10px;
 }
