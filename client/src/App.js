@@ -12,7 +12,10 @@ class App extends Component {
       description: ''
     }
   }
-
+  
+  handleEventSelect() {
+    
+  }
 
   render() {
     return (
