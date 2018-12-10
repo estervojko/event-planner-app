@@ -7,6 +7,10 @@ class App extends Component {
     super(props);
   }
 
+  handleEventSelect() {
+    
+  }
+
   render() {
     return (<div className="App">
 
