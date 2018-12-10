@@ -8,7 +8,7 @@ export default function EventItem(props) {
     <div className="event-item" onClick={props.handleEventSelect}>
       <img className="event-item-image" src="" alt="event-image" />
       <h5 className="event-item-title">{event.title}</h5>
-      <p className="event-item-start_date">
+      <p className="event-item-start-date">
         {moment(event.start_date).format("llll")}
       </p>
       <p className="event-item-address">{event.address}</p>
