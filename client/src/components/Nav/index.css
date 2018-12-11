@@ -3,7 +3,7 @@
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
-  height: 50px;
+  height: 60px;
   width: 100%;
   background-color: lightblue;
   justify-content: flex-start;
@@ -13,13 +13,18 @@
 #nav-title {
   margin: 0;
   padding-left: 10px;
-  /* float: left; */
+  font-size: 2.5em;
 }
 
 #nav-register-button {
   margin-left: auto;
+  padding: 10px;
+  font-size: 1em;
 }
 
 #nav-login-button {
   margin-right: 10px;
+  padding: 10px;
+  margin-left: 5px;
+  font-size: 1em;
 }
