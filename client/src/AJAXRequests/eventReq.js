@@ -57,25 +57,6 @@ const eventReq = {
   }
 }
 
-
-async function test(){
-  const data = {
-    title: "Update Event from Axios",
-    description: "Description...",
-    start_date: moment().format(),
-    end_date: moment().add(3, 'hours').format(),
-    address: "address"
-  }
-  try {
-    const resp = await eventReq.putEvent(4, data);
-    console.log(resp);
-  } catch (e) {
-    console.log(e);
-  }
-}
-
-test();
-
 module.exports = {
   eventReq
 }
