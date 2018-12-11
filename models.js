@@ -15,7 +15,8 @@ const User = sequelize.define('user',
     username: Sequelize.TEXT,
     password: Sequelize.TEXT,
     first_name: Sequelize.TEXT,
-    last_name: Sequelize.TEXT
+    last_name: Sequelize.TEXT,
+    address: Sequelize.TEXT
   });
 
 User.beforeCreate( async(user, options) => {
@@ -25,11 +26,23 @@ User.beforeCreate( async(user, options) => {
 
 const Event = sequelize.define('event',
   {
-    name: Sequelize.TEXT
+    title: Sequelize.TEXT,
+    description: Sequelize.TEXT,
+    start_date: Sequelize.DATE,
+    end_date: Sequelize.DATE,
+    address: Sequelize.TEXT
   });
+
+const Attendee = sequelize.define('attendee', {
+  isOrganizer: Sequelize.BOOLEAN
+})
+
+User.belongsToMany(Event, { through: Attendee })
+Event.belongsToMany(User, { through: Attendee })
 
 module.exports = {
   Event,
   User,
+  Attendee,
   sequelize
 }

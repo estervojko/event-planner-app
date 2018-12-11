@@ -32,6 +32,8 @@ passport.use(new JwtStrategy(opts, async (payload, done) => {
 //server
 const {Event, User} = require('./models')
 
+const { eventRouter } = require('./routes/event');
+
 const app = express();
 
 const PORT = 3000;
@@ -61,6 +63,7 @@ app.post('/users', async (req, res) => {
   }
 });
 
+
 //test if passport works
 app.get('/events', passport.authenticate('jwt', { session: false }), async (req, res) => {
   try{
@@ -73,6 +76,10 @@ app.get('/events', passport.authenticate('jwt', { session: false }), async (req,
     })
   }
 });
+
+//steve
+//app.use('/events', eventRouter);
+
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
