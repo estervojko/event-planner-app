@@ -41,22 +41,6 @@ userRouter.get('/:id', async(req, res) => {
   }
 })
 
-<<<<<<< HEAD
-//POST User
-// userRouter.post('/', async(req, res) => {
-//   try {
-//     const user = await User.create(req.body);
-//     res.json({
-//       user
-//     })
-//   } catch (e) {
-//     console.log('Server could not process request to POST user', e)
-//     res.sendStatus(404);
-//   }
-// })
-
-=======
->>>>>>> b0c51fa127bf58cb4c3c31af66cbd108b8616865
 //DELETE User
 userRouter.delete('/:id', async(req, res) => {
   try {

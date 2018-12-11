@@ -81,7 +81,7 @@ export default class LoginForm extends Component{
           <br></br>
           <button type="submit">Login</button>
         </form>
-        <button onClick={this.getEvents}>Get Events</button>
+        {/* <button onClick={this.getEvents}>Get Events</button> */}
       </div>
   )
   }
