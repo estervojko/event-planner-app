@@ -41,27 +41,6 @@ userRouter.get('/:id', async(req, res) => {
   }
 })
 
-//POST User
-userRouter.post('/', async(req, res) => {
-  try {
-    const user = await User.create(req.body);
-    const newUser = await User.findOne( user.id, {
-      attributes: {
-        exclude:
-        ['password']
-      }
-    })
-    res.json({
-      newUser
-    })
-  } catch (e) {
-    console.log('Server could not process request to POST user', e)
-    res.status(500).json({
-      msg: e.message
-    });
-  }
-})
-
 //DELETE User
 userRouter.delete('/:id', async(req, res) => {
   try {

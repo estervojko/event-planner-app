@@ -3,6 +3,7 @@ const moment = require('moment');
 
 const BASE_URL = 'http://localhost:3000/';
 const USERS = 'users/';
+const REGISTER = 'register';
 
 const userReq = {
 
@@ -28,8 +29,8 @@ const userReq = {
 
   postUser: async function (data){
     try {
-      const resp = await axios.post(BASE_URL + USERS, data);
-      const user = resp.data.user;
+      const resp = await axios.post(BASE_URL + REGISTER, data);
+      const user = resp.data;
       return user;
     } catch (e) {
       console.log("Axios - User req - failed to POST user ", e.message);
@@ -42,7 +43,7 @@ const userReq = {
       const user = resp.data.user;
       return user;
     } catch (e) {
-      console.log("Axios - User req - failed to POST user ", e.message);
+      console.log("Axios - User req - failed to DELETE user ", e.message);
     }
   },
 
@@ -56,19 +57,6 @@ const userReq = {
     }
   }
 }
-
-// async function test(){
-//   const data = {
-//     username: 'steve20pro',
-//     first_name: 'Steve',
-//     last_name: 'Rodriguez',
-//     address: '123 Main st.'
-//   }
-//   const resp = await userReq.putUser(3, data);
-//   console.log(resp);
-// }
-//
-// test();
 
 module.exports = {
   userReq
