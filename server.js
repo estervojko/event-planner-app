@@ -63,7 +63,6 @@ app.post('/users', async (req, res) => {
   }
 });
 
-<<<<<<< HEAD
 //test if passport works
 app.get('/events', passport.authenticate('jwt', { session: false }), async (req, res) => {
   try{
@@ -76,10 +75,9 @@ app.get('/events', passport.authenticate('jwt', { session: false }), async (req,
     })
   }
 });
-=======
+
 //steve
-app.use('/events', eventRouter);
->>>>>>> c022ed2ff2ef2cb00fec70d17229db886cb520ca
+//app.use('/events', eventRouter);
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);

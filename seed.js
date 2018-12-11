@@ -1,45 +1,103 @@
-const { sequelize, Event, User } = require('./models.js');
+const { Event, User, Attendee } = require('./models.js');
+const moment = require('moment');
 
-
-//creates some articles
-const seed = async() => {
-  try{
-    const events = Event.bulkCreate([
+async function createUsers(){
+  try {
+    await User.bulkCreate([
       {
-        name: 'Prrr',
+        username: 'username',
+        password: 12345,
+        first_name: 'first_name',
+        last_name: 'last_name',
+        address:'address'
       },
       {
-        name: 'event in new york',
+        username: 'username',
+        password: 12345,
+        first_name: 'first_name',
+        last_name: 'last_name',
+        address:'address'
       },
       {
-        name: 'event in los angeles',
+        username: 'username',
+        password: 12345,
+        first_name: 'first_name',
+        last_name: 'last_name',
+        address:'address'
       },
       {
-        name: 'event miami',
+        username: 'username',
+        password: 12345,
+        first_name: 'first_name',
+        last_name: 'last_name',
+        address:'address'
+      },
+      {
+        username: 'username',
+        password: 12345,
+        first_name: 'first_name',
+        last_name: 'last_name',
+        address:'address'
       }
     ])
-  }
-  catch(e){
-    console.log(e);
+  } catch (e) {
+    console.log('Could not create Users ', e)
   }
 }
 
-
-//console logs all articles
-const fetchPlaces = async() => {
+async function createEvents(){
   try {
-    const events = await Event.findAll();
-    console.log(JSON.stringify(events, null, 2));
-  }
-  catch(e){
-    console.log(e);
+    await Event.bulkCreate([
+      {
+        title: 'event title',
+        description: 'description',
+        start_date: moment().format(),
+        end_date: moment().add(2, 'hours').format(),
+        address: 'address'
+      },
+      {
+        title: 'event title',
+        description: 'description',
+        start_date: moment().format(),
+        end_date: moment().add(2, 'hours').format(),
+        address: 'address'
+      },
+      {
+        title: 'event title',
+        description: 'description',
+        start_date: moment().format(),
+        end_date: moment().add(2, 'hours').format(),
+        address: 'address'
+      },
+      {
+        title: 'event title',
+        description: 'description',
+        start_date: moment().format(),
+        end_date: moment().add(2, 'hours').format(),
+        address: 'address'
+      },
+      {
+        title: 'event title',
+        description: 'description',
+        start_date: moment().format(),
+        end_date: moment().add(2, 'hours').format(),
+        address: 'address'
+      }
+    ])
+  } catch (e) {
+    console.log('Could not create Events', e)
   }
 }
 
-const run = async() => {
-  await seed();
-  await fetchPlaces();
-  process.exit();
+async function run(){
+  try {
+    await createUsers();
+    await createEvents();
+  } catch (e) {
+    console.log("Could not seed data ", e);
+  } finally {
+    process.exit();
+  }
 }
 
 run();
