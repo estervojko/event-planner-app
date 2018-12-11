@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import EventItem from '../EventItem/index.js';
 import EventDetail from '../EventDetail/index.js';
 import './index.css';
@@ -22,8 +22,8 @@ class EventList extends Component {
       return (
         this.props.events.map(event => (
           <EventItem
-            event={event}
             key={event.id}
+            event={event}
             onSelect={(e) => {
               e.stopPropagation();
               this.handleEventSelect(event);
