@@ -78,7 +78,17 @@ eventRouter.get('/:id/users', async(req, res) => {
       users
     })
   } catch (e) {
-    console.log('Server could not process request to UPDATE event', e);
+    console.log('Server could not process request to GET event user', e);
+    res.sendStatus(404);
+  }
+})
+
+eventRouter.get('/:id/users/:userId', async(req, res) => {
+  try {
+    const event = await Event.findByPk(req.params.id);
+    const user = await event.getUser(userId);
+  } catch (e) {
+    console.log('Server could not process request to GET event user', e);
     res.sendStatus(404);
   }
 })
