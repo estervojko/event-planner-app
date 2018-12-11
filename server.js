@@ -10,6 +10,8 @@ const sign = (payload) => jwt.sign(payload, SECRET);
 
 const {Event, User} = require('./models')
 
+const { eventRouter } = require('./routes/event');
+
 const app = express();
 
 const PORT = 3000;
@@ -38,6 +40,9 @@ app.post('/users', async (req, res) => {
     res.status(500).json({msg: e.message});
   }
 });
+
+//steve
+app.use('/events', eventRouter);
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
