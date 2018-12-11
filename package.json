@@ -4,9 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server.js",
-    "resetDb": "node resetDb.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -23,8 +21,6 @@
     "bcrypt": "^3.0.2",
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
-    "eslint-config-react": "^1.1.7",
-    "eslint-plugin-react": "^7.11.1",
     "express": "^4.16.4",
     "jsonwebtoken": "^8.4.0",
     "moment": "^2.22.2",
