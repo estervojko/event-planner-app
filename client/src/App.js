@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import axios from 'axios';
+import RegisterForm from './components/Login/RegisterForm'
 
 const BASE_URL = `http://localhost:3000`
 
@@ -50,6 +51,7 @@ class App extends Component {
     return (<div className="App">
               <button onClick={this.handleRegister}>Put token in state</button>
               <button onClick={this.loadUserEvents}>Load User Events</button>
+              <RegisterForm/>
             </div>);
   }
 }
