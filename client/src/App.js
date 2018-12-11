@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import NavBar from './components/NavBar';
+import Nav from './components/Nav';
+import Footer from './components/Footer';
 import './App.css';
 
 class App extends Component {
@@ -12,17 +13,18 @@ class App extends Component {
       description: ''
     }
   }
-  
+
   handleEventSelect() {
-    
+
   }
 
   render() {
     return (
       <div className="App">
         <nav className = 'nav'>
-        <NavBar />
+        <Nav />
         {/*create an element for the dropdown Menu*/}
+        <Footer />
         </nav>
       </div>
     );
