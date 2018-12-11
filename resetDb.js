@@ -1,10 +1,9 @@
-const { sequelize } = require('./models');
+const {sequelize} = require('./models');
 
-const reset = async() => {
-  try{
+const reset = async () => {
+  try {
     await sequelize.sync({force: true});
-  }
-  catch(e){
+  } catch (e) {
     console.log(e);
   }
   process.exit();
