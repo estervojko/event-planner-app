@@ -1,0 +1,30 @@
+/* the main container for the component */
+.splash{
+  max-width: 700px;
+  min-height: 300px;
+  overflow:hidden;
+  margin: 0 10px;
+}
+
+/* the slideshow itself */
+.slideShow{
+  width:700px;
+  height:300px;
+  position: relative;
+  background-color: darkorange;
+  margin-left: 0;
+  transition: 1.5s;
+}
+
+/*one of the test divs*/
+.one {
+  background-color: lightblue;
+}
+
+.two {
+  background-color: orangered;
+}
+
+.three{
+  background-color: yellowgreen;
+}

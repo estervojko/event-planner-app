@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import EventList from '../EventList'
+import EventList from '../EventList';
+import Splash from '../Splash'
 
 export default class Welcome extends Component{
   constructor(props){
@@ -45,7 +46,8 @@ export default class Welcome extends Component{
   render(){
     return(
       <div>
-        Test Welcome
+        <Splash />
+        <p>Test Welcome</p>
         <EventList events={this.state.events}/>
       </div>
     )
