@@ -1,9 +1,9 @@
 import React from 'react';
 import './index.css'
 
-export default function SplashItem({test}){
+export default function SplashItem({slide}){
   const styles = {
-    backgroundImage: `url(${test})`,
+    backgroundImage: `url(${slide})`,
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: `50% 60%`

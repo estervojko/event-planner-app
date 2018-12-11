@@ -14,6 +14,8 @@ export default class Splash extends Component{
       currentSlide: 0, //counter for de slide
       translateValue: 0//how to translate value to show image
     }
+    this.prevSlide = this.prevSlide.bind(this);
+    this.nextSlide = this.nextSlide.bind(this);
   }
 prevSlide(){//in order to move forward an image
   this.setState(prevState => ({
@@ -22,16 +24,27 @@ prevSlide(){//in order to move forward an image
 }
 
 nextSlide(){//in order to move backwards
+  if(this.state.currentSlide = this.state.images.length - 1){//if you are at the last image
+    return this.setState({//return to the previous state, thus the first image in array
+      currentSlide: 0,
+      translateValue: 0
+    })
+  }
   this.setState(prevState => ({
-    currentSlide: prevState.currentSlide + 1
+    currentSlide: prevState.currentSlide + 1,
+    translateValue: prevState.translateValue + -(this.slideWidth())
   }));
+}
+
+slideWidth(){//function to determine width of slide
+  return document.querySelector('.slideShow').clientWidth
 }
 
   render(){
     return(
       <div  className = "splash">
-        <button onClick={this.nextSlide.bind(this)}>left</button>
-          <button onClick = {this.prevSlide.bind(this)}>right</button>
+        <button onClick={this.nextSlide}>left</button>
+          <button onClick = {this.prevSlide}>right</button>
         <div className = "slideShow" style={{
           transform: `translateX(${this.state.translateValue}px)`,
           //uses translateX css property to move the picture along the X axis
@@ -42,10 +55,6 @@ nextSlide(){//in order to move backwards
             <SplashItem key = {i} slide = {test}/>
           ))
         }
-          <SplashItem />
-          <SplashItem />
-          <SplashItem />
-          <SplashItem />
         </div>
       </div>
     )
