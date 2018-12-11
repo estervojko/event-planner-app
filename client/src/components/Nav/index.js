@@ -8,9 +8,10 @@ export default class Nav extends Component {
         <i className="fas fa-search"></i>
         <input
         type="text"
-        value="search"
-        className = "search"
-        />
+        value={props.input}
+        onChange={props.onChange}
+        placeholder='Search...'
+        className = 'search'/>
         <p>||</p>
         <h4>LOGIN</h4>
       </div>
