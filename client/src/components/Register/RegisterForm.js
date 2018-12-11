@@ -96,6 +96,7 @@ export default class RegisterForm extends Component{
           <br></br>
           <label>
             Address
+            <br></br>
             <input type="text"
                    name="address"
                    value={this.state.address}
