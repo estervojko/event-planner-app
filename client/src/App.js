@@ -1,29 +1,36 @@
 import React, { Component } from 'react';
-import NavBar from './components/NavBar';
+import Nav from './components/Nav';
 import './App.css';
 
 class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      title: '',
-      location: '',
-      date: '',
-      description: ''
+      events: '',
+      input: '',
     }
+    this.getEvents = this.getEvents.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
-  
+
+  handleChange(e) {
+    this.setState({ input: e.target.value });
+    if(this.state.input.length>2) this.getEvents();
+  }
+
   handleEventSelect() {
-    
+
+  }
+
+  async getEvents() {
+    const resp = await getEvents(this.state.input);
+    this.setState({ events: resp.data.results });
   }
 
   render() {
     return (
       <div className="App">
-        <nav className = 'nav'>
-        <NavBar />
-        {/*create an element for the dropdown Menu*/}
-        </nav>
+        <Nav />
       </div>
     );
   }
