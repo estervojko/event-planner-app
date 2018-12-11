@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const BASE_URL = `http://localhost:3000`
 
-export default class RegisterForm extends Component{
+export default class LoginForm extends Component{
   constructor(props){
     super(props);
     this.state = {
@@ -77,7 +77,7 @@ export default class RegisterForm extends Component{
                    onChange={this.handleChange}/>
           </label>
           <br></br>
-          <button type="submit">Register</button>
+          <button type="submit">Login</button>
         </form>
         <button onClick={this.getEvents}>Get Events</button>
       </div>

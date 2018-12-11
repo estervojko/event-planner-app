@@ -34,7 +34,8 @@ const Event = sequelize.define('event',
   });
 
 const Attendee = sequelize.define('attendee', {
-  isOrganizer: Sequelize.BOOLEAN
+  isOrganizer: Sequelize.BOOLEAN,
+  rsvp: Sequelize.BOOLEAN
 })
 
 User.belongsToMany(Event, { through: Attendee })

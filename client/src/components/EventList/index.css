@@ -6,11 +6,14 @@
   grid-row-gap: 10px;
   border: 1px solid green;
   width: auto;
+  padding: 20px;
 }
 
 
 .event-list {
   display: grid;
   justify-content: center;
-  border: 1px solid blue;
+  margin-right: 10%;
+  margin-left: 10%;
+  margin-top: 1%;
 }
