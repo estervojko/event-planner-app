@@ -86,7 +86,10 @@ eventRouter.get('/:id/users', async(req, res) => {
 eventRouter.get('/:id/users/:userId', async(req, res) => {
   try {
     const event = await Event.findByPk(req.params.id);
-    const user = await event.getUser(userId);
+    const user = await event.getUser(req.params.userId);
+    res.json({
+      user
+    })
   } catch (e) {
     console.log('Server could not process request to GET event user', e);
     res.sendStatus(404);
@@ -96,10 +99,25 @@ eventRouter.get('/:id/users/:userId', async(req, res) => {
 eventRouter.post('/:id/users', async(req, res) => {
   try {
     const event = await Event.findByPk(req.params.id);
-    const user = await User.create(req.body);
-    await event.addUser(user;
+    const user = await event.createUser(req.body);
+    res.json({
+      user
+    })
   } catch (e) {
     console.log('Server could not process request to POST event user', e);
+    res.sendStatus(404);
+  }
+})
+
+eventRouter.delete('/:id/users/:userId', async(req, res) => {
+  try {
+    const event = await Event.findByPk(req.params.id);
+    const user = await event.removeUser(req.params.userId);
+    res.json({
+      user
+    })
+  } catch (e) {
+    console.log('Server could not process request to DELETE event user', e);
     res.sendStatus(404);
   }
 })
