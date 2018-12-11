@@ -62,8 +62,16 @@ app.post('/users', async (req, res) => {
 });
 
 //test if passport works
-app.get('/events', passport.authenticate('jwt', { session: false }), (req, res) => {
-  res.json({msg: 'logged in'});
+app.get('/events', passport.authenticate('jwt', { session: false }), async (req, res) => {
+  try{
+    const events = await Event.findAll()
+    res.json(events)
+  }
+  catch(e){
+    res.status(500).json({
+      msg: e.message
+    })
+  }
 });
 
 app.listen(PORT, () => {
