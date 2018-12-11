@@ -1,4 +1,10 @@
 import React, {Component} from 'react';
+
+import Nav from './components/Nav';
+import Welcome from './components/Welcome';
+import HomePage from './components/HomePage';
+import Footer from './components/Footer';
+
 import './App.css';
 import axios from 'axios';
 import RegisterForm from './components/Login/RegisterForm'
@@ -7,18 +13,38 @@ import RegisterForm from './components/Login/RegisterForm'
 class App extends Component {
   constructor(props) {
     super(props);
-
+    this.state = {
+      events: '',
+      input: '',
+      logged: false
+    }
+    this.getEvents = this.getEvents.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  handleEventSelect() {
+  handleChange(e) {
+    this.setState({input: e.target.value});
+    if (this.state.input.length > 2)
+      this.getEvents();
+    }
 
+  handleEventSelect() {}
+
+  async getEvents() {
+    // const resp = await getEvents(this.state.input);
+    // this.setState({events: resp.data.results});
   }
 
   render() {
-    // this.handleRegister();
     return (<div className="App">
-              <RegisterForm />
-            </div>);
+      <Nav/> {
+        this.state.logged === false
+          ? <Welcome/>
+          : <HomePage/>
+      }
+      <RegisterForm/>
+      <Footer/>
+    </div>);
   }
 }
 
