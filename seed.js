@@ -89,10 +89,24 @@ async function createEvents(){
   }
 }
 
+async function assocUsersAndEvents(){
+
+  const usersPromise = User.findAll();
+
+  const eventsPromise = Event.findAll();
+
+  const [users, events] = await Promise.all([
+    usersPromise, eventsPromise
+  ]);
+  await Promise.all(users.map(user => user.setEvents(events)));
+}
+
+
 async function run(){
   try {
     await createUsers();
     await createEvents();
+    await assocUsersAndEvents();
   } catch (e) {
     console.log("Could not seed data ", e);
   } finally {
