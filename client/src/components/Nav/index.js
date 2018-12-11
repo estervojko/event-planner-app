@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import 'index.css';
+import './index.css';
 
 export default function Nav(props) {
   return (<form onClick={props.onClick} className="nav">

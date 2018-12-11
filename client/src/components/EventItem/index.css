@@ -1,5 +1,6 @@
 .event-item {
-
+  border: 1px solid black;
+  width: 300px;
 }
 
 .event-item-image {
@@ -15,5 +16,5 @@
 }
 
 .event-item-address {
-  
+
 }

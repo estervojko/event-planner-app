@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import EventItem from '../EventItem/index.js';
 import EventDetail from '../EventDetail/index.js';
 import './index.css';
@@ -20,16 +20,20 @@ class EventList extends Component {
       )
     } else {
       return (
-        this.props.events.map(event => (
-          <EventItem
-            event={event}
-            key={event.id}
-            onSelect={(e) => {
-              e.stopPropagation();
-              this.handleEventSelect(event);
-            }}
-          />
-        ))
+        <div className="event-list-wrapper">
+          {
+            this.props.events.map(event => (
+                <EventItem
+                  key={event.id}
+                  event={event}
+                  onSelect={(e) => {
+                    e.stopPropagation();
+                    this.handleEventSelect(event);
+                  }}
+                />
+            ))
+          }
+        </div>
       )
     }
 
