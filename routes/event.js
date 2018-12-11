@@ -93,6 +93,17 @@ eventRouter.get('/:id/users/:userId', async(req, res) => {
   }
 })
 
+eventRouter.post('/:id/users', async(req, res) => {
+  try {
+    const event = await Event.findByPk(req.params.id);
+    const user = await User.create(req.body);
+    await event.addUser(user;
+  } catch (e) {
+    console.log('Server could not process request to POST event user', e);
+    res.sendStatus(404);
+  }
+})
+
 module.exports = {
   eventRouter
 }
