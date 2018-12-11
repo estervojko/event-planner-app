@@ -1,38 +1,44 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Nav from './components/Nav';
+import Welcome from './components/Welcome';
+import HomePage from './components/HomePage';
+import Footer from './components/Footer';
 import './App.css';
 
 class App extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       events: '',
       input: '',
+      logged: false
     }
     this.getEvents = this.getEvents.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(e) {
-    this.setState({ input: e.target.value });
-    if(this.state.input.length>2) this.getEvents();
-  }
+    this.setState({input: e.target.value});
+    if (this.state.input.length > 2)
+      this.getEvents();
+    }
 
-  handleEventSelect() {
-
-  }
+  handleEventSelect() {}
 
   async getEvents() {
     const resp = await getEvents(this.state.input);
-    this.setState({ events: resp.data.results });
+    this.setState({events: resp.data.results});
   }
 
   render() {
-    return (
-      <div className="App">
-        <Nav />
-      </div>
-    );
+    return (<div className="App">
+      <Nav/> {
+        this.state.logged === false
+          ? <Welcome/>
+          : <HomePage/>
+      }
+      <Footer/>
+    </div>);
   }
 }
 
