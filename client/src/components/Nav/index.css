@@ -3,7 +3,7 @@
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
-  height: 60px;
+  height: 150px;
   width: 100%;
   background-color: lightblue;
   justify-content: flex-start;

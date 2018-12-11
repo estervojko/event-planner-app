@@ -16,34 +16,44 @@ class App extends Component {
     this.state = {
       events: '',
       input: '',
-      logged: false
+      logged: false,
+      token: ''
     }
-    this.getEvents = this.getEvents.bind(this);
-    this.handleChange = this.handleChange.bind(this);
+    this.setView = this.setView.bind(this);
+    this.setToken = this.setToken.bind(this);
   }
 
-  handleChange(e) {
-    this.setState({input: e.target.value});
-    if (this.state.input.length > 2)
-      this.getEvents();
+  //changes the logged state when a user logs in or registers
+  setView(loggedIn){
+    if(loggedIn===true){
+      this.setState(
+        {
+          logged: true
+        }
+      )
     }
-
-  handleEventSelect() {}
-
-  async getEvents() {
-    const resp = await axios.get(BASE_URL + '/events');
-    debugger;
-    this.setState({events: resp.data.events});
   }
+
+  getView(){
+    return (this.state.logged === false)
+      ? <Welcome/>
+      : <HomePage/>
+  }
+
+  //sets the token in state
+  setToken(token){
+    this.setState({
+       token: token
+     })
+  }
+
+
 
   render() {
     return (<div className="App">
-      <Nav/>
-      {
-        (this.state.logged === false)
-          ? <Welcome/>
-          : <HomePage/>
-      }
+      <Nav setView={this.setView}
+           setToken={this.setToken}/>
+      {this.getView()}
       <Footer/>
     </div>);
   }

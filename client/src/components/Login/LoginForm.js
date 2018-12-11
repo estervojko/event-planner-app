@@ -43,6 +43,7 @@ export default class LoginForm extends Component{
        loggedIn: true
      })
     console.log(resp.data);
+    this.props.setView(true)
   }
 
   //tests if we can grab events authenticated
