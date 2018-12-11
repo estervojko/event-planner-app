@@ -1,0 +1,25 @@
+.nav {
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  height: 50px;
+  width: 100%;
+  background-color: lightblue;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#nav-title {
+  margin: 0;
+  padding-left: 10px;
+  /* float: left; */
+}
+
+#nav-register-button {
+  margin-left: auto;
+}
+
+#nav-login-button {
+  margin-right: 10px;
+}

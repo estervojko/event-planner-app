@@ -40,9 +40,10 @@ export default class Nav extends Component {
 
   render(){
     return (
-      <div>
-        <button onClick={() => {this.setView('register')}}>Register</button>
-        <button onClick={() => {this.setView('login')}}>Login</button>
+      <div className="nav">
+        <h1 id="nav-title">Get Busy</h1>
+        <button id="nav-register-button" onClick={() => {this.setView('register')}}>Register</button>
+        <button id="nav-login-button" onClick={() => {this.setView('login')}}>Login</button>
         {this.getView()}
       </div>
     )
