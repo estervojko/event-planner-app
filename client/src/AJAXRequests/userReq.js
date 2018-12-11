@@ -57,15 +57,18 @@ const userReq = {
   }
 }
 
-async function test(){
-  const data = {
-    
-  }
-  const resp = await userReq.getUsers();
-  console.log(resp);
-}
-
-test();
+// async function test(){
+//   const data = {
+//     username: 'steve20pro',
+//     first_name: 'Steve',
+//     last_name: 'Rodriguez',
+//     address: '123 Main st.'
+//   }
+//   const resp = await userReq.putUser(3, data);
+//   console.log(resp);
+// }
+//
+// test();
 
 module.exports = {
   userReq

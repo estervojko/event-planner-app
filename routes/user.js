@@ -8,7 +8,12 @@ userRouter.use(bodyParser.json());
 //GET all Users
 userRouter.get('/', async (req, res) => {
   try {
-    const users = await User.findAll();
+    const users = await User.findAll({
+      attributes: {
+        exclude:
+        ['password']
+      }
+    });
     res.json({
       users
     })
@@ -21,7 +26,12 @@ userRouter.get('/', async (req, res) => {
 //GET one User
 userRouter.get('/:id', async(req, res) => {
   try {
-    const user = await User.findByPk(req.params.id);
+    const user = await User.findByPk(req.params.id, {
+      attributes: {
+        exclude:
+        ['password']
+      }
+    });
     res.json({
       user
     })
@@ -35,12 +45,20 @@ userRouter.get('/:id', async(req, res) => {
 userRouter.post('/', async(req, res) => {
   try {
     const user = await User.create(req.body);
+    const newUser = await User.findOne( user.id, {
+      attributes: {
+        exclude:
+        ['password']
+      }
+    })
     res.json({
-      user
+      newUser
     })
   } catch (e) {
     console.log('Server could not process request to POST user', e)
-    res.sendStatus(404);
+    res.status(500).json({
+      msg: e.message
+    });
   }
 })
 
