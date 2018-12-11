@@ -33,12 +33,13 @@ passport.use(new JwtStrategy(opts, async (payload, done) => {
 const {Event, User} = require('./models')
 
 const { eventRouter } = require('./routes/event');
+const { userRouter } = require('./routes/user');
 
 const app = express();
 
 const PORT = 3000;
 
-app.use(bodyParser());
+app.use(bodyParser.json());
 app.use(cors());
 app.use(logger('dev'));
 
@@ -48,38 +49,38 @@ app.get('/', (req, res) => {
 })
 
 //test if hashing works
-app.post('/users', async (req, res) => {
-  try {
-    const user = await User.create(req.body);
-    const { id, username} = user.dataValues;
-    const token = sign({
-      id,
-      username
-    });
-    res.json({user, token});
-  } catch(e) {
-    console.log(e);
-    res.status(500).json({msg: e.message});
-  }
-});
+// app.post('/users', async (req, res) => {
+//   try {
+//     const user = await User.create(req.body);
+//     const { id, username} = user.dataValues;
+//     const token = sign({
+//       id,
+//       username
+//     });
+//     res.json({user, token});
+//   } catch(e) {
+//     console.log(e);
+//     res.status(500).json({msg: e.message});
+//   }
+// });
 
 
-//test if passport works
-app.get('/events', passport.authenticate('jwt', { session: false }), async (req, res) => {
-  try{
-    const events = await Event.findAll()
-    res.json(events)
-  }
-  catch(e){
-    res.status(500).json({
-      msg: e.message
-    })
-  }
-});
+// //test if passport works
+// app.get('/events', passport.authenticate('jwt', { session: false }), async (req, res) => {
+//   try{
+//     const events = await Event.findAll()
+//     res.json(events)
+//   }
+//   catch(e){
+//     res.status(500).json({
+//       msg: e.message
+//     })
+//   }
+// });
 
 //steve
-//app.use('/events', eventRouter);
-
+app.use('/events', eventRouter);
+app.use('/users', userRouter);
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
