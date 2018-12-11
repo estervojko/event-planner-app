@@ -33,12 +33,13 @@ passport.use(new JwtStrategy(opts, async (payload, done) => {
 const {Event, User} = require('./models')
 
 const { eventRouter } = require('./routes/event');
+const { userRouter } = require('./routes/user');
 
 const app = express();
 
 const PORT = 3000;
 
-app.use(bodyParser());
+app.use(bodyParser.json());
 app.use(cors());
 app.use(logger('dev'));
 
@@ -46,7 +47,6 @@ app.use(logger('dev'));
 app.get('/', (req, res) => {
   res.json({res: "Event Planner app initiated"})
 })
-
 
 //Ester
 //Register a user
@@ -101,9 +101,22 @@ app.get('/events', passport.authenticate('jwt', { session: false }), async (req,
   }
 });
 
-//steve
-//app.use('/events', eventRouter);
+// //test if passport works
+// app.get('/events', passport.authenticate('jwt', { session: false }), async (req, res) => {
+//   try{
+//     const events = await Event.findAll()
+//     res.json(events)
+//   }
+//   catch(e){
+//     res.status(500).json({
+//       msg: e.message
+//     })
+//   }
+// });
 
+//steve
+app.use('/events', eventRouter);
+app.use('/users', userRouter);
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
