@@ -1,16 +1,21 @@
 import React, {Component} from 'react';
+
 import Nav from './components/Nav';
 import Welcome from './components/Welcome';
 import HomePage from './components/HomePage';
 import Footer from './components/Footer';
 import axios from 'axios';
 import './App.css';
+import axios from 'axios';
+import RegisterForm from './components/Login/RegisterForm'
+
 
 const BASE_URL = 'http://localhost:3001';
 
 class App extends Component {
   constructor(props) {
     super(props);
+    
     this.state = {
       events: '',
       input: '',
