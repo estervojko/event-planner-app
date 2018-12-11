@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-
 import Nav from './components/Nav';
 import Welcome from './components/Welcome';
 import HomePage from './components/HomePage';
@@ -45,7 +44,8 @@ class App extends Component {
           : <HomePage/>
       }
       <Footer/>
-    </div>);
+    </div>
+    );
   }
 }
 

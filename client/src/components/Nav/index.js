@@ -1,3 +1,4 @@
+
 import React, {Component} from 'react';
 import RegisterForm from '../Register/RegisterForm';
 import LoginForm from '../Login/LoginForm';
@@ -58,3 +59,4 @@ export default class Nav extends Component {
     )
   }
 }
+
