@@ -60,6 +60,7 @@ eventRouter.delete('/:id', async(req, res) => {
   }
 })
 
+//UPDATE Event
 eventRouter.put('/:id', async(req, res) => {
   try {
     const event = await Event.findByPk(req.params.id);
@@ -74,7 +75,7 @@ eventRouter.put('/:id', async(req, res) => {
   }
 })
 
-//EVENT_USER(Attendee) ROUTES
+//ATTENDEE ROUTES
 
 //GET all users associated with event
 eventRouter.get('/:id/users', async(req, res) => {

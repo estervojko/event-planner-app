@@ -101,7 +101,6 @@ async function assocUsersAndEvents(){
   await Promise.all(users.map(user => user.setEvents(events)));
 }
 
-
 async function run(){
   try {
     await createUsers();
