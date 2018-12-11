@@ -6,8 +6,6 @@ import HomePage from './components/HomePage';
 import Footer from './components/Footer';
 import axios from 'axios';
 import './App.css';
-import RegisterForm from './components/Login/RegisterForm';
-
 
 const BASE_URL = 'http://localhost:3001';
 
