@@ -32,7 +32,8 @@ export default class Nav extends Component {
     else if(this.state.view === 'login'){
       return (
         <div>
-          <LoginForm  setView={this.props.setView}/>
+          <LoginForm  setView={this.props.setView}
+                      setToken={this.props.setToken}/>
           <button onClick={() => {this.setView('')}}>Cancel</button>
         </div>
       )

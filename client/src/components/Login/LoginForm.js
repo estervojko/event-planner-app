@@ -37,13 +37,14 @@ export default class LoginForm extends Component{
   async handleSubmit(e){
     e.preventDefault();
     //handle the register
-    const resp = await axios.post(`${BASE_URL}/users`, this.state.user);
+    const resp = await axios.post(`${BASE_URL}/login`, this.state.user);
     this.setState({
        token: resp.data.token,
        loggedIn: true
      })
     console.log(resp.data);
     this.props.setView(true)
+    this.props.setToken(resp.data.token)
   }
 
   //tests if we can grab events authenticated

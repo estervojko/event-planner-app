@@ -8,7 +8,12 @@ userRouter.use(bodyParser.json());
 //GET all Users
 userRouter.get('/', async (req, res) => {
   try {
-    const users = await User.findAll();
+    const users = await User.findAll({
+      attributes: {
+        exclude:
+        ['password']
+      }
+    });
     res.json({
       users
     })
@@ -21,7 +26,12 @@ userRouter.get('/', async (req, res) => {
 //GET one User
 userRouter.get('/:id', async(req, res) => {
   try {
-    const user = await User.findByPk(req.params.id);
+    const user = await User.findByPk(req.params.id, {
+      attributes: {
+        exclude:
+        ['password']
+      }
+    });
     res.json({
       user
     })
@@ -31,6 +41,7 @@ userRouter.get('/:id', async(req, res) => {
   }
 })
 
+<<<<<<< HEAD
 //POST User
 // userRouter.post('/', async(req, res) => {
 //   try {
@@ -44,6 +55,8 @@ userRouter.get('/:id', async(req, res) => {
 //   }
 // })
 
+=======
+>>>>>>> b0c51fa127bf58cb4c3c31af66cbd108b8616865
 //DELETE User
 userRouter.delete('/:id', async(req, res) => {
   try {
