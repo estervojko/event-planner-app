@@ -10,8 +10,9 @@ export default class RegisterForm extends Component{
       user : {
         username: '',
         password: '',
-        first_name: 'testester',
-        last_name: 'testester'
+        first_name: '',
+        last_name: '',
+        address: ''
       },
       token: '',
       loggedIn: false,
@@ -37,7 +38,7 @@ export default class RegisterForm extends Component{
   async handleSubmit(e){
     e.preventDefault();
     //handle the register
-    const resp = await axios.post(`${BASE_URL}/users`, this.state.user);
+    const resp = await axios.post(`${BASE_URL}/register`, this.state.user);
     this.setState({
        token: resp.data.token,
        loggedIn: true
@@ -80,7 +81,7 @@ export default class RegisterForm extends Component{
           <label>
             First Name
             <input type="text"
-                   name="password"
+                   name="first_name"
                    value={this.state.first_name}
                    onChange={this.handleChange}/>
           </label>
@@ -88,7 +89,7 @@ export default class RegisterForm extends Component{
           <label>
             Last Name
             <input type="text"
-                   name="password"
+                   name="last_name"
                    value={this.state.last_name}
                    onChange={this.handleChange}/>
           </label>
@@ -96,7 +97,7 @@ export default class RegisterForm extends Component{
           <label>
             Address
             <input type="text"
-                   name="password"
+                   name="address"
                    value={this.state.address}
                    onChange={this.handleChange}/>
           </label>

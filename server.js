@@ -47,8 +47,10 @@ app.get('/', (req, res) => {
   res.json({res: "Event Planner app initiated"})
 })
 
-//test if hashing works
-app.post('/users', async (req, res) => {
+
+//Ester
+//Register a user
+app.post('/register', async (req, res) => {
   try {
     const user = await User.create(req.body);
     const { id, username} = user.dataValues;
@@ -63,6 +65,28 @@ app.post('/users', async (req, res) => {
   }
 });
 
+//Ester   --- Do not forget to make the username unique
+app.post('/login', async (req, res) => {
+  try {
+    const user = await User.findOne({where: {username: req.body.username}});
+    const isVerified = await bcrypt.compare(req.body.password, user.dataValues.password);
+    // check if it's the right password
+    if(isVerified){
+      const { id, username} = user.dataValues;
+      const token = sign({
+        id,
+        username
+      });
+      res.json({user, token});
+    }
+    else{
+      res.json({msg: "invalid login"});
+    }
+  } catch(e) {
+    console.log(e);
+    res.status(500).json({msg: e.message});
+  }
+});
 
 //test if passport works
 app.get('/events', passport.authenticate('jwt', { session: false }), async (req, res) => {
