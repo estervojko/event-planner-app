@@ -43,9 +43,18 @@ export default class Nav extends Component {
     return (
       <div className="nav">
         <h1 id="nav-title">Get Busy</h1>
-        <button id="nav-register-button" onClick={() => {this.setView('register')}}>Register</button>
-        <button id="nav-login-button" onClick={() => {this.setView('login')}}>Login</button>
-        {this.getView()}
+        <div className="dropdwn1">
+          <button id="nav-register-button" onClick={() => {this.setView('register')}}>Register</button>
+          <div className="dropdwn1-content">
+            <div className="register-view">{this.getView()}</div>
+          </div>
+        </div>
+        <div className="dropdwn2">
+          <button id="nav-login-button" onClick={() => {this.setView('login')}}>Login</button>
+          <div className="dropdwn2-content">
+            <div className="login-view">{this.getView()}</div>
+          </div>
+        </div>
       </div>
     )
   }
