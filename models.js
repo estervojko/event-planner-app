@@ -32,8 +32,12 @@ const Event = sequelize.define('event',
     address: Sequelize.TEXT
   });
 
-User.belongsToMany(Event);
-Event.belongsToMany(User);
+const Attendees = sequelize.define('attendee', {
+  isOrganizer: Sequelize.BOOLEAN
+})
+
+User.belongsToMany(Event, { through: Attendees })
+Event.belongsToMany(User, { through: Attendees })
 
 module.exports = {
   Event,
