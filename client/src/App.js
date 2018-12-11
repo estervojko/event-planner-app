@@ -3,7 +3,10 @@ import Nav from './components/Nav';
 import Welcome from './components/Welcome';
 import HomePage from './components/HomePage';
 import Footer from './components/Footer';
+import axios from 'axios';
 import './App.css';
+
+const BASE_URL = 'http://localhost:3001';
 
 class App extends Component {
   constructor(props) {
@@ -26,8 +29,9 @@ class App extends Component {
   handleEventSelect() {}
 
   async getEvents() {
-    const resp = await getEvents(this.state.input);
-    this.setState({events: resp.data.results});
+    const resp = await axios.get(BASE_URL + '/events');
+    debugger;
+    this.setState({events: resp.data.events});
   }
 
   render() {
