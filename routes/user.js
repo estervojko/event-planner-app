@@ -68,7 +68,12 @@ userRouter.put('/:id', async(req, res) => {
       updatedUser
     })
   } catch (e) {
-    console.log('Server could not process request to UPDATE user', e)
-    res.sendStatus(404);
+    res.status(404).json({
+      e: 'Server could not process request to UPDATE user - User may not exist'
+    });
   }
 })
+
+module.exports = {
+  userRouter
+}
