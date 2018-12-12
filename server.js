@@ -31,7 +31,6 @@ module.exports = passport.use(new JwtStrategy(opts, async (payload, done) => {
 
 //server
 const {Event, User} = require('./models')
-
 const { eventRouter } = require('./routes/event');
 const { userRouter } = require('./routes/user');
 
