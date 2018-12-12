@@ -3,13 +3,15 @@ import RegisterForm from '../Register/RegisterForm';
 import LoginForm from '../Login/LoginForm';
 import './index.css';
 
-import Dropdown, { DropdownTrigger, DropdownContent} from 'react-simple-dropdown';
+// import Dropdown, { DropdownTrigger, DropdownContent} from 'react-simple-dropdown';
+import { default as Dropdown, DropdownContent, DropdownTrigger } from "react-simple-dropdown";
 
 export default class Nav extends Component {
   constructor(props){
     super(props);
     this.state = {
-      view: ''
+      view: '',
+      registered: false
     }
   }
 
@@ -25,7 +27,8 @@ export default class Nav extends Component {
       return (
         <div>
           <RegisterForm setView={this.props.setView}
-                        setToken={this.props.setToken}/>
+                        setToken={this.props.setToken}
+                        checkReg={this.checkReg}/>
           <button onClick={() => {this.setView('')}}>Cancel</button>
         </div>
       )
@@ -39,6 +42,10 @@ export default class Nav extends Component {
         </div>
       )
     }
+  }
+
+  hideDrop(){;
+    Dropdown.hide()
   }
 
   render(){
@@ -57,15 +64,23 @@ export default class Nav extends Component {
             <div className="login-view">{this.getView()}</div>
           </div>
         </div> */}
-          <Dropdown>
-            <DropdownTrigger onClick={() => {this.setView('register')}} >Register</DropdownTrigger>
+        <Dropdown>
+            <DropdownTrigger onClick={() => {this.setView('register')}} >
+              <button onClick={() => {this.setView('login')}} >
+                Register
+              </button>
+            </DropdownTrigger>
             <DropdownContent> {this.getView()} </DropdownContent>
-          </Dropdown>
-          <Dropdown>
-            <DropdownTrigger onClick={() => {this.setView('login')}} >Login</DropdownTrigger>
+       </Dropdown>
+       <Dropdown>
+            <DropdownTrigger >
+              <button onClick={() => {this.setView('login')}} >
+                Login
+              </button>
+          </DropdownTrigger>
             <DropdownContent> {this.getView()} </DropdownContent>
-            <button onClick={Dropdown.hide}>Hide</button>
-          </Dropdown>
+            <button onClick={() => {Dropdown.hide()}}>Hide</button>
+        </Dropdown>
       </div>
     )
   }
