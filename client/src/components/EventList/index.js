@@ -9,7 +9,7 @@ class EventList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedEvent: null,
+      selectedEvent: null
     }
   }
 
@@ -20,6 +20,8 @@ class EventList extends Component {
           event={this.state.selectedEvent}
           close={this.handleClose}
           handleRSVP={this.handleRSVP}
+          handleAttendance={this.handleAttendance}
+          userLogged={this.props.logged}
         />
       )
     } else {
@@ -44,28 +46,89 @@ class EventList extends Component {
   }
 
   handleEventSelect = (event) => {
-    this.setState({
-      selectedEvent: event
-    })
+    //if an event has attendees
+    if (event.users.length > 0) {
+      //find index of logged user in event
+      const i = event.users.indexOf( user => user.id === this.props.user.id );
+      //if index is a positive number
+      if (i > 0) {
+        //set isAttending to true
+        this.setState((prevState) => ({
+          selectedEvent: {
+            ...prevState.selectedEvent,
+            details: event,
+            isAttending: true
+
+          }
+        }))
+      } else {
+        this.setState((prevState) => ({
+          selectedEvent: {
+            ...prevState.selectedEvent,
+            details: event,
+            isAttending: false
+          }
+        }))
+      }
+    }
   }
 
   handleClose = () => {
-    this.setState({
+    this.setState((prevState) => ({
       selectedEvent: null
-    })
+    }))
   }
 
-  handleRSVP = async(choice) => {
-    const event_id = this.state.selectedEvent.id;
-    const user_id = this.props.userId
-    console.log(user_id);
-    const data = {
-      rsvp: choice
+  handleAttendance = async () => {
+    if (this.state.selectedEvent.isAttending) {
+      await this.removeAttendee()
+    } else {
+      await this.setAttendee()
     }
+  }
+
+  getAttendees = async() => {
+    const event_id = this.props.selectedEvent.details.id;
+    try {
+      const attendees = await attendeeReq.getAttendees(event_id);
+      console.log(attendees);
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+  setAttendee = async() => {
+    const TOKEN = this.props.token;
+    const user_id = this.props.user.id
+    const event_id = this.state.selectedEvent.details.id;
+    const data = {};
 
     try {
-      const updatedEvent = await attendeeReq.postAttendee(event_id, data);
-      console.log(updatedEvent);
+      const updatedEvent = await attendeeReq.postAttendee(event_id, user_id, data, TOKEN);
+      this.setState({
+        selectedEvent: {
+          details: updatedEvent,
+          isAttending: true
+        }
+      })
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+  removeAttendee = async() => {
+    const TOKEN = this.props.token;
+    const user_id = this.props.user.id
+    const event_id = this.state.selectedEvent.details.id;
+
+    try {
+      const updatedEvent = await attendeeReq.deleteAttendee(event_id, user_id, TOKEN);
+      this.setState({
+        selectedEvent: {
+          details: updatedEvent,
+          isAttending: false
+        }
+      })
     } catch (e) {
       console.log(e)
     }

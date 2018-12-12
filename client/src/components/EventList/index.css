@@ -1,12 +1,12 @@
 .event-list-wrapper{
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: auto;
   grid-column-gap: 10px;
   grid-row-gap: 10px;
   border: 1px solid green;
   width: auto;
-  padding: 20px;
+  padding: 10px;
 }
 
 
