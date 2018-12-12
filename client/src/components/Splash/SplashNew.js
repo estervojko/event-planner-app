@@ -5,12 +5,6 @@ export default class SplashNew extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // images: [
-      //   "https://buildingontheword.org/wp-content/uploads/2016/08/cat.jpg",
-      //   "https://www.pets4homes.co.uk/images/articles/4295/large/early-neutering-of-kittens-pros-and-cons-598ddb68021a9.jpg",
-      //   "https://www.simpsonspremium.com/wp/wp-content/uploads/2017/02/cat.jpeg",
-      //   "https://www.healthypawspetinsurance.com/Images/V3/DogAndPuppyInsurance/Dog_CTA_Desktop_HeroImage.jpg"
-      // ],
       images: [
         "https://www.northshorevisitor.com/wp-content/uploads/2015/04/kayaking-1.jpg",
         "https://c1.staticflickr.com/3/2895/33959134422_caa8d09289_b.jpg",
