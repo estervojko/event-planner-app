@@ -46,7 +46,7 @@ export default class HomePage extends Component{
     return(
       <div>
         Test HomePage
-        <Splash/>
+        {/* <Splash/> */}
         {/* <UserProfile/> */}
         <EventList
           events={this.state.events}

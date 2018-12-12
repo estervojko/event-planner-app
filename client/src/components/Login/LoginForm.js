@@ -26,8 +26,8 @@ export default class LoginForm extends Component{
     const {name, value} = e.target;
     this.setState((prevState) => (
       {
-        user :
-          { ...prevState.user,
+        userData :
+          { ...prevState.userData,
             [name] : value
           }
       }
@@ -38,14 +38,16 @@ export default class LoginForm extends Component{
     e.preventDefault();
     //handle the register
     const resp = await axios.post(`${BASE_URL}/login`, this.state.userData);
-    this.setState({
-       token: resp.data.token,
-       loggedIn: true
-     })
-    console.log(resp.data);
-    this.props.setView(true)
-    this.props.setToken(resp.data.token)
-    this.props.setloggedUser(resp.data.userData);
+    if(resp.data.token !== undefined){
+      this.setState({
+         token: resp.data.token,
+         loggedIn: true
+       })
+      console.log(resp.data);
+      this.props.setView(true);
+      this.props.setToken(resp.data.token)
+      this.props.setloggedUser(resp.data.user);
+    }
   }
 
   //tests if we can grab events authenticated
@@ -68,7 +70,7 @@ export default class LoginForm extends Component{
             Username
             <input type="text"
                    name="username"
-                   value={this.state.username}
+                   value={this.state.userData.username}
                    onChange={this.handleChange}/>
           </label>
           <br></br>
@@ -76,7 +78,7 @@ export default class LoginForm extends Component{
             Password
             <input type="text"
                    name="password"
-                   value={this.state.password}
+                   value={this.state.userData.password}
                    onChange={this.handleChange}/>
           </label>
           <br></br>

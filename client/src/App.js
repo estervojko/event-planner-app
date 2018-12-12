@@ -41,22 +41,31 @@ class App extends Component {
           events={this.state.events}
         />
       : <HomePage
-          events={this.state.events}
-          userId={this.state.user.id}
+          // events={this.state.events}
+          // userId={this.state.user.id}
         />
   }
 
   //sets the token in state
   setToken(token){
-    this.setState({
-       token: token
-     })
+    this.setState((prevState) => (
+      {
+         ...prevState,
+         token: token
+       }
+    )
+   )
   }
+
   //puts loggedIn user in state
   setloggedUser(user){
-    this.setState({
-      user: user
-    })
+    this.setState((prevState) => (
+      {
+        ...prevState,
+        user: user
+      }
+      )
+    )
   }
 
   async componentDidMount(){

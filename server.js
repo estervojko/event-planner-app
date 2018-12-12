@@ -79,19 +79,7 @@ app.post('/login', async (req, res) => {
         id,
         username
       });
-      const verifiedUser = await User.findOne(
-        {
-          where:
-            {
-              username: req.body.username
-            },
-          attributes:
-            {
-              exclude: ["password"]
-            }
-        }
-      );
-      res.json({verifiedUser, token});
+      res.json({user, token});
     }
     else{
       res.json({msg: "invalid login"});
