@@ -3,6 +3,7 @@ import Nav from './components/Nav';
 import Welcome from './components/Welcome';
 import HomePage from './components/HomePage';
 import Footer from './components/Footer';
+import UserProfile from './components/UserProfile';
 import axios from 'axios';
 import './App.css';
 
@@ -17,7 +18,8 @@ class App extends Component {
       input: '',
       logged: false,
       token: '',
-      user: {}
+      user: {},
+      view: ''
     }
     this.setView = this.setView.bind(this);
     this.setToken = this.setToken.bind(this);
@@ -76,6 +78,7 @@ class App extends Component {
 
   getEvents = async() => {
     const events = await eventReq.getEvents();
+    console.log(events);
     this.setState({
       events
     });
@@ -89,8 +92,23 @@ class App extends Component {
 
   }
 
+  changeView(view){
+    this.setState = { view }
+  }
+  switchView(){
+    switch(this.state.view){
+      case "loggedIn":
+      return <HomePage events={this.state.events}/>;
+      case "userPage":
+      return <UserProfile events={this.state.events}/>;
+      default:
+      return <Welcome events={this.state.events} />
+    }
+  }
+
   render() {
     return (
+
      <div className="App">
       <Nav setView={this.setView}
            setToken={this.setToken}
@@ -98,6 +116,7 @@ class App extends Component {
       {this.getView()}
       <Footer/>
     </div>)
+
   }
 }
 
