@@ -2,10 +2,16 @@
   background-color: #02040F;
   color: #E5DADA;
   width: 100%;
-  margin-top: 100%;
   position: static;
-  padding: 10px;
   display:flex;
   justify-content: space-between;
+  margin-top: 2%;
+}
 
+.footer-text1 {
+  padding-left: 10px;
+}
+
+.footer-text2 {
+  padding-right: 10px;
 }
