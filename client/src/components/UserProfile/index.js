@@ -32,7 +32,7 @@ constructor(props){
            <h2>{this.state.location}</h2>{/*render the location*/}
            <p>{this.state.active}</p> <div className="activePoint"></div>{/*render the active dot*/}
           </div>
-          <EventList event={this.props.events} />{/*change the parameters to reflect the user's choices*/}
+          {/* There needs to be an eventList here. change the parameters to reflect the user's choices*/}
           <button >Delete Event</button>
         </div>
     )
