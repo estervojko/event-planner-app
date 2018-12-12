@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import Splash from '../Splash';
 import EventList from '../EventList'
+<<<<<<< HEAD
+=======
+// import UserProfile from '../UserProfile'
+>>>>>>> eebdbf651e2832c0bf84afea94af68775a0e0ff0
 
 export default class HomePage extends Component{
   constructor(props){
@@ -47,6 +51,10 @@ export default class HomePage extends Component{
       <div>
         Test HomePage
         <Splash/>
+<<<<<<< HEAD
+=======
+        {/* <UserProfile/> */}
+>>>>>>> eebdbf651e2832c0bf84afea94af68775a0e0ff0
         <EventList events={this.state.events}/>
         <EventList events={this.state.events}/>
         <EventList events={this.state.events}/>
