@@ -16,6 +16,7 @@ class EventList extends Component {
       return (
         <EventDetail
           event={this.state.selectedEvent}
+          close={this.handleClose}
         />
       )
     } else {
@@ -39,9 +40,15 @@ class EventList extends Component {
 
   }
 
-  handleEventSelect(event){
+  handleEventSelect = (event) => {
     this.setState({
       selectedEvent: event
+    })
+  }
+
+  handleClose = () => {
+    this.setState({
+      selectedEvent: null
     })
   }
 

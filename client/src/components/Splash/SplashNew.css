@@ -1,0 +1,28 @@
+.splashNew {
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin-top: 1%;
+  margin-left: 10%;
+  margin-right: 10%;
+  justify-content: center;
+}
+
+.previous-slide-button {
+  width: 100px;
+}
+
+.next-slide-button {
+  width: 100px;
+}
+
+.splash-img-container {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+img {
+  max-width: 800px;
+  height: 600px;
+}
