@@ -19,6 +19,11 @@ export default function EventDetail(props){
         <p className="event-detail-address">{event.address}</p>
         <p className="event-detail-description">{event.description}</p>
         <button className="event-detail-exit-button" onClick={props.close}>X</button>
+        <div className="event-item-button-container">
+          <button onClick={props.handleRSVP}>
+            Going?
+          </button>
+        </div>
       </div>
     </div>
   )

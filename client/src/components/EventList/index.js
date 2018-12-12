@@ -3,11 +3,13 @@ import EventItem from '../EventItem/index.js';
 import EventDetail from '../EventDetail/index.js';
 import './index.css';
 
+const { attendeeReq } = require('../../AJAXRequests/attendeeReq');
+
 class EventList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedEvent: null
+      selectedEvent: null,
     }
   }
 
@@ -17,6 +19,7 @@ class EventList extends Component {
         <EventDetail
           event={this.state.selectedEvent}
           close={this.handleClose}
+          handleRSVP={this.handleRSVP}
         />
       )
     } else {
@@ -50,6 +53,16 @@ class EventList extends Component {
     this.setState({
       selectedEvent: null
     })
+  }
+
+  handleRSVP = async() => {
+    const event_id = this.state.selectedEvent.id
+    try {
+      const updatedEvent = await attendeeReq.postAttendee(event_id);
+      console.log(updatedEvent);
+    } catch (e) {
+      console.log(e)
+    }
   }
 
   render() {
