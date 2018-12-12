@@ -9,7 +9,8 @@ async function createUsers(){
         password: 12345,
         first_name: 'first_name',
         last_name: 'last_name',
-        address:'address'
+        address:'address',
+        img:'https://food.fnr.sndimg.com/content/dam/images/food/fullset/2012/7/25/0/FNM_090112-Mix-and-Match-Classic-Cookies-Recipe-03_s4x3.jpg.rend.hgtvcom.616.462.suffix/1371607143890.jpeg'
       },
       {
         username: 'username',
@@ -53,35 +54,40 @@ async function createEvents(){
         description: 'description',
         start_date: moment().format(),
         end_date: moment().add(2, 'hours').format(),
-        address: 'address'
+        address: 'address',
+        img:'https://food.fnr.sndimg.com/content/dam/images/food/fullset/2012/7/25/0/FNM_090112-Mix-and-Match-Classic-Cookies-Recipe-03_s4x3.jpg.rend.hgtvcom.616.462.suffix/1371607143890.jpeg'
       },
       {
         title: 'event title',
         description: 'description',
         start_date: moment().format(),
         end_date: moment().add(2, 'hours').format(),
-        address: 'address'
+        address: 'address',
+        img:'https://food.fnr.sndimg.com/content/dam/images/food/fullset/2012/7/25/0/FNM_090112-Mix-and-Match-Classic-Cookies-Recipe-03_s4x3.jpg.rend.hgtvcom.616.462.suffix/1371607143890.jpeg'
       },
       {
         title: 'event title',
         description: 'description',
         start_date: moment().format(),
         end_date: moment().add(2, 'hours').format(),
-        address: 'address'
+        address: 'address',
+        img:'https://food.fnr.sndimg.com/content/dam/images/food/fullset/2012/7/25/0/FNM_090112-Mix-and-Match-Classic-Cookies-Recipe-03_s4x3.jpg.rend.hgtvcom.616.462.suffix/1371607143890.jpeg'
       },
       {
         title: 'event title',
         description: 'description',
         start_date: moment().format(),
         end_date: moment().add(2, 'hours').format(),
-        address: 'address'
+        address: 'address',
+        img:'https://food.fnr.sndimg.com/content/dam/images/food/fullset/2012/7/25/0/FNM_090112-Mix-and-Match-Classic-Cookies-Recipe-03_s4x3.jpg.rend.hgtvcom.616.462.suffix/1371607143890.jpeg'
       },
       {
         title: 'event title',
         description: 'description',
         start_date: moment().format(),
         end_date: moment().add(2, 'hours').format(),
-        address: 'address'
+        address: 'address',
+        img:'https://food.fnr.sndimg.com/content/dam/images/food/fullset/2012/7/25/0/FNM_090112-Mix-and-Match-Classic-Cookies-Recipe-03_s4x3.jpg.rend.hgtvcom.616.462.suffix/1371607143890.jpeg'
       }
     ])
   } catch (e) {
