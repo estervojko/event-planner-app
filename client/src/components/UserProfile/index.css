@@ -3,3 +3,31 @@
   height: 50%;
   margin: 0 auto;
 }
+
+.userBody{
+  border-radius: 10px 0px 0px 10px;
+  background-color: #002642;
+  box-shadow: 10px, rgba(0,0,0,0, 0.1);
+}
+
+.userBody h1{
+  font-style: italic;
+  font-weight: bolder;
+  color: orange
+}
+
+.userBody h2{
+  font-style: italic;
+  color: red;
+}
+
+.userBody p {
+  font-style: italic;
+  color: white;
+}
+
+.activePoint {
+  border-radius: 50px;
+  width:10px;
+  height:10px;
+}

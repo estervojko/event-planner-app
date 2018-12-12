@@ -12,7 +12,7 @@ export default class Splash extends Component{
         "https://www.simpsonspremium.com/wp/wp-content/uploads/2017/02/cat.jpeg"
       ],
       currentSlide: 0, //counter for de slide
-      translateValue: 0//how to translate value to show image
+
     }
     this.prevSlide = this.prevSlide.bind(this);
     this.nextSlide = this.nextSlide.bind(this);
@@ -53,10 +53,11 @@ slideWidth(){//function to determine width of slide
         <button onClick = {this.nextSlide}>right</button>
         <button onClick={this.prevSlide}>left</button>
         <div className = "slideShow" style={{
-          transform: `translateX(${this.state.translateValue}px)`,
+          transform: `translateX(${this.state.translateValue} * 10).toString() + px)`,
           //uses translateX css property to move the picture along the X axis
           transition: `transform ease-out 0.45s`//make the sliding very smooth
         }}>
+        {this.state.images[this.state.currentSlide]}
         {
           this.state.images.map((test, i) => (
             <SplashItem key = {i} slide = {test}/>
