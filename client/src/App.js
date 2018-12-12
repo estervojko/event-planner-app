@@ -44,7 +44,8 @@ class App extends Component {
     this.setState({
        token: token
      })
-    
+  }
+  
   async componentDidMount(){
     await this.getEvents();
   }
