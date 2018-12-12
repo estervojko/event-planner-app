@@ -4,41 +4,38 @@ import SplashItem from './SplashItem';
 export default class Test extends Component{
   constructor(props){
     super(props);
-    //Dataset
-    const data = [
-      {
-        id: "slide1",
-        imagePath: "https://buildingontheword.org/wp-content/uploads/2016/08/cat.jpg",
-        imageAlt: "Slide 1 Image",
-        title: "Slide 1",
-        subtitle: "Slide 1 Image SubTitle",
-        text: "Slide 1 Image Text",
-        action: "Slide 1 Image Action",
-        actionHref: "href"
-      },
-      {
-        id         : "slide2",
-        imagePath  : "https://www.pets4homes.co.uk/images/articles/4295/large/early-neutering-of-kittens-pros-and-cons-598ddb68021a9.jpg",
-        imageAlt   : "Slide 2 Image",
-        title      : "Slide 2",
-        subtitle   : "Slide 2 Image SubTitle",
-        text       : "Slide 2 Image Text",
-        action     : "Slide 2 Image Action",
-        actionHref : "href"
-      }
-
-    ];
-    //the component state
     this.state = {
-      currentSlide:0,
-      data: data
+      slideIndex: 1
     }
-  };
-
+  }
+  // let index = this.state.slideIndex;
+  // showSlides(index);
+  //next/prev controls
+  plusSlides(n){
+    showSlides(this.state.slideIndex)
+  }
+//the mechanism to make it work
+  showSlides(n){
+    var i;//the counter
+    var index = this.state.slideIndex; //the state property
+    var slides = document.querySelector(".mySlide"); //selecting the slide components
+    if ( n > slides.length) {index = 1}//if the slide is the last one, go back to first
+    if ( n < 1 ) {index = slides.length}//if slide is the first one, you can go to last
+    for (i = 0; i < slides.length; i++){//for ever slide
+      slides[i].style.display = "none";//make it invisible
+    }
+    slides[index-1].style.display = "block";//but for now, make visible
+  }
   render(){
     return(
-      <div className = 'slideShow'>
-        
+      <div className = "slideShow">
+        <div className ="fade">
+            <SplashItem className = "mySlide" id= "uno"/>
+            <SplashItem className = "mySlide" id= "dos"/>
+            <SplashItem className = "mySlide" id= "tres"/>
+        </div>
+        <p className = "prev" onclick = "nextSlide(-1)">&#10094;</p>
+        <p className = "next" onclick = "nextSlide(1)">&#10095;</p>
       </div>
 
     )

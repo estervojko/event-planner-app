@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import UserProfile from '../UserProfile';
 
 const BASE_URL = `http://localhost:3000`
 
@@ -103,7 +104,7 @@ export default class RegisterForm extends Component{
                    onChange={this.handleChange}/>
           </label>
           <br></br>
-          <button type="submit">Register</button>
+          <button type="submit" onClick = {<UserProfile />} >Register</button>
         </form>
         <button onClick={this.getEvents}>Get Events</button>
       </div>
