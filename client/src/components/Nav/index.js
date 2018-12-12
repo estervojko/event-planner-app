@@ -64,6 +64,7 @@ export default class Nav extends Component {
           <Dropdown>
             <DropdownTrigger onClick={() => {this.setView('login')}} >Login</DropdownTrigger>
             <DropdownContent> {this.getView()} </DropdownContent>
+            <button onClick={Dropdown.hide}>Hide</button>
           </Dropdown>
       </div>
     )
