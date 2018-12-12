@@ -19,7 +19,7 @@ const opts = {
   secretOrKey: SECRET
 };
 
-passport.use(new JwtStrategy(opts, async (payload, done) => {
+module.exports = passport.use(new JwtStrategy(opts, async (payload, done) => {
   try {
     const user = await User.findByPk(payload.id);
     return done(null, user);
@@ -31,7 +31,6 @@ passport.use(new JwtStrategy(opts, async (payload, done) => {
 
 //server
 const {Event, User} = require('./models')
-
 const { eventRouter } = require('./routes/event');
 const { userRouter } = require('./routes/user');
 
@@ -53,10 +52,13 @@ app.get('/', (req, res) => {
 app.post('/register', async (req, res) => {
   try {
     const user = await User.create(req.body);
-    const { id, username} = user.dataValues;
+    const { id, username, first_name, last_name, address} = user.dataValues;
     const token = sign({
       id,
-      username
+      username,
+      first_name,
+      last_name,
+      address
     });
     res.json({user, token});
   } catch(e) {
@@ -123,6 +125,5 @@ app.listen(PORT, () => {
 })
 
 module.exports = {
-  passport,
   sign
-};
+}

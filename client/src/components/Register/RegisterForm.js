@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import jwtDecode from 'jwt-decode'
 
 const BASE_URL = `http://localhost:3000`
 
@@ -39,11 +40,17 @@ export default class RegisterForm extends Component{
     e.preventDefault();
     //handle the register
     const resp = await axios.post(`${BASE_URL}/register`, this.state.user);
-    this.setState({
-       token: resp.data.token,
-       loggedIn: true
-     })
-    console.log(resp.data);
+    // this.setState({
+    //    token: resp.data.token,
+    //    loggedIn: true
+    //  })
+    if(resp.data.token !==null){
+      this.props.setView(true);
+      console.log(resp.data);
+      const decoded = jwtDecode(resp.data.token);
+      this.props.setToken(resp.data.token)
+      this.props.setloggedUser(decoded);
+    }
   }
 
   //tests if we can grab events authenticated

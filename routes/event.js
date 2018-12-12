@@ -5,12 +5,29 @@ const { Event, User, Attendee } = require('../models');
 const eventRouter = express.Router();
 eventRouter.use(bodyParser.json());
 
+//importing utilities for auth
+const passport = require('../server.js');
+const sign = require('../server.js');
+const JwtStrategy = require('passport-jwt').Strategy;
+const ExtractJwt = require('passport-jwt').ExtractJwt;
+
 //EVENT ONLY ROUTES
 
 //GET all Events
+//no auth required
 eventRouter.get('/', async (req, res) => {
   try {
-    const events = await Event.findAll();
+    const events = await Event.findAll({
+      include: [
+        {
+          model: User,
+          attributes: {
+            exclude:
+            ['password']
+          }
+        }
+      ]
+    });
     res.json({
       events
     })
@@ -21,9 +38,20 @@ eventRouter.get('/', async (req, res) => {
 })
 
 //GET one Event
+//may not need it
 eventRouter.get('/:id', async(req, res) => {
   try {
-    const event = await Event.findByPk(req.params.id);
+    const event = await Event.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          attributes: {
+            exclude:
+            ['password']
+          }
+        }
+      ]
+    });
     res.json({
       event
     })
@@ -34,7 +62,7 @@ eventRouter.get('/:id', async(req, res) => {
 })
 
 //POST Event
-eventRouter.post('/', async(req, res) => {
+eventRouter.post('/', passport.authenticate('jwt', { session: false }), async(req, res) => {
   try {
     const event = await Event.create(req.body);
     res.json({
@@ -47,7 +75,7 @@ eventRouter.post('/', async(req, res) => {
 })
 
 //DELETE Event
-eventRouter.delete('/:id', async(req, res) => {
+eventRouter.delete('/:id', passport.authenticate('jwt', { session: false }), async(req, res) => {
   try {
     const event = await Event.findByPk(req.params.id);
     await event.destroy();
@@ -61,7 +89,7 @@ eventRouter.delete('/:id', async(req, res) => {
 })
 
 //UPDATE Event
-eventRouter.put('/:id', async(req, res) => {
+eventRouter.put('/:id', passport.authenticate('jwt', { session: false }), async(req, res) => {
   try {
     const event = await Event.findByPk(req.params.id);
     await event.update(req.body);
@@ -79,10 +107,16 @@ eventRouter.put('/:id', async(req, res) => {
 //ATTENDEE ROUTES
 
 //GET all users associated with event
+//no auth
 eventRouter.get('/:id/users', async(req, res) => {
   try {
     const event = await Event.findByPk(req.params.id);
-    const users = await event.getUsers();
+    const users = await event.getUsers({
+      attributes: {
+        exclude:
+        ['password']
+      }
+    });
     res.json({
       users
     })
@@ -94,7 +128,8 @@ eventRouter.get('/:id/users', async(req, res) => {
 })
 
 //GET one user associated with event
-eventRouter.get('/:id/users/:userId', async(req, res) => {
+//no auth
+eventRouter.get('/:id/users/:userId',async(req, res) => {
   const event_id = req.params.id;
   const user_id = req.params.userId;
   try {
@@ -120,7 +155,7 @@ eventRouter.get('/:id/users/:userId', async(req, res) => {
 })
 
 //POST associate user with event
-eventRouter.post('/:id/users/:userId', async(req, res) => {
+eventRouter.post('/:id/users/:userId', passport.authenticate('jwt', { session: false }), async(req, res) => {
   const event_id = req.params.id;
   const user_id = req.params.userId;
 
@@ -144,12 +179,15 @@ eventRouter.post('/:id/users/:userId', async(req, res) => {
       const attendee = await Attendee.create({
         event_id: event_id,
         user_id: user_id,
-        isOrganizer: false,
-        rsvp: true
+        ...req.body
       })
       const updatedEvent = await Event.findByPk(req.params.id, {
         include: {
-            model: User
+            model: User,
+            attributes: {
+              exclude:
+              ['password']
+            }
           }
       });
       res.json({
@@ -167,7 +205,7 @@ eventRouter.post('/:id/users/:userId', async(req, res) => {
 })
 
 //DELETE remove attendee from event
-eventRouter.delete('/:id/users/:userId', async(req, res) => {
+eventRouter.delete('/:id/users/:userId', passport.authenticate('jwt', { session: false }) ,async(req, res) => {
   const event_id = req.params.id;
   const user_id = req.params.userId;
 
@@ -192,7 +230,11 @@ eventRouter.delete('/:id/users/:userId', async(req, res) => {
       const attendee = await event.removeUser(user_id);
       const updatedEvent = await Event.findByPk(req.params.id, {
         include: {
-            model: User
+            model: User,
+            attributes: {
+              exclude:
+              ['password']
+            }
           }
       });
       res.json({
@@ -209,8 +251,8 @@ eventRouter.delete('/:id/users/:userId', async(req, res) => {
   }
 })
 
-//PUT update attendee
-eventRouter.put('/:id/users/:userId', async(req, res) => {
+//PUT update attendee , updates a user when attending an event
+eventRouter.put('/:id/users/:userId', passport.authenticate('jwt', { session: false }) ,async(req, res) => {
   try {
     const user = await Attendee.find({
       where:{
@@ -221,7 +263,11 @@ eventRouter.put('/:id/users/:userId', async(req, res) => {
     await user.update(req.body);
     const updatedEvent = await Event.findByPk(req.params.id, {
       include: {
-          model: User
+          model: User,
+          attributes: {
+            exclude:
+            ['password']
+          }
         }
     });
     res.json({

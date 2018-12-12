@@ -2,3 +2,8 @@
   text-align: center;
   /* margin: 0 45%; */
 }
+
+/* //CHRIS// Added the style below to prevent scrolling past footer */
+body {
+  overscroll-behavior-y: none;
+}

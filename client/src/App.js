@@ -16,9 +16,60 @@ class App extends Component {
     this.state = {
       events: [],
       input: '',
-      loggedIn: false,
+      logged: false,
+      token: '',
+      user: {},
       view: ''
     }
+    this.setView = this.setView.bind(this);
+    this.setToken = this.setToken.bind(this);
+    this.setloggedUser = this.setloggedUser.bind(this);
+  }
+
+  //changes the logged state when a user logs in or registers
+  setView(loggedIn){
+    if(loggedIn===true){
+      this.setState(
+        {
+          logged: true
+        }
+      )
+    }
+  }
+
+  getView(){
+    return (this.state.logged === false)
+      ? <Welcome
+          events={this.state.events}
+        />
+      : <HomePage
+          events={this.state.events}
+          token={this.state.token}
+          user={this.state.user}
+          logged={this.state.logged}
+        />
+  }
+
+  //sets the token in state
+  setToken(token){
+    this.setState((prevState) => (
+      {
+         ...prevState,
+         token: token
+       }
+    )
+   )
+  }
+
+  //puts loggedIn user in state
+  setloggedUser(user){
+    this.setState((prevState) => (
+      {
+        ...prevState,
+        user: user
+      }
+      )
+    )
   }
 
   async componentDidMount(){
@@ -38,6 +89,7 @@ class App extends Component {
     if (this.state.input.length > 2) {
       this.getEvents();
     }
+
   }
 
   changeView(view){
@@ -56,21 +108,15 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <Nav/>
-        {
-          // (this.state.loggedIn === false)
-          //   ? <Welcome
-          //       events={this.state.events}
-          //     />
-          //   : <HomePage
-          //       events={this.state.events}
-          //     />
-          this.switchView()
-        }
-        <Footer/>
-      </div>
-    );
+
+     <div className="App">
+      <Nav setView={this.setView}
+           setToken={this.setToken}
+           setloggedUser={this.setloggedUser}/>
+      {this.getView()}
+      <Footer/>
+    </div>)
+
   }
 }
 

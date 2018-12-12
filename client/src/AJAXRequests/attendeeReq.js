@@ -27,29 +27,49 @@ const attendeeReq = {
     }
   },
 
-  postAttendee: async function (event_id, user_id, data){
+  postAttendee: async function (event_id, user_id, data, TOKEN){
     try {
-      const resp = await axios.post(BASE_URL + EVENTS + event_id + USERS + user_id, data);
-      const attendee = resp.data;
+      const resp = await axios({
+        method: 'post',
+        url: BASE_URL + EVENTS + event_id + USERS + user_id,
+        headers: {
+          'Authorization': `Bearer ${TOKEN}`
+        },
+        data: data
+      });
+      const attendee = resp.data.updatedEvent;
       return attendee;
     } catch (e) {
       console.log("Axios - Attendee req - failed to POST attendee ", e.message);
     }
   },
 
-  deleteAttendee: async function (event_id, user_id) {
+  deleteAttendee: async function (event_id, user_id, TOKEN) {
     try {
-      const resp = await axios.delete(BASE_URL + EVENTS + event_id + USERS + user_id);
-      const attendee = resp.data;
+      const resp = await axios({
+        method: 'delete',
+        url: BASE_URL + EVENTS + event_id + USERS + user_id,
+        headers: {
+          'Authorization': `Bearer ${TOKEN}`
+        }
+      });
+      const attendee = resp.data.updatedEvent;
       return attendee;
     } catch (e) {
       console.log("Axios - Attendee req - failed to DELETE attendee ", e.message);
     }
   },
 
-  putAttendee: async function (event_id, user_id, data) {
+  putAttendee: async function (event_id, user_id, data, TOKEN) {
     try {
-      const resp = await axios.put(BASE_URL + EVENTS + event_id + USERS + user_id, data);
+      const resp = await axios({
+        method: 'put',
+        url: BASE_URL + EVENTS + event_id + USERS + user_id,
+        headers: {
+          'Authorization': `Bearer ${TOKEN}`
+        },
+        data: data
+      });
       const attendee = resp.data;
       return attendee;
     } catch (e) {
