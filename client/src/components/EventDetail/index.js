@@ -48,7 +48,7 @@ export default class EventDetail extends React.Component{
             <button
               onClick={(e) => {
                 e.stopPropagation();
-                this.props.handleRsvp(this.state.rsvp);
+                this.props.handleRSVP(this.state.rsvp);
               }}
               style={this.styleRsvp()}
               >
