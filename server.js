@@ -52,10 +52,13 @@ app.get('/', (req, res) => {
 app.post('/register', async (req, res) => {
   try {
     const user = await User.create(req.body);
-    const { id, username} = user.dataValues;
+    const { id, username, first_name, last_name, address} = user.dataValues;
     const token = sign({
       id,
-      username
+      username,
+      first_name,
+      last_name,
+      address
     });
     res.json({user, token});
   } catch(e) {
