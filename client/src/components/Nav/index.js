@@ -3,6 +3,7 @@ import RegisterForm from '../Register/RegisterForm';
 import LoginForm from '../Login/LoginForm';
 import './index.css';
 
+import Dropdown, { DropdownTrigger, DropdownContent} from 'react-simple-dropdown';
 
 export default class Nav extends Component {
   constructor(props){
@@ -44,7 +45,7 @@ export default class Nav extends Component {
     return (
       <div className="nav">
         <h1 id="nav-title">Get Busy</h1>
-        <div className="dropdwn1">
+        {/* <div className="dropdwn1">
           <button id="nav-register-button" onClick={() => {this.setView('register')}}>Register</button>
           <div className="dropdwn1-content">
             <div className="register-view">{this.getView()}</div>
@@ -55,7 +56,15 @@ export default class Nav extends Component {
           <div className="dropdwn2-content">
             <div className="login-view">{this.getView()}</div>
           </div>
-        </div>
+        </div> */}
+          <Dropdown>
+            <DropdownTrigger onClick={() => {this.setView('register')}} >Register</DropdownTrigger>
+            <DropdownContent> {this.getView()} </DropdownContent>
+          </Dropdown>
+          <Dropdown>
+            <DropdownTrigger onClick={() => {this.setView('login')}} >Login</DropdownTrigger>
+            <DropdownContent> {this.getView()} </DropdownContent>
+          </Dropdown>
       </div>
     )
   }
