@@ -12,7 +12,7 @@ class EventList extends Component {
       selectedEvent: null
     }
   }
-  //if user is not logged in, popup div, requires log in
+
   getView(){
     if (this.state.selectedEvent) {
       return (
@@ -21,6 +21,7 @@ class EventList extends Component {
           close={this.handleClose}
           handleRSVP={this.handleRSVP}
           handleAttendance={this.handleAttendance}
+          userLogged={this.props.logged}
         />
       )
     } else {
@@ -87,7 +88,6 @@ class EventList extends Component {
   }
 
   getAttendees = async() => {
-    const user_id = this.props.user.id
     const event_id = this.props.selectedEvent.details.id;
     try {
       const attendees = await attendeeReq.getAttendees(event_id);
