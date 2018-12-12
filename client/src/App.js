@@ -42,7 +42,8 @@ class App extends Component {
         />
       : <HomePage
           events={this.state.events}
-          userId={this.state.user.id}
+          token={this.state.token}
+          user={this.state.user}
         />
   }
 
