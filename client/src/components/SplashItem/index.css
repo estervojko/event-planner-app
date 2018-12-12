@@ -1,0 +1,22 @@
+.slideItem > .largePic{
+  background-color: blue;
+  width: 10rem;
+  height: 10rem;
+}
+
+.slideItem {
+  margin: 5px;
+  width: 100%;
+  height: 100%;
+  padding:10px;
+  text-align:center;
+  background-color: blue;
+  box-shadow: 10px 20px rgba(0,0,0,0.4);
+}
+
+.slideItem p{
+  background-color: rgba(100, 100, 100, 0.4);
+  color: black;
+  font-weight: bold;
+  font-size: 10pt;
+}

@@ -58,6 +58,6 @@ const attendeeReq = {
   }
 }
 
-module.exports = {
+export {
   attendeeReq
 }
