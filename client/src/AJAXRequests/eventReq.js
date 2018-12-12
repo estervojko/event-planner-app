@@ -57,6 +57,6 @@ const eventReq = {
   }
 }
 
-module.exports = {
+export { 
   eventReq
 }
