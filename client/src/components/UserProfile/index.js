@@ -16,13 +16,10 @@ constructor(props){
 
   }
   this.switchView = this.switchView.bind(this);
-  this.state.img.default = {/*this is where a url for an image can go or
-    where you can insert an image path*/}
+  // this.state.img.default = {/*this is where a url for an image can go or
+  //   where you can insert an image path*/}
 }
 
-switchView(){
-
-}
 
   render(){
     return(
@@ -35,8 +32,8 @@ switchView(){
            <h2>{this.state.location}</h2>{/*render the location*/}
            <p>{this.state.active}</p> <div className="activePoint"></div>{/*render the active dot*/}
           </div>
-          <EventList />//change the parameters to reflect the user's choices
-          <button>Delete Event</button>
+          <EventList event={this.props.events} />{/*change the parameters to reflect the user's choices*/}
+          <button >Delete Event</button>
         </div>
     )
   }

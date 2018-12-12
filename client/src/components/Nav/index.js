@@ -2,6 +2,7 @@
 import React, {Component} from 'react';
 import RegisterForm from '../Register/RegisterForm';
 import LoginForm from '../Login/LoginForm';
+import UserProfile from '../UserProfile';
 import './index.css';
 
 
@@ -37,7 +38,15 @@ export default class Nav extends Component {
         </div>
       )
     }
+  else if(this.state.view === 'userform'){
+    return(
+      <div>
+        <UserProfile />
+        <button onClick={() => {this.setView('')}}>Cancel</button>
+      </div>
+    )
   }
+}
 
   render(){
     return (
@@ -55,8 +64,10 @@ export default class Nav extends Component {
             <div className="login-view">{this.getView()}</div>
           </div>
         </div>
+        <div className = "userPortal">
+          <button id="nav-portal-button" onClick={()=> {this.setView('userform')}}>Portal</button>
+        </div>
       </div>
     )
   }
 }
-

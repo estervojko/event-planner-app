@@ -15,7 +15,7 @@ class EventList extends Component {
     if (this.state.selectedEvent) {
       return (
         <EventDetail
-          event={this.state.selectedEvent}
+          events={this.state.selectedEvent}
           close={this.handleClose}
         />
       )
