@@ -3,7 +3,7 @@
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
-  height: 60px;
+  height: 160px;
   width: 100%;
   background-color: lightblue;
   justify-content: flex-start;
@@ -16,24 +16,25 @@
   font-size: 2.5em;
 }
 
-.dropdwn1 {
+/* This code is commented out in order to test the react dropdown */
+ .dropdwn1 {
   position: relative;
   display: inline-block;
   margin-left: auto;
 }
 
+.dropdwn2 {
+  position: relative;
+  display: inline-block;
+}
 
+/*
 .dropdwn1-content {
   display: none;
   position: absolute;
   background-color: orange;
   min-width: 200px;
   z-index: 1;
-}
-
-.dropdwn2 {
-  position: relative;
-  display: inline-block;
 }
 
 .dropdwn2-content {
@@ -55,7 +56,7 @@
   right: 0;
   margin-right: 10px;
   padding: 10px;
-}
+} */
 
 #nav-register-button {
   padding: 10px;
@@ -67,4 +68,18 @@
   padding: 10px;
   margin-left: 5px;
   font-size: 1em;
+}
+
+
+.dropdown {
+    display: inline-block;
+}
+
+.dropdown__content {
+    display: none;
+    position: absolute;
+}
+
+.dropdown--active .dropdown__content {
+    display: block;
 }

@@ -15,10 +15,36 @@ class App extends Component {
     this.state = {
       events: [],
       input: '',
-      loggedIn: false
+      logged: false,
+      token: ''
+    }
+    this.setView = this.setView.bind(this);
+    this.setToken = this.setToken.bind(this);
+  }
+
+  //changes the logged state when a user logs in or registers
+  setView(loggedIn){
+    if(loggedIn===true){
+      this.setState(
+        {
+          logged: true
+        }
+      )
     }
   }
 
+  getView(){
+    return (this.state.logged === false)
+      ? <Welcome events={this.state.events}/>
+      : <HomePage events={this.state.events} />
+  }
+
+  //sets the token in state
+  setToken(token){
+    this.setState({
+       token: token
+     })
+    
   async componentDidMount(){
     await this.getEvents();
   }
@@ -35,24 +61,17 @@ class App extends Component {
     if (this.state.input.length > 2) {
       this.getEvents();
     }
+
   }
 
   render() {
     return (
-      <div className="App">
-        <Nav/>
-        {
-          (this.state.loggedIn === false)
-            ? <Welcome
-                events={this.state.events}
-              />
-            : <HomePage
-                events={this.state.events}
-              />
-        }
-        <Footer/>
-      </div>
-    );
+     <div className="App">
+      <Nav setView={this.setView}
+           setToken={this.setToken}/>
+      {this.getView()}
+      <Footer/>
+    </div>)
   }
 }
 
