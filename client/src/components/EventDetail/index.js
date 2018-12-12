@@ -46,7 +46,7 @@ export default class EventDetail extends React.Component{
           <p className="event-detail-description">{event.description}</p>
           <button className="event-detail-exit-button" onClick={this.props.close}>X</button>
           <div className="event-item-button-container">
-            <button
+            {this.props.userLogged && <button
               onClick={(e) => {
                 e.stopPropagation();
                 this.props.handleAttendance();
@@ -54,7 +54,7 @@ export default class EventDetail extends React.Component{
               style={this.styleAttendance()}
               >
               Going?
-            </button>
+            </button>}
           </div>
         </div>
       </div>
