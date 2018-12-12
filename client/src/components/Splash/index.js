@@ -18,13 +18,20 @@ export default class Splash extends Component{
     this.nextSlide = this.nextSlide.bind(this);
   }
 prevSlide(){//in order to move forward an image
+  if(this.setState.currentSlide = this.state.images.length){
+    return this.setState({
+      currentSlide:-3,
+      translateValue: -3
+    })
+  }
   this.setState(prevState => ({
-    currentSlide: prevState.currentSlide - 1
+    currentSlide: prevState.currentSlide - 1,
+    translateValue: prevState.translateValue + -(this.slideWidth())
   }));
 }
 
 nextSlide(){//in order to move backwards
-  if(this.state.currentSlide = this.state.images.length - 1){//if you are at the last image
+  if(this.setState.currentSlide = this.state.images.length - 1){//if you are at the last image
     return this.setState({//return to the previous state, thus the first image in array
       currentSlide: 0,
       translateValue: 0
@@ -43,8 +50,8 @@ slideWidth(){//function to determine width of slide
   render(){
     return(
       <div  className = "splash">
-        <button onClick={this.nextSlide}>left</button>
-          <button onClick = {this.prevSlide}>right</button>
+        <button onClick = {this.nextSlide}>right</button>
+        <button onClick={this.prevSlide}>left</button>
         <div className = "slideShow" style={{
           transform: `translateX(${this.state.translateValue}px)`,
           //uses translateX css property to move the picture along the X axis
