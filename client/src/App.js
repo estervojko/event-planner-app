@@ -47,10 +47,6 @@ class App extends Component {
        token: token
      })
   }
-<<<<<<< HEAD
-  
-=======
-
   //puts loggedIn user in state
   setloggedUser(user){
     this.setState({
@@ -58,7 +54,6 @@ class App extends Component {
     })
   }
 
->>>>>>> eebdbf651e2832c0bf84afea94af68775a0e0ff0
   async componentDidMount(){
     await this.getEvents();
   }
