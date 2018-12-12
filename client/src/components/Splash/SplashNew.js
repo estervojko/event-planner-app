@@ -1,5 +1,11 @@
 import React, {Component} from 'react';
 import './SplashNew.css';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
+
+library.add(faAngleLeft);
+library.add(faAngleRight);
 
 export default class SplashNew extends Component {
   constructor(props) {
@@ -124,12 +130,12 @@ export default class SplashNew extends Component {
   render() {
     return(
       <div className = "splashNew">
-        <button className="previous-slide-button" onClick={this.prevSlide}>Left</button>
+        <button className="previous-slide-button" onClick={this.prevSlide}><FontAwesomeIcon icon="angle-left"/></button>
         <div className="splash-img-container">
           {this.renderSlide()}
           {this.renderSlideText()}
         </div>
-        <button className="next-slide-button" onClick={this.nextSlide}>Right</button>
+        <button className="next-slide-button" onClick={this.nextSlide}><FontAwesomeIcon icon="angle-right"/></button>
       </div>
     )
   }
