@@ -27,9 +27,16 @@ const attendeeReq = {
     }
   },
 
-  postAttendee: async function (event_id, user_id, data){
+  postAttendee: async function (event_id, user_id, data, TOKEN){
     try {
-      const resp = await axios.post(BASE_URL + EVENTS + event_id + USERS + user_id, data);
+      const resp = await axios({
+        method: 'post',
+        url: BASE_URL + EVENTS + event_id + USERS + user_id,
+        headers: {
+          'Authorization': `Bearer ${TOKEN}`
+        },
+        data: data
+      });
       const attendee = resp.data;
       return attendee;
     } catch (e) {
@@ -37,9 +44,15 @@ const attendeeReq = {
     }
   },
 
-  deleteAttendee: async function (event_id, user_id) {
+  deleteAttendee: async function (event_id, user_id, TOKEN) {
     try {
-      const resp = await axios.delete(BASE_URL + EVENTS + event_id + USERS + user_id);
+      const resp = await axios({
+        method: 'delete',
+        url: BASE_URL + EVENTS + event_id + USERS + user_id,
+        headers: {
+          'Authorization': `Bearer ${TOKEN}`
+        }
+      });
       const attendee = resp.data;
       return attendee;
     } catch (e) {
@@ -47,9 +60,16 @@ const attendeeReq = {
     }
   },
 
-  putAttendee: async function (event_id, user_id, data) {
+  putAttendee: async function (event_id, user_id, data, TOKEN) {
     try {
-      const resp = await axios.put(BASE_URL + EVENTS + event_id + USERS + user_id, data);
+      const resp = await axios({
+        method: 'put',
+        url: BASE_URL + EVENTS + event_id + USERS + user_id,
+        headers: {
+          'Authorization': `Bearer ${TOKEN}`
+        },
+        data: data
+      });
       const attendee = resp.data;
       return attendee;
     } catch (e) {
