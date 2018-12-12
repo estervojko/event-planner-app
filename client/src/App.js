@@ -47,7 +47,6 @@ class App extends Component {
        token: token
      })
   }
-
   //puts loggedIn user in state
   setloggedUser(user){
     this.setState({
