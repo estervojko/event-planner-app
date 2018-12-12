@@ -70,20 +70,64 @@ export default class SplashNew extends Component {
     }
   }
 
+  renderSlideText() {
+    switch(this.state.currentSlide) {
+      case 0:
+        return (
+          <div className="splash-img-text">
+            <div className="splash-img-text-title">
+              This is Cat 1
+            </div>
+            <div className="splash-img-text-info">
+              This is where a paragraph describing this SplashPage goes.
+            </div>
+          </div>
+        )
+      case 1:
+        return (
+          <div className="splash-img-text">
+            <div className="splash-img-text-title">
+              This is Cat 2
+            </div>
+            <div className="splash-img-text-info">
+              This is where a paragraph describing this SplashPage goes.
+            </div>
+          </div>
+        )
+      case 2:
+        return (
+          <div className="splash-img-text">
+            <div className="splash-img-text-title">
+              This is Cat 3
+            </div>
+            <div className="splash-img-text-info">
+              This is where a paragraph describing this SplashPage goes.
+            </div>
+          </div>
+        )
+      case 3:
+        return (
+          <div className="splash-img-text">
+            <div className="splash-img-text-title">
+              This is superior Dog 1
+            </div>
+            <div className="splash-img-text-info">
+              This is where a paragraph describing this SplashPage goes.
+            </div>
+          </div>
+        )
+      default:
+        console.log('This is a render slide error!');
+    }
+  }
+
   render() {
     return(
       <div className = "splashNew">
         <button className="previous-slide-button" onClick={this.prevSlide}>Left</button>
         <div className="splash-img-container">
           {this.renderSlide()}
-          <div className="splash-img-text">
-            <div className="splash-img-text-title">
-              Dummy Title Text
-            </div>
-            <div className="splash-img-text-info">
-              This is where a paragraph describing this SplashPage goes.
-            </div>
-          </div>
+          {this.renderSlideText()}
         </div>
         <button className="next-slide-button" onClick={this.nextSlide}>Right</button>
       </div>
