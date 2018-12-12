@@ -3,9 +3,6 @@ import "./index.css";
 const moment = require("moment");
 
 export default function EventItem(props) {
-  const goingStyle= {
-
-  }
   const event = props.event;
   return (
       <div className="event-item" onClick={props.onSelect}>

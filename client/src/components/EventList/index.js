@@ -55,10 +55,16 @@ class EventList extends Component {
     })
   }
 
-  handleRSVP = async() => {
-    const event_id = this.state.selectedEvent.id
+  handleRSVP = async(choice) => {
+    const event_id = this.state.selectedEvent.id;
+    const user_id = this.props.userId
+    console.log(user_id);
+    const data = {
+      rsvp: choice
+    }
+
     try {
-      const updatedEvent = await attendeeReq.postAttendee(event_id);
+      const updatedEvent = await attendeeReq.postAttendee(event_id, data);
       console.log(updatedEvent);
     } catch (e) {
       console.log(e)

@@ -49,9 +49,18 @@ export default class HomePage extends Component{
         Test HomePage
         <Splash/>
         {/* <UserProfile/> */}
-        <EventList events={this.state.events}/>
-        <EventList events={this.state.events}/>
-        <EventList events={this.state.events}/>
+        <EventList
+          events={this.state.events}
+          userId={this.props.userId}
+        />
+        <EventList
+          events={this.state.events}
+          userId={this.props.userId}
+        />
+        <EventList
+          events={this.state.events}
+          userId={this.props.userId}
+        />
       </div>
     )
   }

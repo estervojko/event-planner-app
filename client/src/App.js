@@ -37,8 +37,13 @@ class App extends Component {
 
   getView(){
     return (this.state.logged === false)
-      ? <Welcome events={this.state.events}/>
-      : <HomePage events={this.state.events} />
+      ? <Welcome
+          events={this.state.events}
+        />
+      : <HomePage
+          events={this.state.events}
+          userId={this.state.user.id}
+        />
   }
 
   //sets the token in state
