@@ -47,7 +47,7 @@ export default class Welcome extends Component{
     return(
       <div>
         <Splash />
-        <EventList events={this.state.events}/>
+        <EventList events={this.props.events}/>
       </div>
     )
   }

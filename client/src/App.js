@@ -6,45 +6,54 @@ import Footer from './components/Footer';
 import axios from 'axios';
 import './App.css';
 
-const BASE_URL = 'http://localhost:3001';
+const { eventReq } = require('./AJAXRequests/eventReq');
+const { userReq } = require('./AJAXRequests/userReq');
 
 class App extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      events: '',
+      events: [],
       input: '',
-      logged: false
+      loggedIn: false
     }
-    this.getEvents = this.getEvents.bind(this);
-    this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange(e) {
+  async componentDidMount(){
+    await this.getEvents();
+  }
+
+  getEvents = async() => {
+    const events = await eventReq.getEvents();
+    this.setState({
+      events
+    });
+  }
+
+  handleChange = (e) => {
     this.setState({input: e.target.value});
-    if (this.state.input.length > 2)
+    if (this.state.input.length > 2) {
       this.getEvents();
     }
-
-  handleEventSelect() {}
-
-  async getEvents() {
-    const resp = await axios.get(BASE_URL + '/events');
-    debugger;
-    this.setState({events: resp.data.events});
   }
 
+  handleEventSelect = () => {}
+
   render() {
-    return (<div className="App">
-      <Nav/>
-      {
-        (this.state.logged === false)
-          ? <Welcome/>
-          : <HomePage/>
-      }
-      <Footer/>
-    </div>
+    return (
+      <div className="App">
+        <Nav/>
+        {
+          (this.state.loggedIn === false)
+            ? <Welcome
+                events={this.state.events}
+              />
+            : <HomePage
+                events={this.state.events}
+              />
+        }
+        <Footer/>
+      </div>
     );
   }
 }
