@@ -18,7 +18,7 @@ export default class SplashNew extends Component {
   }
 
   componentDidMount() {
-    this.interval = setInterval(() => this.nextSlide(), 2000);
+    this.interval = setInterval(() => this.nextSlide(), 3500);
   }
 
   componentWillUnmount() {
@@ -76,6 +76,14 @@ export default class SplashNew extends Component {
         <button className="previous-slide-button" onClick={this.prevSlide}>Left</button>
         <div className="splash-img-container">
           {this.renderSlide()}
+          <div className="splash-img-text">
+            <div className="splash-img-text-title">
+              Dummy Title Text
+            </div>
+            <div className="splash-img-text-info">
+              This is where a paragraph describing this SplashPage goes.
+            </div>
+          </div>
         </div>
         <button className="next-slide-button" onClick={this.nextSlide}>Right</button>
       </div>

@@ -16,8 +16,29 @@
 }
 
 .splash-img-container {
+  position: relative;
   margin-left: 10px;
   margin-right: 10px;
+}
+
+.splash-img-text {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding-left: 50px;
+  text-align: left;
+  color: white;
+}
+
+.splash-img-text-title {
+  font-size: 4em;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.splash-img-text-info {
+  font-size: 2em;
+  margin-bottom: 50px;
 }
 
 img {
