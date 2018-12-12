@@ -16,10 +16,12 @@ class App extends Component {
       events: [],
       input: '',
       logged: false,
-      token: ''
+      token: '',
+      user: {}
     }
     this.setView = this.setView.bind(this);
     this.setToken = this.setToken.bind(this);
+    this.setloggedUser = this.setloggedUser.bind(this);
   }
 
   //changes the logged state when a user logs in or registers
@@ -44,7 +46,15 @@ class App extends Component {
     this.setState({
        token: token
      })
-    
+  }
+
+  //puts loggedIn user in state
+  setloggedUser(user){
+    this.setState({
+      user: user
+    })
+  }
+
   async componentDidMount(){
     await this.getEvents();
   }
@@ -68,7 +78,8 @@ class App extends Component {
     return (
      <div className="App">
       <Nav setView={this.setView}
-           setToken={this.setToken}/>
+           setToken={this.setToken}
+           setloggedUser={this.setloggedUser}/>
       {this.getView()}
       <Footer/>
     </div>)

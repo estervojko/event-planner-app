@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import jwtDecode from 'jwt-decode'
 
 const BASE_URL = `http://localhost:3000`
 
@@ -46,7 +47,9 @@ export default class RegisterForm extends Component{
     if(resp.data.token !==null){
       this.props.setView(true);
       console.log(resp.data);
+      const decoded = jwtDecode(resp.data.token);
       this.props.setToken(resp.data.token)
+      this.props.setloggedUser(decoded);
     }
   }
 
