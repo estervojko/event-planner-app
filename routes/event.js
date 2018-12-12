@@ -128,7 +128,7 @@ eventRouter.get('/:id/users/:userId',async(req, res) => {
 })
 
 //POST associate user with event
-eventRouter.post('/:id/users/:userId', passport.authenticate('jwt', { session: false }),async(req, res) => {
+eventRouter.post('/:id/users/', passport.authenticate('jwt', { session: false }), async(req, res) => {
   const event_id = req.params.id;
   const user_id = req.params.userId;
 

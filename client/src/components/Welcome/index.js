@@ -15,7 +15,7 @@ export default class Welcome extends Component{
   render(){
     return(
       <div>
-        <SplashNew />
+        <SplashNew events={this.props.events} />
         <EventList events={this.props.events}/>
         <EventList events={this.props.events}/>
       </div>
