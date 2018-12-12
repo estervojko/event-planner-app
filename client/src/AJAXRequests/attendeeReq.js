@@ -37,7 +37,7 @@ const attendeeReq = {
         },
         data: data
       });
-      const attendee = resp.data;
+      const attendee = resp.data.updatedEvent;
       return attendee;
     } catch (e) {
       console.log("Axios - Attendee req - failed to POST attendee ", e.message);
@@ -53,7 +53,7 @@ const attendeeReq = {
           'Authorization': `Bearer ${TOKEN}`
         }
       });
-      const attendee = resp.data;
+      const attendee = resp.data.updatedEvent;
       return attendee;
     } catch (e) {
       console.log("Axios - Attendee req - failed to DELETE attendee ", e.message);
