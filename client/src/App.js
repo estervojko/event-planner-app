@@ -37,8 +37,6 @@ class App extends Component {
     }
   }
 
-  handleEventSelect = () => {}
-
   render() {
     return (
       <div className="App">
