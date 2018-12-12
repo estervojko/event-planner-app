@@ -1,23 +1,24 @@
 import React from 'react';
 import './index.css';
 const moment = require('moment');
+const { attendeeReq } = require('../../AJAXRequests/attendeeReq');
 
 export default class EventDetail extends React.Component{
   constructor(props){
     super(props)
     this.state = {
-      rsvp: false
+      isAttending: false
     }
   }
 
-  // componentWillReceiveProps(nextProps){
-  //   this.setState({
-  //     rsvp: nextProps.rsvp
-  //   })
-  // }
+  componentWillReceiveProps(nextProps){
+    this.setState({
+      isAttending: nextProps.event.isAttending
+    })
+  }
 
-  styleRsvp = () => {
-    if (this.state.rsvp) {
+  styleAttendance = () => {
+    if (this.state.isAttending) {
       return (
         {
           backgroundColor: "blue",
@@ -48,9 +49,9 @@ export default class EventDetail extends React.Component{
             <button
               onClick={(e) => {
                 e.stopPropagation();
-                this.props.handleRSVP(this.state.rsvp);
+                this.props.handleAttendance();
               }}
-              style={this.styleRsvp()}
+              style={this.styleAttendance()}
               >
               Going?
             </button>
