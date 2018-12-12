@@ -29,7 +29,8 @@ export default class Nav extends Component {
         <div>
           <RegisterForm setView={this.props.setView}
                         setToken={this.props.setToken}
-                        checkReg={this.checkReg}/>
+                        setloggedUser={this.props.setloggedUser}
+                        />
           <button onClick={() => {this.setView('')}}>Cancel</button>
         </div>
       )
@@ -38,7 +39,8 @@ export default class Nav extends Component {
       return (
         <div>
           <LoginForm  setView={this.props.setView}
-                      setToken={this.props.setToken}/>
+                      setToken={this.props.setToken}
+                      setloggedUser={this.props.setloggedUser}/>
           <button onClick={() => {this.setView('')}}>Cancel</button>
         </div>
       )
@@ -80,10 +82,9 @@ export default class Nav extends Component {
               </button>
           </DropdownTrigger>
             <DropdownContent> {this.getView()} </DropdownContent>
-            <button onClick={() => {Dropdown.hide()}}>Hide</button>
+            <button onClick={Dropdown.hide}>Hide</button>
         </Dropdown>
       </div>
     )
   }
 }
-
