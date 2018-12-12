@@ -109,9 +109,9 @@ async function assocUsersAndEvents(){
 
 async function run(){
   try {
-    await createUsers();
+    //await createUsers();
     await createEvents();
-    await assocUsersAndEvents();
+    //await assocUsersAndEvents();
   } catch (e) {
     console.log("Could not seed data ", e);
   } finally {
