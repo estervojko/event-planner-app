@@ -2,23 +2,26 @@ import React  from 'react';
 import Splash from '../Splash';
 import EventList from '../EventList'
 
-export default function HomePage(){
+export default function HomePage(props){
   return(
     <div>
       Test HomePage
       <Splash/>
       {/* <UserProfile/> */}
       <EventList
-        events={this.state.events}
-        userId={this.props.userId}
+        events={props.events}
+        token={props.token}
+        user={props.user}
       />
       <EventList
-        events={this.state.events}
-        userId={this.props.userId}
+        events={props.events}
+        token={props.token}
+        user={props.user}
       />
       <EventList
-        events={this.state.events}
-        userId={this.props.userId}
+        events={props.events}
+        token={props.token}
+        user={props.user}
       />
     </div>
   )
