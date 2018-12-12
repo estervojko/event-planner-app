@@ -9,35 +9,35 @@ export default class Welcome extends Component{
       events: [
         {
           id: 1,
-          title: 'what',
-          description: 'what',
+          title: 'title1',
+          description: 'descrip1',
           start_date: '2018-12-10 23:46:54-05',
           end_date: '2018-12-15 23:46:54-05',
-          address: 'what'
+          address: 'address1'
         },
         {
           id: 2,
-          title: 'what',
-          description: 'what',
+          title: 'title2',
+          description: 'descrip2',
           start_date: '2018-12-10 23:46:54-05',
           end_date: '2018-12-15 23:46:54-05',
-          address: 'what'
+          address: 'address3'
         },
         {
           id: 3,
-          title: 'what',
-          description: 'what',
+          title: 'title3',
+          description: 'descrip3',
           start_date: '2018-12-10 23:46:54-05',
           end_date: '2018-12-15 23:46:54-05',
-          address: 'what'
+          address: 'address3'
         },
         {
           id: 4,
-          title: 'what',
-          description: 'what',
+          title: 'title4',
+          description: 'descrip4',
           start_date: '2018-12-10 23:46:54-05',
           end_date: '2018-12-15 23:46:54-05',
-          address: 'what'
+          address: 'address4'
         }
       ]
     }
@@ -47,7 +47,6 @@ export default class Welcome extends Component{
     return(
       <div>
         <Splash />
-        <p>Test Welcome</p>
         <EventList events={this.state.events}/>
       </div>
     )

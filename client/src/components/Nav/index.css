@@ -1,20 +1,70 @@
-.navBar{
-  background-color: #002642;
-  color: #E5DADA;
+.nav {
   display: flex;
-  flex-flow: row;
-  justify-content: space-around;
-  justify-content: flex-end;
-
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  height: 60px;
+  width: 100%;
+  background-color: lightblue;
+  justify-content: flex-start;
+  align-items: center;
 }
 
-.navBar input{
-  width:auto;
-  height:20px;
-  margin-top: 10px;
+#nav-title {
+  margin: 0;
+  padding-left: 10px;
+  font-size: 2.5em;
 }
 
-i{
-  color: #E5DADA;
-  font-size: 20pt;
+.dropdwn1 {
+  position: relative;
+  display: inline-block;
+  margin-left: auto;
+}
+
+
+.dropdwn1-content {
+  display: none;
+  position: absolute;
+  background-color: orange;
+  min-width: 200px;
+  z-index: 1;
+}
+
+.dropdwn2 {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdwn2-content {
+  display: none;
+  position: absolute;
+  background-color: pink;
+  min-width: 200px;
+  z-index: 1;
+}
+
+.dropdwn1:hover .dropdwn1-content {
+  display: block;
+  right: 0;
+  padding: 10px;
+}
+
+.dropdwn2:hover .dropdwn2-content {
+  display: block;
+  right: 0;
+  margin-right: 10px;
+  padding: 10px;
+}
+
+#nav-register-button {
+  padding: 10px;
+  font-size: 1em;
+}
+
+#nav-login-button {
+  margin-right: 10px;
+  padding: 10px;
+  margin-left: 5px;
+  font-size: 1em;
 }
