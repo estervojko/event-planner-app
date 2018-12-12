@@ -52,10 +52,13 @@ app.get('/', (req, res) => {
 app.post('/register', async (req, res) => {
   try {
     const user = await User.create(req.body);
-    const { id, username} = user.dataValues;
+    const { id, username, first_name, last_name, address} = user.dataValues;
     const token = sign({
       id,
-      username
+      username,
+      first_name,
+      last_name,
+      address
     });
     res.json({user, token});
   } catch(e) {
@@ -76,7 +79,19 @@ app.post('/login', async (req, res) => {
         id,
         username
       });
-      res.json({user, token});
+      const verifiedUser = await User.findOne(
+        {
+          where:
+            {
+              username: req.body.username
+            },
+          attributes:
+            {
+              exclude: ["password"]
+            }
+        }
+      );
+      res.json({verifiedUser, token});
     }
     else{
       res.json({msg: "invalid login"});
