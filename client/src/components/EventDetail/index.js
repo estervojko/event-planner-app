@@ -1,7 +1,6 @@
 import React from 'react';
 import './index.css';
 const moment = require('moment');
-const { attendeeReq } = require('../../AJAXRequests/attendeeReq');
 
 export default class EventDetail extends React.Component{
   constructor(props){

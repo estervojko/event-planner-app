@@ -70,6 +70,14 @@ class EventList extends Component {
           }
         }))
       }
+    } else {
+      this.setState((prevState) => ({
+        selectedEvent: {
+          ...prevState.selectedEvent,
+          details: event,
+          isAttending: false
+        }
+      }))
     }
   }
 
