@@ -117,6 +117,7 @@ class App extends Component {
         setToken={this.setToken}
         setloggedUser={this.setloggedUser}
         changeView={this.changeView}
+        userName={this.state.user.username}
       />
       {this.getView()}
       <Footer/>

@@ -51,6 +51,8 @@ export default class LoginForm extends Component{
       this.props.setToken(resp.data.token)
       this.props.setloggedUser(resp.data.user);
       localStorage.setItem('token', resp.data.token);
+      console.log('gets here');
+      this.props.setLoggedView('loggedIn');
     }
   }
 
@@ -88,7 +90,6 @@ export default class LoginForm extends Component{
           <br></br>
 
           <button className="login-submit-button" type="submit">Login</button>
-
         </form>
         {/* <button onClick={this.getEvents}>Get Events</button> */}
       </div>

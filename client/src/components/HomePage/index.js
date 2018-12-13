@@ -11,16 +11,6 @@ export default function HomePage(props){
         token={props.token}
         user={props.user}
       />
-      <EventList
-        events={props.events || []}
-        token={props.token}
-        user={props.user}
-      />
-      <EventList
-        events={props.events || []}
-        token={props.token}
-        user={props.user}
-      />
     </div>
   )
 }
