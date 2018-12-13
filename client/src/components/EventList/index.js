@@ -65,7 +65,6 @@ class EventList extends Component {
 
   handleEventSelect = (event) => {
     //if an event has attendees
-    debugger;
     if (event.users.length > 0) {
       //find index of logged user in event
       const i = event.users.find( user => user.id === this.props.user.id);
