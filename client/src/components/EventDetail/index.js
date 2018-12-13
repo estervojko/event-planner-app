@@ -14,6 +14,9 @@ export default function EventDetail(props) {
       <h3 className="event-detail-title">{event.title}</h3>
 
       <div className="event-detail-text-container">
+        <div className="event-detail-description">
+          <p>{event.description}</p>
+        </div>
         <div className="event-detail-basic-info">
           <h5 className="event-detail-organizer">{event.organizer}</h5>
 
@@ -34,7 +37,8 @@ export default function EventDetail(props) {
           </div>
 
           <div className="event-item-button-container">
-            {props.loggedIn() && <button
+            {props.loggedIn() && <div
+              className="event-item-button"
               onClick={(e) => {
                 e.stopPropagation();
                 props.handleAttendance();
@@ -42,13 +46,10 @@ export default function EventDetail(props) {
               style={styleAttendance(props)}
               >
               Going?
-            </button>}
+            </div>}
           </div>
         </div>
 
-        <div className="event-detail-description">
-          <p>{event.description}</p>
-        </div>
       </div>
     </div>
   )
@@ -58,7 +59,7 @@ function styleAttendance(props) {
   if (props.event.isAttending) {
     return (
       {
-        backgroundColor: "blue",
+        backgroundColor: "forestgreen",
         color: "white",
       }
     )
