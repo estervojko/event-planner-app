@@ -95,10 +95,10 @@ export default class Nav extends Component {
       return(
         <React.Fragment>
           {console.log(this.props.user.username)}
-          <div className='nav-buttons' id="userPortal">
-            <div id="nav-portal-button" onClick={() => {
-                this.props.changeView('userPage')
-              }}>{(this.props.user.username ? this.props.user.username.toUpperCase() : '')}</div>
+          <div className='nav-buttons' id="userPortal" onClick={() => {
+              this.props.changeView('userPage')
+            }}>
+            <div id="nav-portal-button" >{(this.props.user.username ? this.props.user.username.toUpperCase() : '')}</div>
           </div>
           <div className='nav-buttons' id='logout-button' onClick={() => {
               this.props.setloggedUser({});
