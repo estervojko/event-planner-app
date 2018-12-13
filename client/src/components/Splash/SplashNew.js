@@ -24,14 +24,20 @@ export default class SplashNew extends Component {
   }
 
   componentDidMount() {
-    this.interval = setInterval(() => this.nextSlide(), 4000);
+    this.setTimer();
   }
 
   componentWillUnmount() {
     clearInterval(this.interval);
   }
 
+  setTimer() {
+    if(this.interval) {clearInterval(this.interval)};
+    this.interval = setInterval(() => this.nextSlide(), 4000);
+  }
+
   nextSlide() {
+    this.setTimer();
     switch(this.state.currentSlide) {
       case 0:
         return this.setState({currentSlide: 1})
@@ -47,6 +53,7 @@ export default class SplashNew extends Component {
   }
 
   prevSlide() {
+    this.setTimer();
     switch(this.state.currentSlide) {
       case 0:
         return this.setState({currentSlide: 3})
