@@ -43,8 +43,8 @@ class App extends Component {
   // }
 
   //sets the token in state
-  setToken(token){
-    this.setState((prevState) => ({
+  async setToken(token){
+    await this.setState((prevState) => ({
       ...prevState,
       token: token,
       view: 'loggedIn'
@@ -52,8 +52,8 @@ class App extends Component {
   }
 
   //puts loggedIn user in state
-  setloggedUser(user){
-    this.setState((prevState) => ({
+  async setloggedUser(user){
+    await this.setState((prevState) => ({
       ...prevState,
       user: user
     }))
@@ -119,7 +119,8 @@ class App extends Component {
         setToken={this.setToken}
         setloggedUser={this.setloggedUser}
         changeView={this.changeView}
-        userName={this.state.user.username}
+        user={this.state.user}
+        token={this.state.token}
       />
       {this.getView()}
       <Footer/>
