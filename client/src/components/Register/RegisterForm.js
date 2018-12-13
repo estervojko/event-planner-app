@@ -37,7 +37,10 @@ export default class RegisterForm extends Component{
   }
 
   async handleSubmit(e){
-    // e.preventDefault();
+    e.preventDefault();
+
+    //closes the modal
+    this.props.handleCloseModal();
     //handle the register
     const resp = await axios.post(`${BASE_URL}/register`, this.state.user);
     // this.setState({
@@ -49,7 +52,7 @@ export default class RegisterForm extends Component{
       const decoded = jwtDecode(resp.data.token);
       console.log(resp.data.token);
       localStorage.setItem('token', resp.data.token);
-      // this.props.setToken(resp.data.token)
+      this.props.setToken(resp.data.token)
       this.props.setloggedUser(decoded);
     }
   }
@@ -69,8 +72,7 @@ export default class RegisterForm extends Component{
   render(){
     return (
       <div>
-        <form onSubmit={() => {this.handleSubmit();
-                               this.props.handleCloseModal()}}>
+        <form onSubmit={this.handleSubmit}>
           <label>
             Username
             <input type="text"

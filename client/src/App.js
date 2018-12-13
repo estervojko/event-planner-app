@@ -18,7 +18,6 @@ class App extends Component {
     this.state = {
       events: [],
       input: '',
-      logged: false,
       token: (localStorage.getItem('token') !== null) ? localStorage.getItem('token') : null,
       user: (localStorage.getItem('token') !== null) ? jwtDecode(localStorage.getItem('token')) : {},
       view: '',
@@ -41,7 +40,7 @@ class App extends Component {
   // }
 
   getView(){
-    return (this.state.token === '')
+    return (this.state.token === null)
       ? <Welcome
           events={this.state.events}
         />
@@ -54,8 +53,7 @@ class App extends Component {
   }
 
   //sets the token in state
-  setToken(){
-    const token = localStorage.getItem('token');
+  setToken(token){
     this.setState((prevState) => (
       {
          ...prevState,

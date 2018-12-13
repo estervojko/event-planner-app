@@ -7,8 +7,6 @@ import './index.css';
 
 import ReactModal from 'react-modal';
 
-import ModalTest from '../Login/ModalTest'
-
 export default class Nav extends Component {
   constructor(props){
     super(props);
@@ -16,13 +14,10 @@ export default class Nav extends Component {
       view: '',
       registered: false,
       showModal: false,
-      showModalLogin: false,
     }
 
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
-    this.handleOpenModalLogin = this.handleOpenModalLogin.bind(this);
-    this.handleCloseModalLogin = this.handleCloseModalLogin.bind(this);
   }
 
   //sets the view
@@ -56,7 +51,7 @@ export default class Nav extends Component {
             <LoginForm  setView={this.props.setView}
                         setToken={this.props.setToken}
                         setloggedUser={this.props.setloggedUser}
-                        handleCloseModalLogin={this.handleCloseModal}/>
+                        handleCloseModal={this.handleCloseModal}/>
             <button onClick={this.handleCloseModal}>Close Modal</button>
           </ReactModal>
         </div>
@@ -71,22 +66,13 @@ export default class Nav extends Component {
     )
   }
 }
-  //register modal handlers
+  //modal handlers
   handleOpenModal () {
     this.setState({ showModal: true });
   }
   handleCloseModal () {
     this.setState({ showModal: false });
   }
-
-  //login modal handlers
-  handleOpenModalLogin () {
-    this.setState({ showModalLogin: true });
-  }
-  handleCloseModalLogin () {
-    this.setState({ showModalLogin: false });
-  }
-
   render(){
     return (
       <div className="nav">
@@ -96,7 +82,6 @@ export default class Nav extends Component {
                                   this.handleOpenModal()}}>
             Register
           </button>
-
         </div>
         <div>
           <button onClick={() => {this.setView('login')
@@ -105,12 +90,12 @@ export default class Nav extends Component {
           </button>
         </div>
         <div> {this.getView()} </div>
-        <button onClick={() => { localStorage.removeItem('token')}}>Logout</button>
+        <button onClick={() => { this.props.setloggedUser({});
+                                 this.props.setToken(null);
+                                 localStorage.removeItem('token')}}>Logout</button>
         <div className = "userPortal">
           <button id="nav-portal-button" onClick={()=> {this.setView('userform')}}>Portal</button>
         </div>
-
-
       </div>
     )
   }
