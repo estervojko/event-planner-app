@@ -5,19 +5,20 @@
   flex-direction: row;
   height: 80px;
   width: 100%;
-  background-color: steelblue;
+  background-color: #002642;
   align-items: center;
-  color: white;
+  color: #E5DADA;
 }
 
 #nav-title {
+  color: #E98A15;
   margin: 0;
   margin-right: auto;
   padding-left: 15px;
   font-size: 3.5em;
   font-style: italic;
+  font-family: 'Righteous', cursive;
   user-select: none;
-  cursor: pointer;
 }
 
 #nav-title:hover {
@@ -42,14 +43,14 @@
 }
 
 .modal-close-button:hover {
-  background: red;
+  background: #840032;
   color: black;
+  border-radius:50px;
   cursor: pointer;
 }
 
 .modal-close-button:focus {
   outline: none;
-}
 
 /* This code is commented out in order to test the react dropdown */
  .dropdwn1 {
@@ -64,6 +65,7 @@
 }
 
 .title-icon {
+  color: orange;
   padding-left: 15px;
   user-select: none;
 }
