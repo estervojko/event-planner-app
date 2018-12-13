@@ -7,7 +7,7 @@ export default function EventDetail(props) {
   return (
     <div className="event-detail">
 
-      <button className="event-detail-exit-button" onClick={this.props.close}>X</button>
+      <button className="event-detail-exit-button" onClick={props.close}>X</button>
 
       <img className="event-detail-image" src={event.img} alt="EventDetail Img Not Found" />
 
@@ -34,7 +34,7 @@ export default function EventDetail(props) {
           </div>
 
           <div className="event-item-button-container">
-            {props.userLogged && <button
+            {props.loggedIn() && <button
               onClick={(e) => {
                 e.stopPropagation();
                 props.handleAttendance();
