@@ -20,7 +20,7 @@ class App extends Component {
       input: '',
       token: (localStorage.getItem('token') !== null) ? localStorage.getItem('token') : null,
       user: (localStorage.getItem('token') !== null) ? jwtDecode(localStorage.getItem('token')) : {},
-      view: '',
+      view: (localStorage.getItem('token') !== null) ? "loggedIn" : "welcome"
     }
 
     this.setToken = this.setToken.bind(this);
@@ -100,12 +100,13 @@ class App extends Component {
           user={this.state.user}
         />
       );
-      default:
+      case "welcome":
       return (
         <Welcome
           events={this.state.events}
         />
       );
+      default:
     }
   }
 
