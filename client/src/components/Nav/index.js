@@ -5,16 +5,19 @@ import LoginForm from '../Login/LoginForm';
 import UserProfile from '../UserProfile';
 import './index.css';
 
-// import Dropdown, { DropdownTrigger, DropdownContent} from 'react-simple-dropdown';
-import { default as Dropdown, DropdownContent, DropdownTrigger } from "react-simple-dropdown";
+import ReactModal from 'react-modal';
 
 export default class Nav extends Component {
   constructor(props){
     super(props);
     this.state = {
       view: '',
-      registered: false
+      registered: false,
+      showModal: false,
     }
+
+    this.handleOpenModal = this.handleOpenModal.bind(this);
+    this.handleCloseModal = this.handleCloseModal.bind(this);
   }
 
   //sets the view
@@ -28,21 +31,29 @@ export default class Nav extends Component {
     if(this.state.view === 'register'){
       return (
         <div>
-          <RegisterForm setView={this.props.setView}
-                        setToken={this.props.setToken}
-                        setloggedUser={this.props.setloggedUser}
-                        />
-          <button onClick={() => {this.setView('')}}>Cancel</button>
+          <ReactModal isOpen={this.state.showModal}
+                      contentLabel="Minimal Modal Example">
+            <RegisterForm setView={this.props.setView}
+                          setToken={this.props.setToken}
+                          setloggedUser={this.props.setloggedUser}
+                          handleCloseModal={this.handleCloseModal}
+                          />
+            <button onClick={this.handleCloseModal}>Close Modal</button>
+          </ReactModal>
         </div>
       )
     }
     else if(this.state.view === 'login'){
       return (
         <div>
-          <LoginForm  setView={this.props.setView}
-                      setToken={this.props.setToken}
-                      setloggedUser={this.props.setloggedUser}/>
-          <button onClick={() => {this.setView('')}}>Cancel</button>
+          <ReactModal isOpen={this.state.showModal}
+                      contentLabel="Minimal Modal Example">
+            <LoginForm  setView={this.props.setView}
+                        setToken={this.props.setToken}
+                        setloggedUser={this.props.setloggedUser}
+                        handleCloseModal={this.handleCloseModal}/>
+            <button onClick={this.handleCloseModal}>Close Modal</button>
+          </ReactModal>
         </div>
       )
     }
@@ -55,53 +66,36 @@ export default class Nav extends Component {
     )
   }
 }
-
-  hideDrop(){;
-    Dropdown.hide()
+  //modal handlers
+  handleOpenModal () {
+    this.setState({ showModal: true });
   }
-
+  handleCloseModal () {
+    this.setState({ showModal: false });
+  }
   render(){
     return (
       <div className="nav">
         <h1 id="nav-title">Get Busy</h1>
-
-        <Dropdown>
-            <DropdownTrigger onClick={() => {this.setView('register')}} >
-              <button onClick={() => {this.setView('login')}} >
-                Register
-              </button>
-            </DropdownTrigger>
-            <DropdownContent> {this.getView()} </DropdownContent>
-       </Dropdown>
-       <Dropdown>
-            <DropdownTrigger >
-              <button onClick={() => {this.setView('login')}} >
-                Login
-              </button>
-          </DropdownTrigger>
-            <DropdownContent> {this.getView()} </DropdownContent>
-            <button onClick={Dropdown.hide}>Hide</button>
-        </Dropdown>
+        <div>
+          <button onClick={() => {this.setView('register');
+                                  this.handleOpenModal()}}>
+            Register
+          </button>
+        </div>
+        <div>
+          <button onClick={() => {this.setView('login')
+                                  this.handleOpenModal()}} >
+            Login
+          </button>
+        </div>
+        <div> {this.getView()} </div>
+        <button onClick={() => { this.props.setloggedUser({});
+                                 this.props.setToken(null);
+                                 localStorage.removeItem('token')}}>Logout</button>
         <div className = "userPortal">
           <button id="nav-portal-button" onClick={()=> {this.setView('userform')}}>Portal</button>
         </div>
-
-              {/*<div className="dropdwn1">
-          <button id="nav-register-button" onClick={() => {this.setView('register')}}>Register</button>
-          <div className="dropdwn1-content">
-            <div className="register-view">{this.getView()}</div>
-          </div>
-        </div>
-        <div className="dropdwn2">
-          <button id="nav-login-button" onClick={() => {this.setView('login')}}>Login</button>
-          <div className="dropdwn2-content">
-            <div className="login-view">{this.getView()}</div>
-          </div>
-        </div>
-        <div className = "userPortal">
-          <button id="nav-portal-button" onClick={()=> {this.setView('userform')}}>Portal</button>
-        </div>*/}
-
       </div>
     )
   }

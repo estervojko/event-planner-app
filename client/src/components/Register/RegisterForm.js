@@ -38,6 +38,9 @@ export default class RegisterForm extends Component{
 
   async handleSubmit(e){
     e.preventDefault();
+
+    //closes the modal
+    this.props.handleCloseModal();
     //handle the register
     const resp = await axios.post(`${BASE_URL}/register`, this.state.user);
     // this.setState({
@@ -45,9 +48,10 @@ export default class RegisterForm extends Component{
     //    loggedIn: true
     //  })
     if(resp.data.token !==null){
-      this.props.setView(true);
       console.log(resp.data);
       const decoded = jwtDecode(resp.data.token);
+      console.log(resp.data.token);
+      localStorage.setItem('token', resp.data.token);
       this.props.setToken(resp.data.token)
       this.props.setloggedUser(decoded);
     }
@@ -112,7 +116,7 @@ export default class RegisterForm extends Component{
           <br></br>
           <button type="submit" >Register</button>
         </form>
-        <button onClick={this.getEvents}>Get Events</button>
+        {/* <button onClick={this.getEvents}>Get Events</button> */}
       </div>
   )
   }

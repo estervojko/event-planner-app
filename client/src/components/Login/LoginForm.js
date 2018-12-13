@@ -10,8 +10,8 @@ export default class LoginForm extends Component{
       userData : {
         username: '',
         password: '',
-        first_name: 'testester',
-        last_name: 'testester'
+        first_name: '',
+        last_name: ''
       },
       token: '',
       loggedIn: false,
@@ -36,17 +36,20 @@ export default class LoginForm extends Component{
 
   async handleSubmit(e){
     e.preventDefault();
-    //handle the register
+
+    //closes the modal
+    this.props.handleCloseModal();
+
     const resp = await axios.post(`${BASE_URL}/login`, this.state.userData);
-    if(resp.data.token !== undefined){
+    if(resp.data.token !== null){
       this.setState({
          token: resp.data.token,
          loggedIn: true
        })
       console.log(resp.data);
-      this.props.setView(true);
       this.props.setToken(resp.data.token)
       this.props.setloggedUser(resp.data.user);
+      localStorage.setItem('token', resp.data.token);
     }
   }
 
@@ -82,7 +85,7 @@ export default class LoginForm extends Component{
                    onChange={this.handleChange}/>
           </label>
           <br></br>
-          <button type="submit" onClick={() => this.setView(this.state.loggedIn === true)}>Login</button>
+          <button type="submit">Login</button>
         </form>
         {/* <button onClick={this.getEvents}>Get Events</button> */}
       </div>
