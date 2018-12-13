@@ -47,8 +47,7 @@ class EventList extends Component {
     } else {
       return (
         <div className="event-list-wrapper">
-          {
-            this.state.events.map(event => (
+          {this.state.events && this.state.events.map(event => (
                 <EventItem
                   key={event.id}
                   event={event}
