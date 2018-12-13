@@ -137,12 +137,12 @@ export default class SplashNew extends Component {
   render() {
     return(
       <div className = "splashNew">
-        <button className="previous-slide-button" onClick={this.prevSlide}><FontAwesomeIcon icon="angle-left"/></button>
+        <div className="previous-slide-button" onClick={this.prevSlide}><FontAwesomeIcon icon="angle-left"/></div>
         <div className="splash-img-container">
           {this.renderSlide()}
           {this.renderSlideText()}
         </div>
-        <button className="next-slide-button" onClick={this.nextSlide}><FontAwesomeIcon icon="angle-right"/></button>
+        <div className="next-slide-button" onClick={this.nextSlide}><FontAwesomeIcon icon="angle-right"/></div>
       </div>
     )
   }

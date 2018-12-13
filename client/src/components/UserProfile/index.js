@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import EventList from '../EventList';
 import './index.css'
 const { userReq } = require( '../../AJAXRequests/userReq');
+const image = './image.jpg';
+
 
 export default class UserProfile extends Component{
   //nothing more than a boilerplate. you fill in the rest with data
@@ -10,7 +12,7 @@ constructor(props){
   this.state = {
     //transfer shit for your database
     events: [{
-      img: '' ,
+      img: image,
       name:'randoAsshole',//the name of the user
       location: 'Dickville',//where the user hails from
       active: false,//the active status of the user. Default status is false
