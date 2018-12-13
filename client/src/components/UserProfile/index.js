@@ -27,7 +27,8 @@ constructor(props){
       description: '',
       start_date: moment().format(),
       end_date: moment().format(),
-      address: ''
+      address: '',
+      img: ''
     }
   }
   // this.state.img.default = {/*this is where a url for an image can go or

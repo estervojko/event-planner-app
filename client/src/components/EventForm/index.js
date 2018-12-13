@@ -44,6 +44,14 @@ export default class EventForm extends Component{
                 value={this.props.event.address}
                 onChange={this.props.handleChange}/>
         </label>
+        <br></br>
+        <label>
+          Image URL
+          <input type="text"
+                name="img"
+                value={this.props.event.img}
+                onChange={this.props.handleChange}/>
+        </label>
         <button onClick={this.props.handleSubmit}>Post</button>
       </form>
     )
