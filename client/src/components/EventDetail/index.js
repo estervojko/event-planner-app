@@ -28,7 +28,7 @@ export default class EventDetail extends React.Component{
   }
 
   render(){
-    const event = this.props.event;
+    const event = this.props.event.details;
     return (
       <div className="event-detail">
         <img className="event-detail-image" src="https://food.fnr.sndimg.com/content/dam/images/food/fullset/2012/7/25/0/FNM_090112-Mix-and-Match-Classic-Cookies-Recipe-03_s4x3.jpg.rend.hgtvcom.616.462.suffix/1371607143890.jpeg" alt="event" />

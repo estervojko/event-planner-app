@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const { User } = require('../models');
+const { User, Event } = require('../models');
 
 const userRouter = express.Router();
 userRouter.use(bodyParser.json());
@@ -27,6 +27,9 @@ userRouter.get('/', async (req, res) => {
 userRouter.get('/:id', async(req, res) => {
   try {
     const user = await User.findByPk(req.params.id, {
+      include: {
+        model: Event
+      },
       attributes: {
         exclude:
         ['password']

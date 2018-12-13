@@ -83,7 +83,7 @@ export default class Nav extends Component {
             <button onClick={Dropdown.hide}>Hide</button>
         </Dropdown>
         <div className = "userPortal">
-          <button id="nav-portal-button" onClick={()=> {this.setView('userform')}}>Portal</button>
+          <button id="nav-portal-button" onClick={()=> {this.props.changeView('userPage')}}>Portal</button>
         </div>
 
               {/*<div className="dropdwn1">
