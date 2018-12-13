@@ -30,14 +30,12 @@ export default class Nav extends Component {
     super(props);
     this.state = {
       navView: '',
-      // loggedView: 'loggedOut',    //when a user is logged out shows login and register button, otherwise portal button and logout button
       registered: false,
       showModal: false
     }
 
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
-    // this.setLoggedView = this.setLoggedView.bind(this);
   }
 
   setNavView(view) {
@@ -71,13 +69,6 @@ export default class Nav extends Component {
     }
   }
 
-  // this method serves the conditional rendering in the navbar to display the proper buttons whether the user is logged in or not
-  // setLoggedView(view){
-  //   (this.props.token === null)
-  //     ? this.setState({loggedView: 'loggedOut'})
-  //     : this.setState({loggedView: view});
-  // }
-  // this method serves the conditional rendering in the navbar to display the proper buttons whether the user is logged in or not
   getLoggedView(){
     if(this.props.token === null){
       return (
@@ -136,39 +127,8 @@ export default class Nav extends Component {
     return (
       <div className="nav">
         <div className='title-icon'><FontAwesomeIcon icon="check-double" size="3x"/></div>
-        <h1 id="nav-title">Get Busy</h1>
+        <h1 id="nav-title" onClick={() => {this.props.token === null ? this.props.changeView('welcome') : this.props.changeView('loggedIn')}}>Get Busy</h1>
         {this.getLoggedView()}
-        {/* <div>
-          <div className='nav-buttons' id='register-button' onClick={() => {
-              this.setNavView('register');
-              this.handleOpenModal()
-            }}>
-            REGISTER
-          </div>
-        </div>
-        <div>
-          <div className='nav-buttons' id='login-button' onClick={() => {
-              this.setNavView('login');
-              this.handleOpenModal();
-            }}>
-            LOGIN
-          </div>
-      </div>
-
-
-
-      <div className='nav-buttons' id='logout-button' onClick={() => {
-          this.props.setloggedUser({});
-          this.props.setToken(null);
-          this.props.changeView('welcome');
-          this.setLoggedView('loggedOut');
-          localStorage.removeItem('token');
-        }}>LOGOUT</div>
-      <div className='nav-buttons' id="userPortal">
-        <div id="nav-portal-button" onClick={() => {
-            this.props.changeView('userPage')
-          }}>PORTAL</div>
-      </div> */}
       <div>
         {this.getNavView()}
       </div>
