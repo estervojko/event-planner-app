@@ -7,7 +7,6 @@
   width: 300px;
   height: 300px;
   overflow: scroll;
-  padding: 20px;
 }
 
 .event-item-image-container {
@@ -22,10 +21,11 @@
 }
 
 .event-item-title {
-  font-size: 2em;
+  font-size: 1.5em;
   text-align: left;
   padding-left: 10px;
   margin: 0px;
+  margin-top: 5px;
 }
 
 .event-item-start-date {
