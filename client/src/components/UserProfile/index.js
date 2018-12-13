@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import EventList from '../EventList';
 import './index.css'
 const { userReq } = require( '../../AJAXRequests/userReq');
-const image = './image.jpg';
+const image = require('./image.jpg');
 
 
 export default class UserProfile extends Component{
@@ -11,12 +11,12 @@ constructor(props){
   super(props);
   this.state = {
     //transfer shit for your database
-    events: [{
+    events: {
       img: image,
       name:'randoAsshole',//the name of the user
       location: 'Dickville',//where the user hails from
       active: false,//the active status of the user. Default status is false
-    }],
+    },
     user: null
 
   }
@@ -47,11 +47,13 @@ constructor(props){
         <div className="userProfile">
         <div className="userBody">{/*render the main body*/}
             <div className="userImage">{/*render the user image*/}
-              {this.state.image}
+              {this.state.events.image}
             </div>
-          <h1>{this.state.name}</h1>{/*render the username*/}
-           <h2>{this.state.location}</h2>{/*render the location*/}
-           <p>{this.state.active}</p> <div className="activePoint"></div>{/*render the active dot*/}
+          <h1>
+           {this.state.events.name}
+          </h1>{/*render the username*/}
+           <h2>{this.state.events.location}</h2>{/*render the location*/}
+           <p>{this.state.events.active}</p> <div className="activePoint"></div>{/*render the active dot*/}
           </div>
           {/* There needs to be an eventList here. change the parameters to reflect the user's choices*/}
           <button >Delete Event</button>
