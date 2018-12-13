@@ -30,14 +30,14 @@ export default class Nav extends Component {
     super(props);
     this.state = {
       navView: '',
-      loggedView: 'loggedOut',    //when a user is logged out shows login and register button, otherwise portal button and logout button
+      // loggedView: 'loggedOut',    //when a user is logged out shows login and register button, otherwise portal button and logout button
       registered: false,
       showModal: false
     }
 
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
-    this.setLoggedView = this.setLoggedView.bind(this);
+    // this.setLoggedView = this.setLoggedView.bind(this);
   }
 
   setNavView(view) {
@@ -72,14 +72,14 @@ export default class Nav extends Component {
   }
 
   // this method serves the conditional rendering in the navbar to display the proper buttons whether the user is logged in or not
-  setLoggedView(view){
-    (this.props.user === {})
-      ? this.setState({loggedView: view})
-      : this.setState({loggedView: view})
-  }
+  // setLoggedView(view){
+  //   (this.props.token === null)
+  //     ? this.setState({loggedView: 'loggedOut'})
+  //     : this.setState({loggedView: view});
+  // }
   // this method serves the conditional rendering in the navbar to display the proper buttons whether the user is logged in or not
   getLoggedView(){
-    if(this.state.loggedView === 'loggedOut'){
+    if(this.props.token === null){
       return (
         <React.Fragment>
           <div>
@@ -101,19 +101,19 @@ export default class Nav extends Component {
         </React.Fragment>
       )
     }
-    else if(this.state.loggedView === 'loggedIn'){
+    else if(this.props.token !== null){
       return(
         <React.Fragment>
+          {console.log(this.props.user.username)}
           <div className='nav-buttons' id="userPortal">
             <div id="nav-portal-button" onClick={() => {
                 this.props.changeView('userPage')
-              }}>{this.props.userName.toUpperCase()}</div>
+              }}>{(this.props.user.username ? this.props.user.username.toUpperCase() : '')}</div>
           </div>
           <div className='nav-buttons' id='logout-button' onClick={() => {
               this.props.setloggedUser({});
               this.props.setToken(null);
               this.props.changeView('welcome');
-              this.setLoggedView('loggedOut');
               localStorage.removeItem('token');
             }}>LOGOUT</div>
         </React.Fragment>

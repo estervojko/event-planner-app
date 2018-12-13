@@ -48,11 +48,11 @@ export default class LoginForm extends Component{
          loggedIn: true
        })
       console.log(resp.data);
-      this.props.setToken(resp.data.token)
-      this.props.setloggedUser(resp.data.user);
+      await this.props.setToken(resp.data.token)
+      await this.props.setloggedUser(resp.data.user);
       localStorage.setItem('token', resp.data.token);
       console.log('gets here');
-      this.props.setLoggedView('loggedIn');
+      // this.props.setLoggedView('loggedIn');
     }
   }
 
