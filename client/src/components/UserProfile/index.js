@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import EventList from '../EventList';
 import './index.css'
 import moment from 'moment';
+import ProfileImage from './image.jpg';
 
 //imports the event form
 import EventForm from '../EventForm'
@@ -77,10 +78,10 @@ constructor(props){
   render(){
     return(
         <div className="userProfile">
-        <div className="userBody">{/*render the main body*/}
-            {/*<div className="userImage">//render the user image
-
-            </div>*/}
+        <div className="userBody"> {/*render the main body*/}
+        <div className="userImage"> {/*render the user image*/}
+          <img src = {ProfileImage} alt="profileImg" name="img" />
+        </div>
           <h1>
            {this.state.user.username}
           </h1>{/*render the username*/}
