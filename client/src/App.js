@@ -41,12 +41,12 @@ class App extends Component {
           logged={this.state.logged}
         />
   }
-          
+
   //sets the token in state
   setToken(token){
     this.setState((prevState) => ({
       ...prevState,
-      token: token
+      token: token,
       view: 'loggedIn'
     }))
   }
@@ -109,7 +109,7 @@ class App extends Component {
       );
     }
   }
-               
+
 
   render() {
     return (
