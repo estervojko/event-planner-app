@@ -28,7 +28,7 @@ export default class EventDetail extends React.Component{
   }
 
   render(){
-    const event = this.props.event;
+    const event = this.props.event.details;
     return (
       <div className="event-detail">
         <img className="event-detail-image" src={event.img} alt="EventDetail Img Not Found" />

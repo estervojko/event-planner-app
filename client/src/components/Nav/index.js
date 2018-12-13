@@ -73,9 +73,11 @@ export default class Nav extends Component {
     this.setState({showModal: true});
   }
 
+
   handleCloseModal() {
     this.setState({showModal: false});
   }
+
 
   render() {
     return (<div className="nav">
