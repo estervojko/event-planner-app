@@ -7,7 +7,7 @@ export default function EventDetail(props) {
   return (
     <div className="event-detail">
 
-      <button className="event-detail-exit-button" onClick={this.props.close}>X</button>
+      <button className="event-detail-exit-button" onClick={props.close}>X</button>
 
       <img className="event-detail-image" src={event.img} alt="EventDetail Img Not Found" />
 
