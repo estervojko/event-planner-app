@@ -34,7 +34,7 @@ export default function EventDetail(props) {
           </div>
 
           <div className="event-item-button-container">
-            {props.userLogged && <button
+            {props.loggedIn() && <button
               onClick={(e) => {
                 e.stopPropagation();
                 props.handleAttendance();

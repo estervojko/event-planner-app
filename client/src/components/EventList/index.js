@@ -41,7 +41,7 @@ class EventList extends Component {
           event={this.state.selectedEvent}
           close={this.handleClose}
           handleAttendance={this.handleAttendance}
-          userLogged={this.isLoggedIn}
+          loggedIn={this.isLoggedIn}
         />
       )
     } else {
@@ -64,21 +64,30 @@ class EventList extends Component {
   }
 
   handleEventSelect = (event) => {
-    //if an event has attendees
-    debugger;
-    if (event.users.length > 0) {
-      //find index of logged user in event
-      const i = event.users.find( user => user.id === this.props.user.id);
-      //if index is a positive number
-      if (i.id > 0) {
-        //set isAttending to true
-        this.setState((prevState) => ({
-          selectedEvent: {
-            ...prevState.selectedEvent,
-            details: event,
-            isAttending: true
-          }
-        }))
+    if (this.isLoggedIn()) {
+      //if an event has attendees
+      if (event.users.length > 0) {
+        //find index of logged user in event
+        const i = event.users.find( user => user.id === this.props.user.id);
+        //if index is a positive number
+        if (i.id > 0) {
+          //set isAttending to true
+          this.setState((prevState) => ({
+            selectedEvent: {
+              ...prevState.selectedEvent,
+              details: event,
+              isAttending: true
+            }
+          }))
+        } else {
+          this.setState((prevState) => ({
+            selectedEvent: {
+              ...prevState.selectedEvent,
+              details: event,
+              isAttending: false
+            }
+          }))
+        }
       } else {
         this.setState((prevState) => ({
           selectedEvent: {
@@ -92,8 +101,7 @@ class EventList extends Component {
       this.setState((prevState) => ({
         selectedEvent: {
           ...prevState.selectedEvent,
-          details: event,
-          isAttending: false
+          details: event
         }
       }))
     }
