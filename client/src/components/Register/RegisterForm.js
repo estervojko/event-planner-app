@@ -114,7 +114,7 @@ export default class RegisterForm extends Component{
                    onChange={this.handleChange}/>
           </label>
           <br></br>
-          <button className='register-submit-button' type="submit" >Register</button>
+          <button className='register-submit-button' type="submit" >REGISTER</button>
         </form>
         {/* <button onClick={this.getEvents}>Get Events</button> */}
       </div>

@@ -19,7 +19,6 @@ const customStyles = {
     bottom: 'auto',
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
-    display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
   }
@@ -49,14 +48,14 @@ export default class Nav extends Component {
       return (<div className='modal-register'>
         <ReactModal style={customStyles} isOpen={this.state.showModal}>
           <RegisterForm setView={this.props.setView} setToken={this.props.setToken} setloggedUser={this.props.setloggedUser} setLoggedView={this.setLoggedView} handleCloseModal={this.handleCloseModal}/>
-          <div className='modal-close-button' onClick={this.handleCloseModal}></div>
+          <button className='modal-close-button' onClick={this.handleCloseModal}>CANCEL</button>
         </ReactModal>
       </div>)
     } else if (this.state.view === 'login') {
       return (<div className='modal-login'>
         <ReactModal style={customStyles} isOpen={this.state.showModal}>
           <LoginForm setView={this.props.setView} setToken={this.props.setToken} setloggedUser={this.props.setloggedUser} setLoggedView={this.setLoggedView} handleCloseModal={this.handleCloseModal}/>
-          <div className='modal-close-button' onClick={this.handleCloseModal}></div>
+          <button className='modal-close-button' onClick={this.handleCloseModal}>CANCEL</button>
         </ReactModal>
       </div>)
     } else if (this.state.view === 'userform') {
