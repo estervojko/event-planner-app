@@ -7,22 +7,19 @@ export default function HomePage(props){
     <div>
       {/* <UserProfile/> */}
       <EventList
-        events={props.events}
+        events={props.events || []}
         token={props.token}
         user={props.user}
-        logged={props.logged}
       />
       <EventList
-        events={props.events}
+        events={props.events || []}
         token={props.token}
         user={props.user}
-        logged={props.logged}
       />
       <EventList
-        events={props.events}
+        events={props.events || []}
         token={props.token}
         user={props.user}
-        logged={props.logged}
       />
     </div>
   )

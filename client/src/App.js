@@ -6,7 +6,6 @@ import Welcome from './components/Welcome';
 import HomePage from './components/HomePage';
 import Footer from './components/Footer';
 import UserProfile from './components/UserProfile';
-import axios from 'axios';
 import './App.css';
 
 const { eventReq } = require('./AJAXRequests/eventReq');
@@ -97,6 +96,7 @@ class App extends Component {
       return (
         <UserProfile
           events={this.state.events}
+          token={this.state.token}
           user={this.state.user}
         />
       );
@@ -110,10 +110,8 @@ class App extends Component {
     }
   }
 
-
   render() {
     return (
-
      <div className="App">
       <Nav
         setToken={this.setToken}
@@ -123,7 +121,6 @@ class App extends Component {
       {this.getView()}
       <Footer/>
     </div>)
-
   }
 }
 
