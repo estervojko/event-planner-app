@@ -1,5 +1,5 @@
 .footer {
-  background-color: black;
+  background-color: rgb(50, 50, 50);
   color: white;
   width: 100%;
   position: static;
@@ -9,6 +9,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  bottom: 0;
 }
 
 .footer-text1 {
