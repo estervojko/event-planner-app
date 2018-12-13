@@ -4,8 +4,8 @@
   -ms-flex-direction: column;
   flex-direction: column;
   border: 1px solid black;
-  width: 300px;
-  height: 300px;
+  width: 330px;
+  height: 330px;
   overflow: scroll;
 }
 
@@ -16,7 +16,7 @@
 }
 
 .event-item-image {
-  width: 300px;
+  width: 330px;
   height: 220px;
 }
 
