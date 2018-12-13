@@ -11,9 +11,11 @@ export default function EventItem(props) {
         </div>
         <div className="event-item-text-container">
           <h5 className="event-item-title">{event.title}</h5>
-          <p className="event-item-start-date">
-            {moment(event.start_date).format("ddd-MMM-D-h:mmA")}
-          </p>
+          <div className="event-detail-date-container">
+            <div className="event-detail-date">
+              {moment(event.start_date).format('dddd, MMMM Do YYYY')}
+            </div>
+          </div>
         </div>
       </div>
   );

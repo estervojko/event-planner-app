@@ -5,9 +5,7 @@ import EventList from '../EventList'
 export default function HomePage(props){
   return(
     <div>
-      {/* <UserProfile/> */}
       <EventList
-        events={props.events || []}
         token={props.token}
         user={props.user}
       />
