@@ -18,11 +18,11 @@ constructor(props){
   this.state = {
     //transfer shit for your database
     events: {
-      img: image,
+      img: '',
       name:'randoAsshole',//the name of the user
       location: 'Dickville',//where the user hails from
       active: false,//the active status of the user. Default status is false
-    }],
+    },
     user: {},
     eventFormData:{     // event form data
       title: '',
@@ -97,7 +97,7 @@ constructor(props){
            <p>{this.state.events.active}</p> <div className="activePoint"></div>{/*render the active dot*/}
           </div>
           {this.state.user ? <EventList
-            view={this.props.view} 
+            view={this.props.view}
             user={this.props.user}
             /> : ''}
          <EventForm  event={this.state.eventFormData}
