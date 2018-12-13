@@ -10,6 +10,7 @@
   align-items: center;
   justify-content: center;
   bottom: 0;
+  user-select: none;
 }
 
 .footer-text1 {
