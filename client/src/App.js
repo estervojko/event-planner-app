@@ -15,7 +15,6 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      events: [],
       input: '',
       token: (localStorage.getItem('token') !== null) ? localStorage.getItem('token') : null,
       user: (localStorage.getItem('token') !== null) ? jwtDecode(localStorage.getItem('token')) : {},
@@ -58,17 +57,6 @@ class App extends Component {
     }))
   }
 
-  async componentDidMount(){
-    await this.getEvents();
-  }
-
-  getEvents = async() => {
-    const events = await eventReq.getEvents();
-    this.setState({
-      events
-    });
-  }
-
   handleChange = (e) => {
     this.setState({input: e.target.value});
     if (this.state.input.length > 2) {
@@ -87,7 +75,6 @@ class App extends Component {
       case "loggedIn":
       return (
         <HomePage
-          events={this.state.events}
           token={this.state.token}
           user={this.state.user}
         />
@@ -95,7 +82,6 @@ class App extends Component {
       case "userPage":
       return (
         <UserProfile
-          events={this.state.events}
           token={this.state.token}
           user={this.state.user}
         />
@@ -103,7 +89,6 @@ class App extends Component {
       case "welcome":
       return (
         <Welcome
-          events={this.state.events}
         />
       );
       default:

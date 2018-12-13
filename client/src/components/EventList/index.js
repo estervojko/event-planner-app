@@ -3,12 +3,14 @@ import EventItem from '../EventItem/index.js';
 import EventDetail from '../EventDetail/index.js';
 import './index.css';
 
+const { eventReq } = require('../../AJAXRequests/eventReq');
 const { attendeeReq } = require('../../AJAXRequests/attendeeReq');
 
 class EventList extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      events: [],
       selectedEvent: null
     }
   }
@@ -21,13 +23,23 @@ class EventList extends Component {
     }
   }
 
+  async componentDidMount(){
+    await this.getEvents();
+  }
+
+  getEvents = async() => {
+    const events = await eventReq.getEvents();
+    this.setState({
+      events
+    });
+  }
+
   getView(){
     if (this.state.selectedEvent) {
       return (
         <EventDetail
           event={this.state.selectedEvent}
           close={this.handleClose}
-          handleRSVP={this.handleRSVP}
           handleAttendance={this.handleAttendance}
           userLogged={this.isLoggedIn}
         />
@@ -36,7 +48,7 @@ class EventList extends Component {
       return (
         <div className="event-list-wrapper">
           {
-            this.props.events.map(event => (
+            this.state.events.map(event => (
                 <EventItem
                   key={event.id}
                   event={event}
@@ -54,18 +66,18 @@ class EventList extends Component {
 
   handleEventSelect = (event) => {
     //if an event has attendees
+    debugger;
     if (event.users.length > 0) {
       //find index of logged user in event
-      const i = event.users.indexOf( user => user.id === this.props.user.id );
+      const i = event.users.find( user => user.id === this.props.user.id);
       //if index is a positive number
-      if (i > 0) {
+      if (i.id > 0) {
         //set isAttending to true
         this.setState((prevState) => ({
           selectedEvent: {
             ...prevState.selectedEvent,
             details: event,
             isAttending: true
-
           }
         }))
       } else {
@@ -96,14 +108,16 @@ class EventList extends Component {
 
   handleAttendance = async () => {
     if (this.state.selectedEvent.isAttending) {
-      await this.removeAttendee()
+      await this.removeAttendee();
+      await this.getEvents();
     } else {
       await this.setAttendee()
+      await this.getEvents();
     }
   }
 
   getAttendees = async() => {
-    const event_id = this.props.selectedEvent.details.id;
+    const event_id = this.state.selectedEvent.details.id;
     try {
       const attendees = await attendeeReq.getAttendees(event_id);
       console.log(attendees);
