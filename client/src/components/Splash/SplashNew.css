@@ -30,6 +30,16 @@
   padding-left: 50px;
   text-align: left;
   color: white;
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+  text-shadow: 2px 3px black;
+  font-family: 'Fira Sans', sans-serif;
+=======
+  background: rgb(70, 130, 180, 0.6);
+  width: 96%;
+>>>>>>> 20ea8361259a4f44a33756581ffce6c8c213c7d1
+>>>>>>> Stashed changes
 }
 
 .splash-img-text-title {
@@ -40,7 +50,8 @@
 
 .splash-img-text-info {
   font-size: 2em;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
+  overflow: scroll;
 }
 
 img {

@@ -85,7 +85,7 @@ export default class SplashNew extends Component {
               Kayaking
             </div>
             <div className="splash-img-text-info">
-              Navigate the rapids with friends! Begins in April.
+              - Navigate the rapids with friends! Begins in April.
             </div>
           </div>
         )
@@ -96,7 +96,7 @@ export default class SplashNew extends Component {
               Technology
             </div>
             <div className="splash-img-text-info">
-              Come meet like-minded individuals interested in all things tech!
+              - Come meet like-minded individuals interested in all things tech!
             </div>
           </div>
         )
@@ -107,7 +107,7 @@ export default class SplashNew extends Component {
               Backpacking
             </div>
             <div className="splash-img-text-info">
-              Brave the rocky frontier! Experienced/Advanced hikers only!
+              - Brave the rocky frontier! Experienced/Advanced hikers only!
             </div>
           </div>
         )
@@ -118,7 +118,7 @@ export default class SplashNew extends Component {
               Biking
             </div>
             <div className="splash-img-text-info">
-              Come ride with a friendly group of people who encourage new riders!
+              - Come ride with a friendly group of people who encourage new riders!
             </div>
           </div>
         )

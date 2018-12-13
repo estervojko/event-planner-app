@@ -47,6 +47,12 @@ export default class LoginForm extends Component{
       this.props.setView(true);
       this.props.setToken(resp.data.token)
       this.props.setloggedUser(resp.data.user);
+<<<<<<< Updated upstream
+=======
+      localStorage.setItem('token', resp.data.token);
+      console.log('gets here');
+      this.props.setLoggedView('loggedIn');
+>>>>>>> Stashed changes
     }
   }
 
@@ -82,7 +88,12 @@ export default class LoginForm extends Component{
                    onChange={this.handleChange}/>
           </label>
           <br></br>
+<<<<<<< Updated upstream
           <button type="submit" onClick={() => this.setView(this.state.loggedIn === true)}>Login</button>
+=======
+
+          <button className="login-submit-button" type="submit">Login</button>
+>>>>>>> Stashed changes
         </form>
         {/* <button onClick={this.getEvents}>Get Events</button> */}
       </div>

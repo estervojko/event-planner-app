@@ -17,7 +17,6 @@ export default class Welcome extends Component{
       <div>
         <SplashNew events={this.props.events || []}/>
         <EventList events={this.props.events || []}/>
-        <EventList events={this.props.events || []}/>
       </div>
     )
   }

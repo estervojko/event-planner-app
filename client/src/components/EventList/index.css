@@ -9,11 +9,10 @@
   padding: 10px;
 }
 
-
 .event-list {
   display: grid;
   justify-content: center;
-  margin-right: 10%;
-  margin-left: 10%;
+  height: auto;
+  width: 100%;
   margin-top: 1%;
 }

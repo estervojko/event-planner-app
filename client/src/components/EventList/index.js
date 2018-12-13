@@ -13,6 +13,14 @@ class EventList extends Component {
     }
   }
 
+  isLoggedIn = () => {
+    if (this.props.token) {
+      return true
+    } else {
+      return false
+    }
+  }
+
   getView(){
     if (this.state.selectedEvent) {
       return (
@@ -21,7 +29,7 @@ class EventList extends Component {
           close={this.handleClose}
           handleRSVP={this.handleRSVP}
           handleAttendance={this.handleAttendance}
-          userLogged={this.props.logged}
+          userLogged={this.isLoggedIn}
         />
       )
     } else {
@@ -42,7 +50,6 @@ class EventList extends Component {
         </div>
       )
     }
-
   }
 
   handleEventSelect = (event) => {

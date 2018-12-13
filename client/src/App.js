@@ -4,7 +4,6 @@ import Welcome from './components/Welcome';
 import HomePage from './components/HomePage';
 import Footer from './components/Footer';
 import UserProfile from './components/UserProfile';
-import axios from 'axios';
 import './App.css';
 
 const { eventReq } = require('./AJAXRequests/eventReq');
@@ -100,7 +99,23 @@ class App extends Component {
       case "loggedIn":
       return <HomePage events={this.state.events}/>;
       case "userPage":
+<<<<<<< Updated upstream
       return <UserProfile events={this.state.events}/>;
+=======
+      return (
+        <UserProfile
+          events={this.state.events}
+          token={this.state.token}
+          user={this.state.user}
+        />
+      );
+      case "welcome":
+      return (
+        <Welcome
+          events={this.state.events}
+        />
+      );
+>>>>>>> Stashed changes
       default:
       return <Welcome events={this.state.events} />
     }
@@ -108,15 +123,22 @@ class App extends Component {
 
   render() {
     return (
-
      <div className="App">
+<<<<<<< Updated upstream
       <Nav setView={this.setView}
            setToken={this.setToken}
            setloggedUser={this.setloggedUser}/>
+=======
+      <Nav
+        setToken={this.setToken}
+        setloggedUser={this.setloggedUser}
+        changeView={this.changeView}
+        userName={this.state.user.username}
+      />
+>>>>>>> Stashed changes
       {this.getView()}
       <Footer/>
     </div>)
-
   }
 }
 
