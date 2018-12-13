@@ -9,12 +9,34 @@
 
 .previous-slide-button {
   width: 100px;
+  user-select: none;
   font-size: 8em;
+  border: 0;
+  background: lightblue;
 }
 
 .next-slide-button {
   width: 100px;
   font-size: 8em;
+  user-select: none;
+  border: 0;
+  background: lightblue;
+}
+
+.next-slide-button:focus {
+  outline: 0;
+}
+
+.previous-slide-button:focus {
+  outline: 0;
+}
+
+.next-slide-button:active {
+  transform: translateY(2px);
+}
+
+.previous-slide-button:active {
+  transform: translateY(2px);
 }
 
 .splash-img-container {

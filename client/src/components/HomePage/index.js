@@ -1,12 +1,10 @@
 import React  from 'react';
-import Splash from '../Splash';
+import SplashNew from '../Splash/SplashNew.js';
 import EventList from '../EventList'
 
 export default function HomePage(props){
   return(
     <div>
-      Test HomePage
-      <Splash/>
       {/* <UserProfile/> */}
       <EventList
         events={props.events}
