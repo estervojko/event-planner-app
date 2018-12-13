@@ -40,6 +40,8 @@ class App extends Component {
   //       />
   // }
 
+
+
   //sets the token in state
   async setToken(token){
     await this.setState((prevState) => ({
@@ -77,6 +79,7 @@ class App extends Component {
         <HomePage
           token={this.state.token}
           user={this.state.user}
+          view= {this.state.view}
         />
       );
       case "userPage":
@@ -84,11 +87,13 @@ class App extends Component {
         <UserProfile
           token={this.state.token}
           user={this.state.user}
+          view= {this.state.view}
         />
       );
       case "welcome":
       return (
         <Welcome
+          view= {this.state.view}
         />
       );
       default:

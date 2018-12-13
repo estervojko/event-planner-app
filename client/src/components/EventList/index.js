@@ -5,13 +5,15 @@ import './index.css';
 
 const { eventReq } = require('../../AJAXRequests/eventReq');
 const { attendeeReq } = require('../../AJAXRequests/attendeeReq');
+const { userReq } = require('../../AJAXRequests/userReq');
 
 class EventList extends Component {
   constructor(props) {
     super(props);
     this.state = {
       events: [],
-      selectedEvent: null
+      selectedEvent: null,
+      user: {}
     }
   }
 
@@ -23,8 +25,29 @@ class EventList extends Component {
     }
   }
 
+  async componentWillReceiveProps(nextProps){
+      this.setState({
+        events: nextProps.events
+      })
+  }
+
   async componentDidMount(){
-    await this.getEvents();
+    switch (this.props.view) {
+      case 'userPage':
+        await this.getUserEvents();
+        break;
+      case 'loggedIn' || 'welcome':
+        this.getEvents()
+        break;
+      default:
+    }
+  }
+
+  getUserEvents = async() => {
+    const user = await userReq.getUser(this.props.user.id);
+    this.setState({
+      events: user.events
+    });
   }
 
   getEvents = async() => {
