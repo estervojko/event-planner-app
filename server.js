@@ -74,7 +74,7 @@ app.post('/login', async (req, res) => {
     const isVerified = await bcrypt.compare(req.body.password, user.dataValues.password);
     // check if it's the right password
     if(isVerified){
-      const { id, username} = user.dataValues;
+      const { id, username, first_name, last_name, address } = user.dataValues;
       const token = sign({
         id,
         username
