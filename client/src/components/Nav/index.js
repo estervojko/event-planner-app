@@ -106,7 +106,7 @@ export default class Nav extends Component {
       <div className='nav-buttons' id='logout-button' onClick={() => {
           this.props.setloggedUser({});
           this.props.setToken(null);
-          this.props.changeView('');
+          this.props.changeView('welcome');
           localStorage.removeItem('token')
         }}>LOGOUT</div>
       <div className='nav-buttons' id="userPortal">
