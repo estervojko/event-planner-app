@@ -25,12 +25,6 @@ class EventList extends Component {
     }
   }
 
-  async componentWillReceiveProps(nextProps){
-      this.setState({
-        events: nextProps.events
-      })
-  }
-
   async componentDidMount(){
     switch (this.props.view) {
       case 'userPage':
