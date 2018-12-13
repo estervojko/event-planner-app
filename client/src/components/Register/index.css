@@ -10,9 +10,13 @@
 .register-submit-button {
   padding-top: 10px;
   padding-bottom: 10px;
+  cursor: pointer;
 }
 
 .register-submit-button:hover {
   background: springgreen;
-  transform: translateY(-2px);
+}
+
+.register-submit-button:focus {
+  outline: none;
 }

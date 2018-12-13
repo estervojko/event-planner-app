@@ -8,9 +8,13 @@
 .login-submit-button {
   padding-top: 10px;
   padding-bottom: 10px;
+  cursor: pointer;
 }
 
 .login-submit-button:hover {
   background: springgreen;
-  transform: translateY(-2px);
+}
+
+.login-submit-button:focus {
+  outline: none;
 }
