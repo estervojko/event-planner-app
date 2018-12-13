@@ -20,58 +20,43 @@ class App extends Component {
       input: '',
       token: (localStorage.getItem('token') !== null) ? localStorage.getItem('token') : null,
       user: (localStorage.getItem('token') !== null) ? jwtDecode(localStorage.getItem('token')) : {},
-      view: '',
+      view: (localStorage.getItem('token') !== null) ? "loggedIn" : "welcome"
     }
 
-    // this.setView = this.setView.bind(this);
     this.setToken = this.setToken.bind(this);
     this.setloggedUser = this.setloggedUser.bind(this);
   }
 
   //changes the logged state when a user logs in or registers
-  // setView(loggedIn){
-  //   if(loggedIn===true){
-  //     this.setState(
-  //       {
-  //         logged: true
-  //       }
-  //     )
-  //   }
-  // }
 
-  getView(){
-    return (this.state.token === null)
-      ? <Welcome
-          events={this.state.events}
-        />
-      : <HomePage
-          events={this.state.events}
-          token={this.state.token}
-          user={this.state.user}
-          logged={this.state.logged}
-        />
-  }
+  // getView(){
+  //   return (this.state.token === null)
+  //     ? <Welcome
+  //         events={this.state.events}
+  //       />
+  //     : <HomePage
+  //         events={this.state.events}
+  //         token={this.state.token}
+  //         user={this.state.user}
+  //         logged={this.state.logged}
+  //       />
+  // }
 
   //sets the token in state
   setToken(token){
-    this.setState((prevState) => (
-      {
-         ...prevState,
-         token: token
-       }
-    )
-   )
+    this.setState((prevState) => ({
+      ...prevState,
+      token: token,
+      view: 'loggedIn'
+    }))
   }
 
   //puts loggedIn user in state
   setloggedUser(user){
-    this.setState((prevState) => (
-      {
-        ...prevState,
-        user: user
-      }
-      )
-    )
+    this.setState((prevState) => ({
+      ...prevState,
+      user: user
+    }))
   }
 
   async componentDidMount(){
@@ -80,7 +65,6 @@ class App extends Component {
 
   getEvents = async() => {
     const events = await eventReq.getEvents();
-    console.log(events);
     this.setState({
       events
     });
@@ -91,31 +75,51 @@ class App extends Component {
     if (this.state.input.length > 2) {
       this.getEvents();
     }
-
   }
 
-  changeView(view){
-    this.setState = { view }
+  changeView = (view) => {
+    this.setState({
+      view: view
+    })
   }
 
-  switchView(){
+  getView(){
     switch(this.state.view){
       case "loggedIn":
-      return <HomePage events={this.state.events}/>;
+      return (
+        <HomePage
+          events={this.state.events}
+          token={this.state.token}
+          user={this.state.user}
+        />
+      );
       case "userPage":
-      return <UserProfile events={this.state.events}/>;
+      return (
+        <UserProfile
+          events={this.state.events}
+          user={this.state.user}
+        />
+      );
+      case "welcome":
+      return (
+        <Welcome
+          events={this.state.events}
+        />
+      );
       default:
-      return <Welcome events={this.state.events} />
     }
   }
+
 
   render() {
     return (
 
      <div className="App">
-      <Nav setView={this.setView}
-           setToken={this.setToken}
-           setloggedUser={this.setloggedUser}/>
+      <Nav
+        setToken={this.setToken}
+        setloggedUser={this.setloggedUser}
+        changeView={this.changeView}
+      />
       {this.getView()}
       <Footer/>
     </div>)

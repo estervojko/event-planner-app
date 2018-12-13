@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import './index.css';
 
 const BASE_URL = `http://localhost:3000`
 
@@ -67,25 +68,27 @@ export default class LoginForm extends Component{
 
   render(){
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Username
+      <div className='login-form'>
+        <form className='login-form-container' onSubmit={this.handleSubmit}>
+          <label className='login-form-username'>
+            Username: {` `}
             <input type="text"
                    name="username"
                    value={this.state.userData.username}
                    onChange={this.handleChange}/>
           </label>
           <br></br>
-          <label>
-            Password
+          <label className='login-form-password'>
+            Password: {` `}
             <input type="text"
                    name="password"
                    value={this.state.userData.password}
                    onChange={this.handleChange}/>
           </label>
           <br></br>
-          <button type="submit">Login</button>
+
+          <button className="login-submit-button" type="submit">Login</button>
+
         </form>
         {/* <button onClick={this.getEvents}>Get Events</button> */}
       </div>
