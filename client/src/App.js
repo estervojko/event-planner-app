@@ -29,18 +29,18 @@ class App extends Component {
 
   //changes the logged state when a user logs in or registers
 
-  getView(){
-    return (this.state.token === null)
-      ? <Welcome
-          events={this.state.events}
-        />
-      : <HomePage
-          events={this.state.events}
-          token={this.state.token}
-          user={this.state.user}
-          logged={this.state.logged}
-        />
-  }
+  // getView(){
+  //   return (this.state.token === null)
+  //     ? <Welcome
+  //         events={this.state.events}
+  //       />
+  //     : <HomePage
+  //         events={this.state.events}
+  //         token={this.state.token}
+  //         user={this.state.user}
+  //         logged={this.state.logged}
+  //       />
+  // }
 
   //sets the token in state
   setToken(token){
@@ -91,7 +91,6 @@ class App extends Component {
           events={this.state.events}
           token={this.state.token}
           user={this.state.user}
-          logged={this.state.logged}
         />
       );
       case "userPage":
@@ -116,7 +115,6 @@ class App extends Component {
 
      <div className="App">
       <Nav
-        setView={this.setView}
         setToken={this.setToken}
         setloggedUser={this.setloggedUser}
         changeView={this.changeView}

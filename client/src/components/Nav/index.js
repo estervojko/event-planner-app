@@ -29,7 +29,7 @@ export default class Nav extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: '',
+      navView: '',
       registered: false,
       showModal: false
     }
@@ -38,12 +38,13 @@ export default class Nav extends Component {
     this.handleCloseModal = this.handleCloseModal.bind(this);
   }
 
-  //sets the view
-  setView(view) {
-    this.setState({view: view})
+  setNavView(view) {
+    this.setState({
+      view: view
+    })
   }
 
-  getView() {
+  getNavView() {
     if (this.state.view === 'register') {
       return (<div className='modal-register'>
         <ReactModal style={customStyles} isOpen={this.state.showModal} contentLabel="Minimal Modal Example">
@@ -62,7 +63,7 @@ export default class Nav extends Component {
       return (<div>
         <UserProfile/>
         <button onClick={() => {
-            this.setView('')
+            this.setNavView('')
           }}>Cancel</button>
       </div>)
     }
@@ -85,7 +86,7 @@ export default class Nav extends Component {
       <h1 id="nav-title">Get Busy</h1>
       <div>
         <div className='nav-buttons' id='register-button' onClick={() => {
-            this.setView('register');
+            this.setNavView('register');
             this.handleOpenModal()
           }}>
           REGISTER
@@ -93,23 +94,24 @@ export default class Nav extends Component {
       </div>
       <div>
         <div className='nav-buttons' id='login-button' onClick={() => {
-            this.setView('login')
+            this.setNavView('login');
             this.handleOpenModal()
           }}>
           LOGIN
         </div>
       </div>
       <div>
-        {this.getView()}
+        {this.getNavView()}
       </div>
       <div className='nav-buttons' id='logout-button' onClick={() => {
           this.props.setloggedUser({});
           this.props.setToken(null);
+          this.props.changeView('');
           localStorage.removeItem('token')
         }}>LOGOUT</div>
       <div className='nav-buttons' id="userPortal">
         <div id="nav-portal-button" onClick={() => {
-            this.setView('userform')
+            this.props.changeView('userPage')
           }}>PORTAL</div>
       </div>
     </div>)
