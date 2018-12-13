@@ -110,7 +110,7 @@ export default class RegisterForm extends Component{
                    onChange={this.handleChange}/>
           </label>
           <br></br>
-          <button type="submit" >Register</button>
+          <button type="submit" onClick={this.props.handleCloseModal}>Register</button>
         </form>
         <button onClick={this.getEvents}>Get Events</button>
       </div>

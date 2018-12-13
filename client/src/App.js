@@ -17,7 +17,7 @@ class App extends Component {
       events: [],
       input: '',
       logged: false,
-      token: '',
+      token: localStorage.getItem('token'),
       user: {},
       view: ''
     }
@@ -38,7 +38,7 @@ class App extends Component {
   }
 
   getView(){
-    return (this.state.logged === false)
+    return (this.state.token === '')
       ? <Welcome
           events={this.state.events}
         />
@@ -95,6 +95,7 @@ class App extends Component {
   changeView(view){
     this.setState = { view }
   }
+
   switchView(){
     switch(this.state.view){
       case "loggedIn":

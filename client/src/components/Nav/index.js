@@ -5,16 +5,21 @@ import LoginForm from '../Login/LoginForm';
 import UserProfile from '../UserProfile';
 import './index.css';
 
-// import Dropdown, { DropdownTrigger, DropdownContent} from 'react-simple-dropdown';
-import { default as Dropdown, DropdownContent, DropdownTrigger } from "react-simple-dropdown";
+import ReactModal from 'react-modal';
+
+import ModalTest from '../Login/ModalTest'
 
 export default class Nav extends Component {
   constructor(props){
     super(props);
     this.state = {
       view: '',
-      registered: false
+      registered: false,
+      showModal: false
     }
+    
+    this.handleOpenModal = this.handleOpenModal.bind(this);
+    this.handleCloseModal = this.handleCloseModal.bind(this);
   }
 
   //sets the view
@@ -28,10 +33,14 @@ export default class Nav extends Component {
     if(this.state.view === 'register'){
       return (
         <div>
-          <RegisterForm setView={this.props.setView}
-                        setToken={this.props.setToken}
-                        setloggedUser={this.props.setloggedUser}
-                        />
+          <ReactModal isOpen={this.state.showModal}
+                      contentLabel="Minimal Modal Example">
+            <RegisterForm setView={this.props.setView}
+                          setToken={this.props.setToken}
+                          setloggedUser={this.props.setloggedUser}
+                          handleCloseModal={this.handleCloseModal}
+                          />
+          </ReactModal>
           <button onClick={() => {this.setView('')}}>Cancel</button>
         </div>
       )
@@ -56,51 +65,36 @@ export default class Nav extends Component {
   }
 }
 
-  hideDrop(){;
-    Dropdown.hide()
+  handleOpenModal () {
+    this.setState({ showModal: true });
+  }
+
+  handleCloseModal () {
+    this.setState({ showModal: false });
   }
 
   render(){
     return (
       <div className="nav">
         <h1 id="nav-title">Get Busy</h1>
+        <div>
+          <button onClick={() => {this.setView('register');
+                                  this.handleOpenModal()}}>
+            Register
+          </button>
 
-        <Dropdown>
-            <DropdownTrigger onClick={() => {this.setView('register')}} >
-              <button onClick={() => {this.setView('login')}} >
-                Register
-              </button>
-            </DropdownTrigger>
-            <DropdownContent> {this.getView()} </DropdownContent>
-       </Dropdown>
-       <Dropdown>
-            <DropdownTrigger >
-              <button onClick={() => {this.setView('login')}} >
-                Login
-              </button>
-          </DropdownTrigger>
-            <DropdownContent> {this.getView()} </DropdownContent>
-            <button onClick={Dropdown.hide}>Hide</button>
-        </Dropdown>
+        </div>
+        <div>
+          <button onClick={() => {this.setView('login')}} >
+            Login
+          </button>
+        </div>
+        <div> {this.getView()} </div>
+        <ModalTest/>
         <div className = "userPortal">
           <button id="nav-portal-button" onClick={()=> {this.setView('userform')}}>Portal</button>
         </div>
 
-              {/*<div className="dropdwn1">
-          <button id="nav-register-button" onClick={() => {this.setView('register')}}>Register</button>
-          <div className="dropdwn1-content">
-            <div className="register-view">{this.getView()}</div>
-          </div>
-        </div>
-        <div className="dropdwn2">
-          <button id="nav-login-button" onClick={() => {this.setView('login')}}>Login</button>
-          <div className="dropdwn2-content">
-            <div className="login-view">{this.getView()}</div>
-          </div>
-        </div>
-        <div className = "userPortal">
-          <button id="nav-portal-button" onClick={()=> {this.setView('userform')}}>Portal</button>
-        </div>*/}
 
       </div>
     )
