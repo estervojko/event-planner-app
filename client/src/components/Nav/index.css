@@ -51,6 +51,7 @@
 
 .modal-close-button:focus {
   outline: none;
+}
 
 /* This code is commented out in order to test the react dropdown */
  .dropdwn1 {
