@@ -4,7 +4,7 @@ import './index.css';
 export default function Footer(){
     return(
       <div className="footer">
-      <p className="footer-text1">Copyright @ Christopher, Steven, Ester, & Carlos</p>
+      <p className="footer-text1">Copyright @ P3G4</p>
       </div>
     )
 }
