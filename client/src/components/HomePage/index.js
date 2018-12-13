@@ -8,6 +8,7 @@ export default function HomePage(props){
       <EventList
         token={props.token}
         user={props.user}
+        view={props.view}
       />
     </div>
   )

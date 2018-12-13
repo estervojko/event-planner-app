@@ -40,9 +40,11 @@ constructor(props){
 }
 
   //steve
-  async componentDidMount(){
-    await this.getUser();
+
+  async componentWillMount(){
+    await this.getUser()
   }
+
 
   getUser = async() => {
     const user_id = this.props.user.id
@@ -55,7 +57,7 @@ constructor(props){
       console.log(e)
     }
   }
-  //
+
 
 
     handleChange(e){
@@ -90,11 +92,14 @@ constructor(props){
            <h2>{this.state.location}</h2>{/*render the location*/}
            <p>{this.state.active}</p> <div className="activePoint"></div>{/*render the active dot*/}
           </div>
-          {/* There needs to be an eventList here. change the parameters to reflect the user's choices*/}
-          <button >Delete Event</button>
-          <EventForm  event={this.state.eventFormData}
-                      handleChange={this.handleChange}
-                      handleSubmit={this.handleSubmit}/>
+          {this.state.user ? <EventList
+            view={this.props.view} 
+            user={this.props.user}
+            /> : ''}
+         <EventForm  event={this.state.eventFormData}
+            handleChange={this.handleChange}
+            handleSubmit={this.handleSubmit}/>
+          <button>Delete Event</button>
         </div>
     )
   }

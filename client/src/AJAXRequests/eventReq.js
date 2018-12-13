@@ -43,9 +43,15 @@ const eventReq = {
     }
   },
 
-  deleteEvent: async function (id) {
+  deleteEvent: async function (id, TOKEN) {
     try {
-      const resp = await axios.delete(BASE_URL + EVENTS + id);
+      const resp = await axios({
+        method: 'delete',
+        url: BASE_URL + EVENTS + id,
+        headers: {
+          'Authorization': `Bearer ${TOKEN}`
+        },
+      });
       const event = resp.data.event;
       return event;
     } catch (e) {
@@ -53,9 +59,16 @@ const eventReq = {
     }
   },
 
-  putEvent: async function (id, data) {
+  putEvent: async function (id, data, TOKEN) {
     try {
-      const resp = await axios.put(BASE_URL + EVENTS + id, data);
+      const resp = await axios({
+        method: 'put',
+        url: BASE_URL + EVENTS + id,
+        headers: {
+          'Authorization': `Bearer ${TOKEN}`
+        },
+        data: data
+      });
       const event = resp.data.updatedEvent;
       return event;
     } catch (e) {
