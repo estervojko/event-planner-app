@@ -18,7 +18,7 @@ constructor(props){
   this.state = {
     //transfer shit for your database
     events: {
-      img: image,
+      img: '',
       name:'randoAsshole',//the name of the user
       location: 'Dickville',//where the user hails from
       active: false,//the active status of the user. Default status is false
