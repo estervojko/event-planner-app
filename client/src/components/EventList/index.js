@@ -26,14 +26,19 @@ class EventList extends Component {
   }
 
   async componentDidMount(){
+    console.log(this.props.view)
     switch (this.props.view) {
       case 'userPage':
         await this.getUserEvents();
         break;
-      case 'loggedIn' || 'welcome':
+      case 'loggedIn':
         this.getEvents()
         break;
+      case 'welcome':
+        this.getEvents();
+        break;
       default:
+        this.getEvents();
     }
   }
 
