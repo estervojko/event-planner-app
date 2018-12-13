@@ -13,6 +13,7 @@
   font-size: 8em;
   border: 0;
   background: lightblue;
+  cursor: pointer;
 }
 
 .next-slide-button {
@@ -21,6 +22,7 @@
   user-select: none;
   border: 0;
   background: lightblue;
+  cursor: pointer;
 }
 
 .next-slide-button:focus {
