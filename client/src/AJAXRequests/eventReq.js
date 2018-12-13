@@ -26,9 +26,16 @@ const eventReq = {
     }
   },
 
-  postEvent: async function (data){
+  postEvent: async function (data, TOKEN){
     try {
-      const resp = await axios.post(BASE_URL + EVENTS, data);
+      const resp = await axios({
+        method: 'post',
+        url: BASE_URL + EVENTS,
+        headers: {
+          'Authorization': `Bearer ${TOKEN}`
+        },
+        data: data
+      });
       const event = resp.data.event;
       return event;
     } catch (e) {
@@ -57,6 +64,6 @@ const eventReq = {
   }
 }
 
-export { 
+export {
   eventReq
 }
