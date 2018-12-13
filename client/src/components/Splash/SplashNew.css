@@ -52,6 +52,8 @@
   padding-left: 50px;
   text-align: left;
   color: white;
+  background: rgb(70, 130, 180, 0.6);
+  width: 96%;
 }
 
 .splash-img-text-title {
@@ -62,7 +64,8 @@
 
 .splash-img-text-info {
   font-size: 2em;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
+  overflow: scroll;
 }
 
 img {
