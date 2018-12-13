@@ -6,6 +6,20 @@ import './index.css';
 
 import ReactModal from 'react-modal';
 
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+    display: 'flex',
+    'align-items': 'center',
+    'justify-content': 'center',
+  }
+}
+
 export default class Nav extends Component {
   constructor(props) {
     super(props);
@@ -27,16 +41,16 @@ export default class Nav extends Component {
   getView() {
     if (this.state.view === 'register') {
       return (<div className='modal-register'>
-        <ReactModal isOpen={this.state.showModal} contentLabel="Minimal Modal Example">
+        <ReactModal style={customStyles} isOpen={this.state.showModal} contentLabel="Minimal Modal Example">
           <RegisterForm setView={this.props.setView} setToken={this.props.setToken} setloggedUser={this.props.setloggedUser} handleCloseModal={this.handleCloseModal}/>
-          <button onClick={this.handleCloseModal}>Close Modal</button>
+          <div className='modal-close-button' onClick={this.handleCloseModal}></div>
         </ReactModal>
       </div>)
     } else if (this.state.view === 'login') {
       return (<div className='modal-login'>
-        <ReactModal isOpen={this.state.showModal} contentLabel="Minimal Modal Example">
+        <ReactModal style={customStyles} isOpen={this.state.showModal} contentLabel="Minimal Modal Example">
           <LoginForm setView={this.props.setView} setToken={this.props.setToken} setloggedUser={this.props.setloggedUser} handleCloseModal={this.handleCloseModal}/>
-          <button onClick={this.handleCloseModal}>Close Modal</button>
+          <div className='modal-close-button' onClick={this.handleCloseModal}></div>
         </ReactModal>
       </div>)
     } else if (this.state.view === 'userform') {
