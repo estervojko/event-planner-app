@@ -5,6 +5,11 @@ import UserProfile from '../UserProfile';
 import './index.css';
 
 import ReactModal from 'react-modal';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheckDouble } from '@fortawesome/free-solid-svg-icons';
+
+library.add(faCheckDouble);
 
 const customStyles = {
   content: {
@@ -15,8 +20,8 @@ const customStyles = {
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
     display: 'flex',
-    'align-items': 'center',
-    'justify-content': 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
   }
 }
 
@@ -74,13 +79,14 @@ export default class Nav extends Component {
 
   render() {
     return (<div className="nav">
+      <div className='title-icon'><FontAwesomeIcon icon="check-double" size="3x"/></div>
       <h1 id="nav-title">Get Busy</h1>
       <div>
         <div className='nav-buttons' id='register-button' onClick={() => {
             this.setView('register');
             this.handleOpenModal()
           }}>
-          Register
+          REGISTER
         </div>
       </div>
       <div>
@@ -88,7 +94,7 @@ export default class Nav extends Component {
             this.setView('login')
             this.handleOpenModal()
           }}>
-          Login
+          LOGIN
         </div>
       </div>
       <div>
@@ -98,11 +104,11 @@ export default class Nav extends Component {
           this.props.setloggedUser({});
           this.props.setToken(null);
           localStorage.removeItem('token')
-        }}>Logout</div>
+        }}>LOGOUT</div>
       <div className='nav-buttons' id="userPortal">
         <div id="nav-portal-button" onClick={() => {
             this.setView('userform')
-          }}>Portal</div>
+          }}>PORTAL</div>
       </div>
     </div>)
   }
