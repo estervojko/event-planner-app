@@ -16,14 +16,7 @@ export default class UserProfile extends Component{
 constructor(props){
   super(props);
   this.state = {
-    //transfer shit for your database
-    events: {
-      img: '',
-      name:'randoAsshole',//the name of the user
-      location: 'Dickville',//where the user hails from
-      active: false,//the active status of the user. Default status is false
-    },
-    user: {},
+    user: {},//user data imported from database
     eventFormData:{     // event form data
       title: '',
       description: '',
@@ -76,25 +69,25 @@ constructor(props){
 
     async handleSubmit(e){
       e.preventDefault();
-      console.log(this.props.token);
       const postedEvent = await eventReq.postEvent(this.state.eventFormData, this.props.token);
       const postedAttendee = await attendeeReq.postAttendee(postedEvent.id, this.props.user.id, {isOrganizer: true}, this.props.token)
-      console.log(postedEvent);
-      console.log(postedAttendee);
+
     }
 
   render(){
     return(
         <div className="userProfile">
         <div className="userBody">{/*render the main body*/}
-            <div className="userImage">{/*render the user image*/}
-              {this.state.events.image}
-            </div>
+            {/*<div className="userImage">//render the user image
+
+            </div>*/}
           <h1>
-           {this.state.events.name}
+           {this.state.user.username}
           </h1>{/*render the username*/}
-           <h2>{this.state.events.location}</h2>{/*render the location*/}
-           <p>{this.state.events.active}</p> <div className="activePoint"></div>{/*render the active dot*/}
+          <h2>First Name: {this.state.user.first_name}</h2>
+           <h2>Last Name: {this.state.user.last_name}</h2>{/*render the location*/}
+           <h2>Address: {this.state.user.address}</h2>
+           {/*<p>Active: {this.state.events.active}</p> <div className="activePoint"></div>*/}{/*render the active dot*/}
           </div>
           {this.state.user ? <EventList
             view={this.props.view}
