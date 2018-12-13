@@ -136,7 +136,7 @@ export default class Nav extends Component {
     return (
       <div className="nav">
         <div className='title-icon'><FontAwesomeIcon icon="check-double" size="3x"/></div>
-        <h1 id="nav-title">Get Busy</h1>
+        <h1 id="nav-title" onClick={() => {this.props.token === null ? this.props.changeView('welcome') : this.props.changeView('loggedIn')}}>Get Busy</h1>
         {this.getLoggedView()}
         {/* <div>
           <div className='nav-buttons' id='register-button' onClick={() => {
