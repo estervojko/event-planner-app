@@ -15,7 +15,7 @@ constructor(props){
       location: 'Dickville',//where the user hails from
       active: false,//the active status of the user. Default status is false
     }],
-    user: null
+    user: {}
 
   }
   // this.state.img.default = {/*this is where a url for an image can go or
@@ -23,9 +23,11 @@ constructor(props){
 }
 
   //steve
-  async componentDidMount(){
-    await this.getUser();
+
+  async componentWillMount(){
+    await this.getUser()
   }
+
 
   getUser = async() => {
     const user_id = this.props.user.id
@@ -38,7 +40,7 @@ constructor(props){
       console.log(e)
     }
   }
-  //
+
 
   render(){
     return(
@@ -51,8 +53,11 @@ constructor(props){
            <h2>{this.state.location}</h2>{/*render the location*/}
            <p>{this.state.active}</p> <div className="activePoint"></div>{/*render the active dot*/}
           </div>
-          {/* There needs to be an eventList here. change the parameters to reflect the user's choices*/}
-          <button >Delete Event</button>
+          {this.state.user ? <EventList
+            view={this.props.view} 
+            user={this.props.user}
+            /> : ''}
+          <button>Delete Event</button>
         </div>
     )
   }

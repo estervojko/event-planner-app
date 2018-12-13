@@ -4,11 +4,11 @@ import EventList from '../EventList';
 // import Splash from '../Splash'
 import SplashNew from '../Splash/SplashNew.js';
 
-export default function Welcome(){
+export default function Welcome(props){
   return(
     <div>
       <SplashNew />
-      <EventList />
+      <EventList view={props.view}/>
     </div>
   )
 }
