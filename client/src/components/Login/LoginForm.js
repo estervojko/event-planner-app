@@ -66,7 +66,8 @@ export default class LoginForm extends Component{
   render(){
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={() => { this.handleSubmit();
+                                this.props.handleCloseModal()}}>
           <label>
             Username
             <input type="text"
