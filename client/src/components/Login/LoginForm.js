@@ -88,7 +88,6 @@ export default class LoginForm extends Component{
                    onChange={this.handleChange}/>
           </label>
           <br></br>
-
           <button className="login-submit-button" type="submit">Login</button>
         </form>
         {/* <button onClick={this.getEvents}>Get Events</button> */}
