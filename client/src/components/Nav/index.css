@@ -6,14 +6,26 @@
   height: 60px;
   width: 100%;
   background-color: lightblue;
-  justify-content: flex-start;
   align-items: center;
 }
 
 #nav-title {
   margin: 0;
+  margin-right: auto;
   padding-left: 10px;
   font-size: 2.5em;
+}
+
+.modal-close-button {
+  background: grey;
+  font-size: 2em;
+  height: 80px;
+  width: 80px;
+  margin-left: 10px;
+}
+
+.modal-close-button:hover {
+  background: red;
 }
 
 /* This code is commented out in order to test the react dropdown */
@@ -57,17 +69,31 @@
   margin-right: 10px;
   padding: 10px;
 } */
-
-#nav-register-button {
-  padding: 10px;
-  font-size: 1em;
+.nav-buttons {
+  display: flex;
+  height: 60px;
+  align-items: center;
+  justify-content: center;
+  margin-left: 2px;
+  margin-right: 2px;
+  padding-left: 10px;
+  padding-right: 10px;
+  cursor: pointer;
 }
 
-#nav-login-button {
-  padding: 10px;
-  font-size: 1em;
+.nav-buttons:hover {
+  background: cornflowerblue;
 }
 
+#register-button {
+}
+
+#login-button {
+
+}
+
+#logout-button {
+}
 
 .dropdown {
     display: inline-block;

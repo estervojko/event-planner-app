@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import jwtDecode from 'jwt-decode'
+import jwtDecode from 'jwt-decode';
+import './index.css';
 
 const BASE_URL = `http://localhost:3000`
 
@@ -71,50 +72,49 @@ export default class RegisterForm extends Component{
 
   render(){
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Username
+      <div className='register-form'>
+        <form className='register-form-container' onSubmit={this.handleSubmit}>
+          <label className='register-form-username'>
+            Username: {` `}
             <input type="text"
                    name="username"
                    value={this.state.username}
                    onChange={this.handleChange}/>
           </label>
           <br></br>
-          <label>
-            Password
+          <label className='register-form-password'>
+            Password: {` `}
             <input type="text"
                    name="password"
                    value={this.state.password}
                    onChange={this.handleChange}/>
           </label>
           <br></br>
-          <label>
-            First Name
+          <label className='register-form-first-name'>
+            First Name: {` `}
             <input type="text"
                    name="first_name"
                    value={this.state.first_name}
                    onChange={this.handleChange}/>
           </label>
           <br></br>
-          <label>
-            Last Name
+          <label className='register-form-last-name'>
+            Last Name: {` `}
             <input type="text"
                    name="last_name"
                    value={this.state.last_name}
                    onChange={this.handleChange}/>
           </label>
           <br></br>
-          <label>
-            Address
-            <br></br>
+          <label className='register-form-address'>
+            Address: {` `}
             <input type="text"
                    name="address"
                    value={this.state.address}
                    onChange={this.handleChange}/>
           </label>
           <br></br>
-          <button type="submit" >Register</button>
+          <button className='register-submit-button' type="submit" >Register</button>
         </form>
         {/* <button onClick={this.getEvents}>Get Events</button> */}
       </div>
