@@ -3,11 +3,9 @@ import EventList from '../EventList';
 import './index.css'
 import moment from 'moment';
 import EventForm from '../EventForm'
-
 const {userReq} = require('../../AJAXRequests/userReq');
 const {eventReq} = require('../../AJAXRequests/eventReq');
 const {attendeeReq} = require('../../AJAXRequests/attendeeReq');
-
 export default class UserProfile extends Component {
   constructor(props) {
     super(props);
@@ -25,11 +23,9 @@ export default class UserProfile extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
   async componentWillMount() {
     await this.getUser()
   }
-
   getUser = async () => {
     const user_id = this.props.user.id
     try {
@@ -39,7 +35,6 @@ export default class UserProfile extends Component {
       console.log(e)
     }
   }
-
   handleChange(e) {
     const {name, value} = e.target
     this.setState((prevState) => ({
@@ -49,7 +44,6 @@ export default class UserProfile extends Component {
       }
     }))
   }
-
   async handleSubmit(e) {
     e.preventDefault();
     const postedEvent = await eventReq.postEvent(this.state.eventFormData, this.props.token);
@@ -57,7 +51,6 @@ export default class UserProfile extends Component {
       isOrganizer: true
     }, this.props.token)
   }
-
   render() {
     return (<div className="userProfile">
       <div className="userBody">
@@ -75,40 +68,6 @@ export default class UserProfile extends Component {
               ? <EventList view={this.props.view} user={this.props.user}/>
               : ''
           }
-        }
-      ))
-    }
-
-    async handleSubmit(e){
-      e.preventDefault();
-      console.log(this.props.token);
-      const postedEvent = await eventReq.postEvent(this.state.eventFormData, this.props.token);
-      const postedAttendee = await attendeeReq.postAttendee(postedEvent.id, this.props.user.id, {isOrganizer: true}, this.props.token)
-      console.log(postedEvent);
-      console.log(postedAttendee);
-    }
-
-  render(){
-    return(
-        <div className="userProfile">
-        <div className="userBody">{/*render the main body*/}
-            <div className="userImage">{/*render the user image*/}
-              {this.state.events.image}
-            </div>
-          <h1>
-           {this.state.events.name}
-          </h1>{/*render the username*/}
-           <h2>{this.state.events.location}</h2>{/*render the location*/}
-           <p>{this.state.events.active}</p> <div className="activePoint"></div>{/*render the active dot*/}
-          </div>
-          {this.state.user ? <EventList
-            view={this.props.view}
-            user={this.props.user}
-            /> : ''}
-         <EventForm  event={this.state.eventFormData}
-            handleChange={this.handleChange}
-            handleSubmit={this.handleSubmit}/>
-          <button>Delete Event</button>
         </div>
       </div>
       <EventForm event={this.state.eventFormData} handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
