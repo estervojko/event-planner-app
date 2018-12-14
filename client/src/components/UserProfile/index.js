@@ -68,35 +68,6 @@ export default class UserProfile extends Component {
               ? <EventList view={this.props.view} user={this.props.user}/>
               : ''
           }
-        }
-      ))
-    }
-
-    async handleSubmit(e){
-      e.preventDefault();
-      const postedEvent = await eventReq.postEvent(this.state.eventFormData, this.props.token);
-      const postedAttendee = await attendeeReq.postAttendee(postedEvent.id, this.props.user.id, {isOrganizer: true}, this.props.token)
-    }
-
-  render(){
-    return(
-        <div className="userProfile">
-        <div className="userBody">
-          <h1>
-           {this.state.user.username}
-          </h1>{/*render the username*/}
-          <h2>First Name: {this.state.user.first_name}</h2>
-           <h2>Last Name: {this.state.user.last_name}</h2>{/*render the location*/}
-           <h2>Address: {this.state.user.address}</h2>
-          </div>
-          {this.state.user ? <EventList
-            view={this.props.view}
-            user={this.props.user}
-            /> : ''}
-         <EventForm  event={this.state.eventFormData}
-            handleChange={this.handleChange}
-            handleSubmit={this.handleSubmit}/>
-          <button>Delete Event</button>
         </div>
       </div>
       <EventForm event={this.state.eventFormData} handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
