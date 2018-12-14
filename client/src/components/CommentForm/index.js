@@ -17,14 +17,14 @@ export default class CommentForm extends Component{
                  onChange={this.props.handleComment}/>
         </label>
         <br></br>
-        <label>
+        {/* <label>
           Date
           <br></br>
           <input type="date"
                  name="date"
                  value={this.props.comment.date}
                  onChange={this.props.handleComment}/>
-        </label>
+        </label> */}
         <button onClick={this.props.handleSubmit}>Post</button>
       </form>
     )

@@ -37,7 +37,7 @@ export default class CommentList extends Component{
     const event = this.props.event;
     const commentPosted = await axios.post(`http://localhost:3000/users/${user.id}/events/${event.id}/comments`, this.state.comment)
     console.log(commentPosted.data);
-    this.setState((prevState) => ({comments: [...prevState.comments, commentPosted.data]}));
+    this.setState((prevState) => ({comments: [...prevState.comments, commentPosted.data].reverse()}));
 
   }
 
@@ -59,7 +59,7 @@ export default class CommentList extends Component{
               return(
                 <div key={c.id} >
                   <p>{jwtDecode(localStorage.getItem('token')).username}</p>
-                  <p>{c.date}</p>
+                  <p>{c.created_at}</p>
                   <p>{c.content}</p>
                 </div>
               )
