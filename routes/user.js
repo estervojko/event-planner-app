@@ -22,10 +22,11 @@ userRouter.get('/:id', async (req, res) => {
   try {
     const user = await User.findByPk(req.params.id, {
       attributes: {
-        exclude: ['password']
+        exclude:
+        ['password']
       },
       include: {
-        model: Event
+        model: Event,
       }
     });
     res.json({user})

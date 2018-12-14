@@ -1,5 +1,4 @@
 const axios = require('axios');
-const moment = require('moment');
 
 const BASE_URL = 'http://localhost:3000/';
 const EVENTS = 'events/';

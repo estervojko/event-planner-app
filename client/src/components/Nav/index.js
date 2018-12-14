@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
+import ReactModal from 'react-modal';
 import RegisterForm from '../Register/RegisterForm';
 import LoginForm from '../Login/LoginForm';
 import UserProfile from '../UserProfile';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faCheckDouble } from '@fortawesome/free-solid-svg-icons';
 import './index.css';
-import ReactModal from 'react-modal';
-import {library} from '@fortawesome/fontawesome-svg-core';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faCheckDouble} from '@fortawesome/free-solid-svg-icons';
 
 library.add(faCheckDouble);
 

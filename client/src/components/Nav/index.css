@@ -34,10 +34,6 @@
 
 .modal-close-button {
   background: grey;
-  /* font-size: 4em; */
-  /* height: 80px; */
-  /* width: 80px; */
-  /* margin-left: 10px; */
   text-align: center;
   color: white;
   width: 100%;
@@ -90,14 +86,6 @@
 .nav-buttons:hover {
   background: mediumblue;
 }
-
-.nav-buttons:active {}
-
-#register-button {}
-
-#login-button {}
-
-#logout-button {}
 
 .dropdown {
   display: inline-block;

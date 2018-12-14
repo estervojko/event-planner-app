@@ -3,6 +3,8 @@
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
+  justify-content: center;
+
   border: 1px solid black;
   font-family: 'Poppins', sans-serif;
   width: 330px;
@@ -19,10 +21,6 @@
   transform: translateY(-2px);
 }
 
-.event-item-image-container {}
-
-.event-item-text-container {}
-
 .event-item-image {
   width: 330px;
   height: 220px;
@@ -31,6 +29,11 @@
 
 .event-item-title {
   font-size: 1.5em;
+  text-align: center;
+  padding: 0 5px;
+  margin: 0px;
+  margin-top: 5px;
+  color:#840032;
   text-align: left;
   padding-left: 15px;
   padding-right: 2px;
