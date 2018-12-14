@@ -71,13 +71,13 @@ export default class SplashNew extends Component {
   renderSlide() {
     switch(this.state.currentSlide) {
       case 0:
-        return (<img src={this.state.images[0]} alt='image0'/>)
+        return (<img className='splash-image' src={this.state.images[0]} alt='image0'/>)
       case 1:
-        return (<img src={this.state.images[1]} alt='image1'/>)
+        return (<img className='splash-image' src={this.state.images[1]} alt='image1'/>)
       case 2:
-        return (<img src={this.state.images[2]} alt='image2'/>)
+        return (<img className='splash-image' src={this.state.images[2]} alt='image2'/>)
       case 3:
-        return (<img src={this.state.images[3]} alt='image3'/>)
+        return (<img className='splash-image' src={this.state.images[3]} alt='image3'/>)
       default:
         console.log('This is a render slide error!');
     }
@@ -137,12 +137,12 @@ export default class SplashNew extends Component {
   render() {
     return(
       <div className = "splashNew">
-        <button className="previous-slide-button" onClick={this.prevSlide}><FontAwesomeIcon icon="angle-left"/></button>
         <div className="splash-img-container">
+          <button className="previous-slide-button" onClick={this.prevSlide}><FontAwesomeIcon icon="angle-left"/></button>
           {this.renderSlide()}
           {this.renderSlideText()}
+          <button className="next-slide-button" onClick={this.nextSlide}><FontAwesomeIcon icon="angle-right"/></button>
         </div>
-        <button className="next-slide-button" onClick={this.nextSlide}><FontAwesomeIcon icon="angle-right"/></button>
       </div>
     )
   }
