@@ -9,24 +9,26 @@
   border-radius: 10px 0px 0px 10px;
   background-color: #002642;
   box-shadow: 10px, rgba(0,0,0,0, 0.1);
-  display: grid;
-  grid-template-areas: 
 }
 
 .userBody h1{
   font-style: italic;
   font-weight: bolder;
   color: #E98A15;
+  grid-area: username;
 }
 
 .userBody h2{
   font-style: italic;
   color: #840032;
+  grid-area: fn;
+  grid-area: ln;
 }
 
 .userBody p {
   font-style: italic;
   color: #E5DADA;
+  grid-area: adrs;
 }
 
 .userImage > img{
@@ -34,15 +36,16 @@
   width:300px;
   margin: 0;
   border-radius: 50px;
+  grid-area: im;
 
 }
 
 .userList{
-  width:100%;
+  max-width:1000px;
   height:400px;
-  margin-left: 5px;
-  margin-right: -15px;
+  margin: 0;
   border: solid red 1px;
+  overflow: scroll;
 }
 
 .activePoint {
