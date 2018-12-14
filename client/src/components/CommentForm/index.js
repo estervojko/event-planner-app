@@ -10,7 +10,8 @@ export default class CommentForm extends Component{
       <form onSubmit={this.props.handleSubmit}>
         <label>
           Content
-          <input type="text"
+          <br></br>
+          <textarea type="text"
                  name="content"
                  value={this.props.comment.content}
                  onChange={this.props.handleComment}/>
@@ -18,6 +19,7 @@ export default class CommentForm extends Component{
         <br></br>
         <label>
           Date
+          <br></br>
           <input type="date"
                  name="date"
                  value={this.props.comment.date}
