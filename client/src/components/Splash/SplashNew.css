@@ -72,12 +72,14 @@
   width: 96.3%;
   border-radius: 10px;
   text-shadow: 2px 3px black;
+  font-family: 'Righteous', cursive;
 }
 
 .splash-img-text-title {
-  font-size: 4em;
+  font-size: 3.2em;
   margin-top: 15px;
   margin-bottom: 15px;
+  font-style: italic;
 }
 
 .splash-img-text-info {

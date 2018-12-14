@@ -3,7 +3,7 @@
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: auto;
   grid-column-gap: 15px;
-  grid-row-gap: 15px;
+  grid-row-gap: 25px;
   width: auto;
 }
 
