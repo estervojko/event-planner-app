@@ -121,8 +121,10 @@
   background: grey;
   padding: 10px;
   width: 240px;
+  height: 50px;
   font-size: 2em;
   border-radius: 3px;
+  text-align: center;
 }
 
 .event-item-button:active {
