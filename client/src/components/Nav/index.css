@@ -19,6 +19,8 @@
   font-style: italic;
   font-family: 'Righteous', cursive;
   user-select: none;
+  cursor: pointer;
+  font-family: 'Righteous', cursive;
 }
 
 #nav-title:hover {
@@ -31,10 +33,6 @@
 
 .modal-close-button {
   background: grey;
-  /* font-size: 4em; */
-  /* height: 80px; */
-  /* width: 80px; */
-  /* margin-left: 10px; */
   text-align: center;
   color: white;
   width: 100%;
@@ -53,8 +51,7 @@
   outline: none;
 }
 
-/* This code is commented out in order to test the react dropdown */
- .dropdwn1 {
+.dropdwn1 {
   position: relative;
   display: inline-block;
   margin-left: auto;
@@ -71,35 +68,6 @@
   user-select: none;
 }
 
-/*
-.dropdwn1-content {
-  display: none;
-  position: absolute;
-  background-color: orange;
-  min-width: 200px;
-  z-index: 1;
-}
-
-.dropdwn2-content {
-  display: none;
-  position: absolute;
-  background-color: pink;
-  min-width: 200px;
-  z-index: 1;
-}
-
-.dropdwn1:hover .dropdwn1-content {
-  display: block;
-  right: 0;
-  padding: 10px;
-}
-
-.dropdwn2:hover .dropdwn2-content {
-  display: block;
-  right: 0;
-  margin-right: 10px;
-  padding: 10px;
-} */
 .nav-buttons {
   display: flex;
   height: 80px;
@@ -118,28 +86,15 @@
   background: mediumblue;
 }
 
-.nav-buttons:active {
-}
-
-#register-button {
-}
-
-#login-button {
-
-}
-
-#logout-button {
-}
-
 .dropdown {
-    display: inline-block;
+  display: inline-block;
 }
 
 .dropdown__content {
-    display: none;
-    position: absolute;
+  display: none;
+  position: absolute;
 }
 
 .dropdown--active .dropdown__content {
-    display: block;
+  display: block;
 }

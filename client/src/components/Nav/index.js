@@ -19,7 +19,7 @@ const customStyles = {
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   }
 }
 
@@ -37,9 +37,7 @@ export default class Nav extends Component {
   }
 
   setNavView(view) {
-    this.setState({
-      view: view
-    })
+    this.setState({view: view})
   }
 
   getNavView() {
@@ -67,65 +65,66 @@ export default class Nav extends Component {
     }
   }
 
-  getLoggedView(){
-    if(this.props.token === null){
-      return (
-        <React.Fragment>
-          <div>
-            <div className='nav-buttons' id='register-button' onClick={() => {
-                this.setNavView('register');
-                this.handleOpenModal()
-              }}>
-              REGISTER
-            </div>
-          </div>
-          <div>
-            <div className='nav-buttons' id='login-button' onClick={() => {
-                this.setNavView('login');
-                this.handleOpenModal();
-              }}>
-              LOGIN
-            </div>
-        </div>
-        </React.Fragment>
-      )
-    }
-    else if(this.props.token !== null){
-      return(
-        <React.Fragment>
-          <div className='nav-buttons' id="userPortal" onClick={() => {
-              this.props.changeView('userPage')
+  getLoggedView() {
+    if (this.props.token === null) {
+      return (<React.Fragment>
+        <div>
+          <div className='nav-buttons' id='register-button' onClick={() => {
+              this.setNavView('register');
+              this.handleOpenModal()
             }}>
-            <div id="nav-portal-button" >{(this.props.user.username ? this.props.user.username.toUpperCase() : '')}</div>
+            REGISTER
           </div>
-          <div className='nav-buttons' id='logout-button' onClick={() => {
-              this.props.setloggedUser({});
-              this.props.setToken(null);
-              this.props.changeView('welcome');
-              localStorage.removeItem('token');
-            }}>LOGOUT</div>
-        </React.Fragment>
-      )
+        </div>
+        <div>
+          <div className='nav-buttons' id='login-button' onClick={() => {
+              this.setNavView('login');
+              this.handleOpenModal();
+            }}>
+            LOGIN
+          </div>
+        </div>
+      </React.Fragment>)
+    } else if (this.props.token !== null) {
+      return (<React.Fragment>
+        {console.log(this.props.user.username)}
+        <div className='nav-buttons' id="userPortal" onClick={() => {
+            this.props.changeView('userPage')
+          }}>
+          <div id="nav-portal-button">{
+              (
+                this.props.user.username
+                ? this.props.user.username.toUpperCase()
+                : '')
+            }</div>
+        </div>
+        <div className='nav-buttons' id='logout-button' onClick={() => {
+            this.props.setloggedUser({});
+            this.props.setToken(null);
+            this.props.changeView('welcome');
+            localStorage.removeItem('token');
+          }}>LOGOUT</div>
+      </React.Fragment>)
     }
   }
 
-  //modal handlers
   handleOpenModal() {
     this.setState({showModal: true});
   }
-
 
   handleCloseModal() {
     this.setState({showModal: false});
   }
 
-
   render() {
-    return (
-      <div className="nav">
-        <div className='title-icon'><FontAwesomeIcon icon="check-double" size="3x"/></div>
-        <h1 id="nav-title" onClick={() => {this.props.token === null ? this.props.changeView('welcome') : this.props.changeView('loggedIn')}}>Get Busy</h1>
-        {this.getLoggedView()}
+    return (<div className="nav">
+      <div className='title-icon'><FontAwesomeIcon icon="check-double" size="3x"/></div>
+      <h1 id="nav-title" onClick={() => {
+          this.props.token === null
+            ? this.props.changeView('welcome')
+            : this.props.changeView('loggedIn')
+        }}>Get Busy</h1>
+      {this.getLoggedView()}
       <div>
         {this.getNavView()}
       </div>

@@ -1,28 +1,25 @@
-.userProfile{
-  width: 95vw;
-  margin: 2% auto;
-  border-radius: 10px;
-}
-
-.userBody{
+.userProfile {
+  width: 1000px;
   height: 100%;
-  background-color: #002642;
-  box-shadow: 10px, rgba(0,0,0,0, 0.1);
-  border-radius: 10px;
-  display: grid;
-  grid-template: auto auto / auto auto;
-  grid-template-areas:
-  "info buttons"
-  "events events"
+  margin: 0 auto;
 }
 
-.userBody h1{
+.userBody {
+  height: 1000px;
+  border-radius: 10px 0px 0px 10px;
+  background-color: #002642;
+  box-shadow: 10px, rgba(0, 0, 0, 0, 0.1);
+  display: grid;
+  grid-template-areas:
+}
+
+.userBody h1 {
   font-style: italic;
   font-weight: bolder;
   color: #E98A15;
 }
 
-.userBody h2{
+.userBody h2 {
   font-style: italic;
   color: #840032;
 }
@@ -32,30 +29,23 @@
   color: #E5DADA;
 }
 
-.userimage{
+.userImage>img {
+  height: 300px;
+  width: 300px;
+  margin: 0;
   border-radius: 50px;
 }
 
-.userProfile-events {
-  grid-area: events;
-  justify-self: center;
-  max-width: 100%;
-  overflow: scroll;
+.userList {
+  width: 100%;
+  height: 400px;
+  margin-left: 5px;
+  margin-right: -15px;
+  border: solid red 1px;
 }
 
-.userProfile-info {
-  text-align: left;
-  padding: 10px;
-}
-
-.userProfile-info  * {
-  margin: 0;
-}
-
-.userProfile-fullname {
-  display: flex;
-}
-
-.userProfile-fullname * {
-  padding: 0 5px;
+.userimage{
+  border-radius: 50px;
+  width: 10px;
+  height: 10px;
 }

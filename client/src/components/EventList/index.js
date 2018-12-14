@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import EventItem from '../EventItem/index.js';
 import EventDetail from '../EventDetail/index.js';
 import './index.css';
@@ -54,14 +54,12 @@ class EventList extends Component {
     });
   }
 
-  getEvents = async() => {
+  getEvents = async () => {
     const events = await eventReq.getEvents();
-    this.setState({
-      events
-    });
+    this.setState({events});
   }
 
-  getView(){
+  getView() {
     if (this.state.selectedEvent) {
       return (
         <EventDetail
@@ -94,13 +92,9 @@ class EventList extends Component {
 
   handleEventSelect = (event) => {
     if (this.isLoggedIn()) {
-      //if an event has attendees
       if (event.users.length > 0) {
-        //find index of logged user in event
-        const i = event.users.find( user => user.id === this.props.user.id);
-        //if index is a positive number
+        const i = event.users.find(user => user.id === this.props.user.id);
         if (i.id > 0) {
-          //set isAttending to true
           this.setState((prevState) => ({
             selectedEvent: {
               ...prevState.selectedEvent,
@@ -169,7 +163,7 @@ class EventList extends Component {
     }
   }
 
-  getAttendees = async() => {
+  getAttendees = async () => {
     const event_id = this.state.selectedEvent.details.id;
     try {
       const attendees = await attendeeReq.getAttendees(event_id);
@@ -179,7 +173,7 @@ class EventList extends Component {
     }
   }
 
-  setAttendee = async() => {
+  setAttendee = async () => {
     const TOKEN = this.props.token;
     const user_id = this.props.user.id
     const event_id = this.state.selectedEvent.details.id;
@@ -198,7 +192,7 @@ class EventList extends Component {
     }
   }
 
-  removeAttendee = async() => {
+  removeAttendee = async () => {
     const TOKEN = this.props.token;
     const user_id = this.props.user.id
     const event_id = this.state.selectedEvent.details.id;
@@ -217,11 +211,9 @@ class EventList extends Component {
   }
 
   render() {
-    return (
-      <div className='event-list'>
-        {this.getView()}
-      </div>
-    )
+    return (<div className='event-list'>
+      {this.getView()}
+    </div>)
   }
 }
 

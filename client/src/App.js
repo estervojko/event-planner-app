@@ -12,34 +12,22 @@ class App extends Component {
     super(props);
     this.state = {
       input: '',
-      token: (localStorage.getItem('token') !== null) ? localStorage.getItem('token') : null,
-      user: (localStorage.getItem('token') !== null) ? jwtDecode(localStorage.getItem('token')) : {},
-      view: (localStorage.getItem('token') !== null) ? "loggedIn" : "welcome"
+      token: (localStorage.getItem('token') !== null)
+        ? localStorage.getItem('token')
+        : null,
+      user: (localStorage.getItem('token') !== null)
+        ? jwtDecode(localStorage.getItem('token'))
+        : {},
+      view: (localStorage.getItem('token') !== null)
+        ? "loggedIn"
+        : "welcome"
     }
 
     this.setToken = this.setToken.bind(this);
     this.setloggedUser = this.setloggedUser.bind(this);
   }
 
-  //changes the logged state when a user logs in or registers
-
-  // getView(){
-  //   return (this.state.token === null)
-  //     ? <Welcome
-  //         events={this.state.events}
-  //       />
-  //     : <HomePage
-  //         events={this.state.events}
-  //         token={this.state.token}
-  //         user={this.state.user}
-  //         logged={this.state.logged}
-  //       />
-  // }
-
-
-
-  //sets the token in state
-  async setToken(token){
+  async setToken(token) {
     await this.setState((prevState) => ({
       ...prevState,
       token: token,
@@ -47,8 +35,7 @@ class App extends Component {
     }))
   }
 
-  //puts loggedIn user in state
-  async setloggedUser(user){
+  async setloggedUser(user) {
     await this.setState((prevState) => ({
       ...prevState,
       user: user
@@ -63,50 +50,24 @@ class App extends Component {
   }
 
   changeView = (view) => {
-    this.setState({
-      view: view
-    })
+    this.setState({view: view})
   }
 
-  getView(){
-    switch(this.state.view){
+  getView() {
+    switch (this.state.view) {
       case "loggedIn":
-      return (
-        <HomePage
-          token={this.state.token}
-          user={this.state.user}
-          view= {this.state.view}
-        />
-      );
+        return (<HomePage token={this.state.token} user={this.state.user} view={this.state.view}/>);
       case "userPage":
-      return (
-        <UserProfile
-          token={this.state.token}
-          user={this.state.user}
-          view= {this.state.view}
-        />
-      );
+        return (<UserProfile token={this.state.token} user={this.state.user} view={this.state.view}/>);
       case "welcome":
-      return (
-        <Welcome
-          view= {this.state.view}
-        />
-      );
+        return (<Welcome view={this.state.view}/>);
       default:
     }
   }
 
   render() {
-    return (
-     <div className="App">
-      <Nav
-        setToken={this.setToken}
-        setloggedUser={this.setloggedUser}
-        changeView={this.changeView}
-        user={this.state.user}
-        token={this.state.token}
-      />
-      {this.getView()}
+    return (<div className="App">
+      <Nav setToken={this.setToken} setloggedUser={this.setloggedUser} changeView={this.changeView} user={this.state.user} token={this.state.token}/> {this.getView()}
       <Footer/>
     </div>)
   }

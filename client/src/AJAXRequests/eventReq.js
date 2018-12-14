@@ -5,7 +5,7 @@ const EVENTS = 'events/';
 
 const eventReq = {
 
-  getEvents: async function (){
+  getEvents: async function() {
     try {
       const resp = await axios.get(BASE_URL + EVENTS);
       const events = resp.data.events;
@@ -15,7 +15,7 @@ const eventReq = {
     }
   },
 
-  getEvent: async function (id){
+  getEvent: async function(id) {
     try {
       const resp = await axios.get(BASE_URL + EVENTS + id);
       const event = resp.data.event;
@@ -25,7 +25,7 @@ const eventReq = {
     }
   },
 
-  postEvent: async function (data, TOKEN){
+  postEvent: async function(data, TOKEN) {
     try {
       const resp = await axios({
         method: 'post',
@@ -42,14 +42,14 @@ const eventReq = {
     }
   },
 
-  deleteEvent: async function (id, TOKEN) {
+  deleteEvent: async function(id, TOKEN) {
     try {
       const resp = await axios({
         method: 'delete',
         url: BASE_URL + EVENTS + id,
         headers: {
           'Authorization': `Bearer ${TOKEN}`
-        },
+        }
       });
       const event = resp.data.event;
       return event;
@@ -58,7 +58,7 @@ const eventReq = {
     }
   },
 
-  putEvent: async function (id, data, TOKEN) {
+  putEvent: async function(id, data, TOKEN) {
     try {
       const resp = await axios({
         method: 'put',
