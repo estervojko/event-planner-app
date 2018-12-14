@@ -35,7 +35,7 @@ export default class CommentList extends Component{
 
     const user = jwtDecode(localStorage.getItem('token'))
     const event = this.props.event;
-    const commentPosted = await axios.post(`http://localhost:3000/users/${user.id}/events/${event.id}/comments`, this.state.comment)
+    const commentPosted = await axios.post(`https://calm-springs-46291.herokuapp.com/users/${user.id}/events/${event.id}/comments`, this.state.comment)
     console.log(commentPosted.data);
     this.setState((prevState) => ({comments: [...prevState.comments, commentPosted.data].reverse()}));
 
@@ -43,7 +43,7 @@ export default class CommentList extends Component{
 
   async componentDidMount(){
     const event = this.props.event;
-    const events = await axios.get(`http://localhost:3000/events/${event.id}/comments`);
+    const events = await axios.get(`https://calm-springs-46291.herokuapp.com/events/${event.id}/comments`);
     console.log(events.data);
     this.setState({comments: events.data});
   }

@@ -11,6 +11,8 @@ import './App.css';
 const {eventReq} = require('./AJAXRequests/eventReq');
 const {userReq} = require('./AJAXRequests/userReq');
 
+const BASE_URL = `https://calm-springs-46291.herokuapp.com/`
+
 class App extends Component {
   constructor(props) {
     super(props);

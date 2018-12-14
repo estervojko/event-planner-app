@@ -1,7 +1,7 @@
 const axios = require('axios');
 const moment = require('moment');
 
-const BASE_URL = 'http://localhost:3000/';
+const BASE_URL = 'https://calm-springs-46291.herokuapp.com/';
 const EVENTS = 'events/'
 const USERS = '/users/';
 
