@@ -83,23 +83,18 @@ export default class UserProfile extends Component {
       e.preventDefault();
       const postedEvent = await eventReq.postEvent(this.state.eventFormData, this.props.token);
       const postedAttendee = await attendeeReq.postAttendee(postedEvent.id, this.props.user.id, {isOrganizer: true}, this.props.token)
-
     }
 
   render(){
     return(
         <div className="userProfile">
-        <div className="userBody">{/*render the main body*/}
-            {/*<div className="userImage">//render the user image
-
-            </div>*/}
+        <div className="userBody">
           <h1>
            {this.state.user.username}
           </h1>{/*render the username*/}
           <h2>First Name: {this.state.user.first_name}</h2>
            <h2>Last Name: {this.state.user.last_name}</h2>{/*render the location*/}
            <h2>Address: {this.state.user.address}</h2>
-           {/*<p>Active: {this.state.events.active}</p> <div className="activePoint"></div>*/}{/*render the active dot*/}
           </div>
           {this.state.user ? <EventList
             view={this.props.view}

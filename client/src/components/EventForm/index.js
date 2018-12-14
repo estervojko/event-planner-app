@@ -1,10 +1,12 @@
-import React, {Component} from 'react';
+
+import React, { Component } from 'react';
 import ReactModal from 'react-modal';
 import './index.css'
 
-export default class EventForm extends Component {
-  constructor(props) {
+export default class EventForm extends Component{
+  constructor(props){
     super(props);
+    
     this.state = {
       showModal: false,
       modalClicked: true

@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import './index.css';
+
+import CommentList from '../CommentList';
+
 const moment = require('moment');
 
 export default class EventDetail extends Component {
@@ -95,6 +98,8 @@ export default class EventDetail extends Component {
 
               <div className="event-detail-date">
                 {start_date}
+        </div>
+        <CommentList event={event}/>
               </div>
 
               {start_date !== end_date && <div className="event-detail-date">

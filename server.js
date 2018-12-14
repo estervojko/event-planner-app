@@ -24,9 +24,10 @@ module.exports = passport.use(new JwtStrategy(opts, async (payload, done) => {
   }
 }));
 
-const {Event, User} = require('./models')
-const {eventRouter} = require('./routes/event');
-const {userRouter} = require('./routes/user');
+//server
+const {Event, User, Comment} = require('./models');
+const { eventRouter } = require('./routes/event');
+const { userRouter } = require('./routes/user');
 
 const app = express();
 
@@ -73,6 +74,37 @@ app.post('/login', async (req, res) => {
   }
 });
 
+//get all comments per specific event
+app.get('/events/:id/comments', async(req, res) => {
+  try{
+    const commmentsOfEvent = await Comment.findAll({where: {event_id: parseInt(req.params.id)}})
+    res.json(commmentsOfEvent);
+  }
+  catch(e){
+    res.status(500).json({
+      msg: e.message
+    })
+  }
+})
+
+//post a comment in an event
+app.post('/users/:id1/events/:id2/comments',async(req, res) => {
+  try{
+    const user = await User.findOne({where: {id: parseInt(req.params.id1)}});
+    const event = await Event.findOne({where: {id: parseInt(req.params.id2)}});
+    const comment = await Comment.create(req.body);
+    await event.addComment(comment)
+    await user.addComment(comment)
+    res.json(comment);
+  }
+  catch(e){
+    res.status(500).json({
+      msg: e.message
+    })
+  }
+})
+
+//steve
 app.use('/events', eventRouter);
 app.use('/users', userRouter);
 
