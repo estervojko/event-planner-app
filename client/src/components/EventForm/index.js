@@ -3,9 +3,9 @@ import ReactModal from 'react-modal';
 import './index.css'
 
 export default class EventForm extends Component{
-  constructor(props){
-    super(props);
 
+  constructor(props) {
+    super(props);
     this.state = {
       showModal: false,
       modalClicked: true
@@ -18,7 +18,6 @@ export default class EventForm extends Component{
   handleOpenModal() {
     this.setState({showModal: true});
   }
-
 
   handleCloseModal() {
     this.setState({showModal: false});

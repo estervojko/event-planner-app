@@ -32,7 +32,7 @@ userRouter.get('/:id', async(req, res) => {
         ['password']
       },
       include: {
-        model: Event,
+        model: Event
       }
     });
     res.json({

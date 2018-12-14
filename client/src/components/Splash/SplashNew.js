@@ -71,13 +71,13 @@ export default class SplashNew extends Component {
   renderSlide() {
     switch(this.state.currentSlide) {
       case 0:
-        return (<img src={this.state.images[0]} alt='image0'/>)
+        return (<img className='splash-image' src={this.state.images[0]} alt='image0'/>)
       case 1:
-        return (<img src={this.state.images[1]} alt='image1'/>)
+        return (<img className='splash-image' src={this.state.images[1]} alt='image1'/>)
       case 2:
-        return (<img src={this.state.images[2]} alt='image2'/>)
+        return (<img className='splash-image' src={this.state.images[2]} alt='image2'/>)
       case 3:
-        return (<img src={this.state.images[3]} alt='image3'/>)
+        return (<img className='splash-image' src={this.state.images[3]} alt='image3'/>)
       default:
         console.log('This is a render slide error!');
     }
@@ -92,7 +92,7 @@ export default class SplashNew extends Component {
               Kayaking
             </div>
             <div className="splash-img-text-info">
-              - Navigate the rapids with friends! Begins in April.
+              * Navigate the rapids with friends! Begins in April.
             </div>
           </div>
         )
@@ -103,7 +103,7 @@ export default class SplashNew extends Component {
               Technology
             </div>
             <div className="splash-img-text-info">
-              - Come meet like-minded individuals interested in all things tech!
+              * Come meet like-minded individuals interested in all things tech!
             </div>
           </div>
         )
@@ -114,7 +114,7 @@ export default class SplashNew extends Component {
               Backpacking
             </div>
             <div className="splash-img-text-info">
-              - Brave the rocky frontier! Experienced/Advanced hikers only!
+              * Brave the rocky frontier! Experienced/Advanced hikers only!
             </div>
           </div>
         )
@@ -125,7 +125,7 @@ export default class SplashNew extends Component {
               Biking
             </div>
             <div className="splash-img-text-info">
-              - Come ride with a friendly group of people who encourage new riders!
+              * Come ride with a friendly group of people who encourage new riders!
             </div>
           </div>
         )
@@ -137,12 +137,12 @@ export default class SplashNew extends Component {
   render() {
     return(
       <div className = "splashNew">
-        <div className="previous-slide-button" onClick={this.prevSlide}><FontAwesomeIcon icon="angle-left"/></div>
         <div className="splash-img-container">
+          <button className="previous-slide-button" onClick={this.prevSlide}><FontAwesomeIcon icon="angle-left"/></button>
           {this.renderSlide()}
           {this.renderSlideText()}
+          <button className="next-slide-button" onClick={this.nextSlide}><FontAwesomeIcon icon="angle-right"/></button>
         </div>
-        <div className="next-slide-button" onClick={this.nextSlide}><FontAwesomeIcon icon="angle-right"/></div>
       </div>
     )
   }
