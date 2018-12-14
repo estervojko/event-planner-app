@@ -3,6 +3,7 @@ import ReactModal from 'react-modal';
 import './index.css'
 
 export default class EventForm extends Component{
+
   constructor(props) {
     super(props);
     this.state = {
@@ -23,7 +24,7 @@ export default class EventForm extends Component{
   }
 
   render(){
-    return(
+    return (
       <div>
         <button onClick={this.handleOpenModal}>Add Event</button>
           <ReactModal isOpen={this.state.showModal}>

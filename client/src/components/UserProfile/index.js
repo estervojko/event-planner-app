@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import EventList from '../EventList';
 import './index.css'
 import moment from 'moment';
+import ProfileImage from './image.jpg';
 
 //imports the event form
 import EventForm from '../EventForm'
