@@ -4,11 +4,11 @@ const moment = require('moment');
 async function createGuestUser() {
   try {
     await User.create({
-      username: 'username',
+      username: 'guest',
       password: 12345,
-      first_name: 'first_name',
-      last_name: 'last_name',
-      address:'address',
+      first_name: 'John',
+      last_name: 'Doe',
+      address:'123 Main St',
       img:'https://food.fnr.sndimg.com/content/dam/images/food/fullset/2012/7/25/0/FNM_090112-Mix-and-Match-Classic-Cookies-Recipe-03_s4x3.jpg.rend.hgtvcom.616.462.suffix/1371607143890.jpeg'
     })
   } catch (e) {
