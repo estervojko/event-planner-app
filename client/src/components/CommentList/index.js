@@ -3,6 +3,7 @@ import CommentForm from '../CommentForm';
 import moment from 'moment';
 import jwtDecode from 'jwt-decode';
 import axios from 'axios';
+import "./index.css";
 
 export default class CommentList extends Component{
   constructor(props){
@@ -52,17 +53,19 @@ export default class CommentList extends Component{
     return(
       <div>
         <CommentForm handleComment={this.handleComment} handleSubmit={this.handleSubmit} comment={this.state.comment}/>
-        {
-          this.state.comments.map(c => {
-            return(
-              <div key={c.id}>
-                <p>{jwtDecode(localStorage.getItem('token')).username}</p>
-                <p>{c.date}</p>
-                <p>{c.content}</p>
-              </div>
-            )
-          })
-        }
+        <div className="CommentList">
+          {
+            this.state.comments.map(c => {
+              return(
+                <div key={c.id} >
+                  <p>{jwtDecode(localStorage.getItem('token')).username}</p>
+                  <p>{c.date}</p>
+                  <p>{c.content}</p>
+                </div>
+              )
+            })
+          }
+        </div>
       </div>
     )
   }
