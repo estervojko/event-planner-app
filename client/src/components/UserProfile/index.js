@@ -71,7 +71,6 @@ constructor(props){
       e.preventDefault();
       const postedEvent = await eventReq.postEvent(this.state.eventFormData, this.props.token);
       const postedAttendee = await attendeeReq.postAttendee(postedEvent.id, this.props.user.id, {isOrganizer: true}, this.props.token)
-
     }
 
   render(){
@@ -79,7 +78,6 @@ constructor(props){
         <div className="userProfile">
         <div className="userBody"> {/*render the main body*/}
         <div className="userImage"> {/*render the user image*/}
-          <img src = {ProfileImage} alt="profileImg" name="img" />
         </div>
           <h1>
            {this.state.user.username}
