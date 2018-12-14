@@ -5,25 +5,25 @@ export default class CommentForm extends Component{
     super(props);
   }
 
-  handleChange(){
-
-  }
-
-  handleSubmit(){
-
-  }
-
   render(){
     return(
-      <form onSubmit={props.handleSubmit}>
+      <form onSubmit={this.props.handleSubmit}>
         <label>
-          Text
+          Content
           <input type="text"
-                 name={props.id}
-                 value={props.commentText}
-                 onChange={props.handleComments}/>
+                 name="content"
+                 value={this.props.comment.content}
+                 onChange={this.props.handleComment}/>
         </label>
-        <button onClick={props.handleSubmit}>Post</button>
+        <br></br>
+        <label>
+          Date
+          <input type="date"
+                 name="date"
+                 value={this.props.comment.date}
+                 onChange={this.props.handleComment}/>
+        </label>
+        <button onClick={this.props.handleSubmit}>Post</button>
       </form>
     )
   }

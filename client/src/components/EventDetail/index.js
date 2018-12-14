@@ -1,5 +1,8 @@
 import React from 'react';
 import './index.css';
+
+import CommentList from '../CommentList';
+
 const moment = require('moment');
 
 export default function EventDetail(props) {
@@ -49,7 +52,7 @@ export default function EventDetail(props) {
             </div>}
           </div>
         </div>
-
+        <CommentList event={event}/>
       </div>
     </div>
   )
