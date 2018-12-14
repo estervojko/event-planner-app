@@ -179,7 +179,7 @@ async function assocEventAndComments(){
 
 async function run(){
   try {
-    await createUsers();
+    await createGuestUser();
     await createEvents();
     await createComments();
     await assocEventAndComments();
