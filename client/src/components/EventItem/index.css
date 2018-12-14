@@ -17,12 +17,9 @@
   transform: translateY(-2px);
 }
 
-.event-item-image-container {
-}
+.event-item-image-container {}
 
-.event-item-text-container {
-
-}
+.event-item-text-container {}
 
 .event-item-image {
   width: 330px;
@@ -36,7 +33,7 @@
   padding-left: 15px;
   padding-right: 2px;
   margin: 0px;
-  color:#840032;
+  color: #840032;
 }
 
 .event-item-start-date {

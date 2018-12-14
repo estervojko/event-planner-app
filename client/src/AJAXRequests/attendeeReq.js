@@ -7,7 +7,7 @@ const USERS = '/users/';
 
 const attendeeReq = {
 
-  getAttendees: async function (event_id){
+  getAttendees: async function(event_id) {
     try {
       const resp = await axios.get(BASE_URL + EVENTS + event_id + USERS);
       const attendees = resp.data;
@@ -17,7 +17,7 @@ const attendeeReq = {
     }
   },
 
-  getAttendee: async function (event_id, user_id){
+  getAttendee: async function(event_id, user_id) {
     try {
       const resp = await axios.get(BASE_URL + EVENTS + event_id + USERS + user_id);
       const attendee = resp.data;
@@ -27,7 +27,7 @@ const attendeeReq = {
     }
   },
 
-  postAttendee: async function (event_id, user_id, data, TOKEN){
+  postAttendee: async function(event_id, user_id, data, TOKEN) {
     try {
       const resp = await axios({
         method: 'post',
@@ -44,7 +44,7 @@ const attendeeReq = {
     }
   },
 
-  deleteAttendee: async function (event_id, user_id, TOKEN) {
+  deleteAttendee: async function(event_id, user_id, TOKEN) {
     try {
       const resp = await axios({
         method: 'delete',
@@ -60,7 +60,7 @@ const attendeeReq = {
     }
   },
 
-  putAttendee: async function (event_id, user_id, data, TOKEN) {
+  putAttendee: async function(event_id, user_id, data, TOKEN) {
     try {
       const resp = await axios({
         method: 'put',
