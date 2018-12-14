@@ -45,6 +45,8 @@
   position: relative;
   margin-left: 10px;
   margin-right: 10px;
+  border-radius: 10px;
+  box-shadow: 5px 7px 9px rgba(0,0,0,0.5);
 }
 
 .splash-img-text {
@@ -52,10 +54,13 @@
   bottom: 0;
   left: 0;
   padding-left: 50px;
+  font-family: 'Fira Sans', sans-serif;
   text-align: left;
   color: white;
   background: rgb(70, 130, 180, 0.6);
   width: 96%;
+  border-radius: 10px;
+  text-shadow: 2px 3px black;
 }
 
 .splash-img-text-title {
@@ -73,4 +78,5 @@
 img {
   width: 1200px;
   height: 600px;
+  border-radius: 10px;
 }
