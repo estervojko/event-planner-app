@@ -88,12 +88,19 @@ constructor(props){
           <h2>First Name: {this.state.user.first_name}</h2>
            <h2>Last Name: {this.state.user.last_name}</h2>{/*render the location*/}
            <h2>Address: {this.state.user.address}</h2>
-           {/*<p>Active: {this.state.events.active}</p> <div className="activePoint"></div>*/}{/*render the active dot*/}
+           {/*<p>Active: {this.state.events.active}</p> <div className="activePoint"></div>*/}
+            <div className="userList">
+            {this.state.user ? <EventList
+             view={this.props.view}
+             user={this.props.user}
+             /> : ''}
+             {/*render the active dot*/}
+             </div>
           </div>
-          {this.state.user ? <EventList
+          {/*this.state.user ? <EventList
             view={this.props.view}
             user={this.props.user}
-            /> : ''}
+            /> : ''*/}
          <EventForm  event={this.state.eventFormData}
             handleChange={this.handleChange}
             handleSubmit={this.handleSubmit}/>
