@@ -30,17 +30,25 @@
 
 .modal-close-button {
   background: grey;
-  font-size: 4em;
-  height: 80px;
-  width: 80px;
-  margin-left: 10px;
+  /* font-size: 4em; */
+  /* height: 80px; */
+  /* width: 80px; */
+  /* margin-left: 10px; */
   text-align: center;
-  color: grey;
+  color: white;
+  width: 100%;
+  height: 35px;
+  margin-top: 10px;
 }
 
 .modal-close-button:hover {
   background: red;
   color: black;
+  cursor: pointer;
+}
+
+.modal-close-button:focus {
+  outline: none;
 }
 
 /* This code is commented out in order to test the react dropdown */
