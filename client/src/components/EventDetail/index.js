@@ -1,5 +1,8 @@
 import React from 'react';
 import './index.css';
+
+import CommentList from '../CommentList';
+
 const moment = require('moment');
 
 export default function EventDetail(props) {
@@ -25,6 +28,7 @@ export default function EventDetail(props) {
             <p>{moment(event.end_date).format("LT")}</p>
           </div>
         </div>
+        <CommentList event={event}/>
         <div className="event-item-button-container">
           {
             props.loggedIn() && <div className="event-item-button" onClick={(e) => {

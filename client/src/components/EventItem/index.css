@@ -3,12 +3,14 @@
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  border-radius: 5px;
+  border: 1px solid black;
+  font-family: 'Poppins', sans-serif;
   width: 330px;
   height: 330px;
   font-family: 'Poppins', sans-serif;
   overflow: scroll;
   background: white;
+  
   box-shadow: 0px 7px 7px gray;
   cursor: pointer;
 }
@@ -35,6 +37,8 @@
   margin: 0px;
   color: #840032;
 }
+
+.event-title
 
 .event-item-start-date {
   text-align: left;

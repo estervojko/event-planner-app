@@ -1,4 +1,5 @@
-const {Event, User, Attendee} = require('./models.js');
+
+const { Event, User, Attendee, Comment} = require('./models.js');
 const moment = require('moment');
 
 async function createUsers() {
@@ -164,8 +165,37 @@ async function createEvents() {
   }
 }
 
-async function assocUsersAndEvents() {
+async function createComments(){
+  try {
+    const comments = await Comment.bulkCreate([
+      {
+        content: 'commente',
+        date: moment().format(),
+      },
+      {
+        content: 'commeme',
+        date: moment().format(),
+      },
+      {
+        content: 'commente',
+        date: moment().format(),
+      },
+      {
+        content: 'comment',
+        date: moment().format(),
+      },
+      {
+        content: 'comment',
+        date: moment().format(),
+      },
 
+    ])
+  } catch (e) {
+    console.log('Could not create Users ', e)
+  }
+}
+
+async function assocUsersAndEvents(){
   const usersPromise = User.findAll();
 
   const eventsPromise = Event.findAll();
@@ -174,9 +204,21 @@ async function assocUsersAndEvents() {
   await Promise.all(users.map(user => user.setEvents(events)));
 }
 
-async function run() {
+async function assocEventAndComments(){
+  const event = await Event.findOne({where: {title: "Blockchain Tech Summit"}})
+  const comments = await Comment.findAll();
+  await event.setComments(comments);
+  commentData = comments.map(comment => comment.dataValues);
+  console.log(event.dataValues, commentData);
+}
+
+async function run(){
   try {
+    await createUsers();
     await createEvents();
+    await createComments();
+    await assocEventAndComments();
+    //await assocUsersAndEvents();
   } catch (e) {
     console.log("Could not seed data ", e);
   } finally {

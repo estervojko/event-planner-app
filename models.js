@@ -33,6 +33,12 @@ const Event = sequelize.define('event', {
   img: Sequelize.TEXT
 });
 
+const Comment = sequelize.define('comment',
+    {
+      content: Sequelize.TEXT,
+      date: Sequelize.DATE,
+    });
+
 const Attendee = sequelize.define('attendee', {
   isOrganizer: Sequelize.BOOLEAN,
   rsvp: Sequelize.BOOLEAN
@@ -41,7 +47,14 @@ const Attendee = sequelize.define('attendee', {
 User.belongsToMany(Event, {through: Attendee})
 Event.belongsToMany(User, {through: Attendee})
 
+User.hasMany(Comment);
+Comment.belongsTo(User);
+
+Event.hasMany(Comment);
+Comment.belongsTo(Event);
+
 module.exports = {
+  Comment,
   Event,
   User,
   Attendee,
