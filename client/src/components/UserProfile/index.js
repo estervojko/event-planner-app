@@ -3,11 +3,9 @@ import EventList from '../EventList';
 import './index.css'
 import moment from 'moment';
 import EventForm from '../EventForm'
-
 const {userReq} = require('../../AJAXRequests/userReq');
 const {eventReq} = require('../../AJAXRequests/eventReq');
 const {attendeeReq} = require('../../AJAXRequests/attendeeReq');
-
 export default class UserProfile extends Component {
   constructor(props) {
     super(props);
@@ -25,11 +23,9 @@ export default class UserProfile extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
   async componentWillMount() {
     await this.getUser()
   }
-
   getUser = async () => {
     const user_id = this.props.user.id
     try {
@@ -39,7 +35,6 @@ export default class UserProfile extends Component {
       console.log(e)
     }
   }
-
   handleChange(e) {
     const {name, value} = e.target
     this.setState((prevState) => ({
@@ -49,7 +44,6 @@ export default class UserProfile extends Component {
       }
     }))
   }
-
   async handleSubmit(e) {
     e.preventDefault();
     const postedEvent = await eventReq.postEvent(this.state.eventFormData, this.props.token);
@@ -57,7 +51,6 @@ export default class UserProfile extends Component {
       isOrganizer: true
     }, this.props.token)
   }
-
   render() {
     return (<div className="userProfile">
       <div className="userBody">
