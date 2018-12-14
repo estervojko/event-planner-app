@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
+import ReactModal from 'react-modal';
 import RegisterForm from '../Register/RegisterForm';
 import LoginForm from '../Login/LoginForm';
 import UserProfile from '../UserProfile';
-import './index.css';
-
-import ReactModal from 'react-modal';
-import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
 import { faCheckDouble } from '@fortawesome/free-solid-svg-icons';
+import './index.css';
 
 library.add(faCheckDouble);
 
@@ -94,7 +93,6 @@ export default class Nav extends Component {
     else if(this.props.token !== null){
       return(
         <React.Fragment>
-          {console.log(this.props.user.username)}
           <div className='nav-buttons' id="userPortal" onClick={() => {
               this.props.changeView('userPage')
             }}>

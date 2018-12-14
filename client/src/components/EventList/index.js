@@ -5,7 +5,6 @@ import './index.css';
 
 const { eventReq } = require('../../AJAXRequests/eventReq');
 const { attendeeReq } = require('../../AJAXRequests/attendeeReq');
-const { userReq } = require('../../AJAXRequests/userReq');
 
 class EventList extends Component {
   constructor(props) {
@@ -13,7 +12,6 @@ class EventList extends Component {
     this.state = {
       events: [],
       selectedEvent: null,
-      user: {}
     }
   }
 
@@ -26,7 +24,10 @@ class EventList extends Component {
   }
 
   async componentDidMount(){
-    console.log(this.props.view)
+    await this.updateEvents();
+  }
+
+  async updateEvents(){
     switch (this.props.view) {
       case 'userPage':
         await this.getUserEvents();
@@ -38,14 +39,18 @@ class EventList extends Component {
         this.getEvents();
         break;
       default:
-        this.getEvents();
     }
   }
 
   getUserEvents = async() => {
-    const user = await userReq.getUser(this.props.user.id);
+    const events = await eventReq.getEvents();
+    const userEvents = await events.filter(event => {
+      return (
+        event.users.find(user => user.id === this.props.user.id)
+      )
+    })
     this.setState({
-      events: user.events
+      events: userEvents
     });
   }
 
@@ -64,20 +69,22 @@ class EventList extends Component {
           close={this.handleClose}
           handleAttendance={this.handleAttendance}
           loggedIn={this.isLoggedIn}
+          user={this.props.user}
+          handleDelete={this.handleDelete}
         />
       )
     } else {
       return (
         <div className="event-list-wrapper">
           {this.state.events && this.state.events.map(event => (
-                <EventItem
-                  key={event.id}
-                  event={event}
-                  onSelect={(e) => {
-                    e.stopPropagation();
-                    this.handleEventSelect(event);
-                  }}
-                />
+              <EventItem
+                key={event.id}
+                event={event}
+                onSelect={(e) => {
+                  e.stopPropagation();
+                  this.handleEventSelect(event);
+                }}
+              />
             ))
           }
         </div>
@@ -127,21 +134,38 @@ class EventList extends Component {
         }
       }))
     }
+    window.scroll({
+    top: 100,
+    left: 0,
+    });
   }
 
   handleClose = () => {
-    this.setState((prevState) => ({
-      selectedEvent: null
-    }))
+    this.setState({
+      selectedEvent: null,
+    })
+  }
+
+  handleDelete = async() => {
+    const TOKEN = this.props.token;
+    const event = this.state.selectedEvent.details;
+    try {
+      await eventReq.deleteEvent(event.id, TOKEN);
+    } catch (e) {
+      console.log(e)
+    } finally{
+      this.updateEvents();
+      this.handleClose();
+    }
   }
 
   handleAttendance = async () => {
     if (this.state.selectedEvent.isAttending) {
       await this.removeAttendee();
-      await this.getEvents();
+      await this.updateEvents();
     } else {
-      await this.setAttendee()
-      await this.getEvents();
+      await this.setAttendee();
+      await this.updateEvents();
     }
   }
 

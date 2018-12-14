@@ -65,3 +65,12 @@ sequelize |
 ### Routes for users
 
 ![Routes for users](https://github.com/estervojko/event-planner-app/blob/ester-production/planning/Routes2.jpg?raw=true)
+
+## Getting Started
+
+clone this repo and cd into it.
+run ```npm install``` in the root directory as well as the client directory.
+Create a new postgres database called ```events_db```
+cd back into the root directory and run ```npm run resetDb``` and ```npm run seed```
+You can open a new terminal window and run ```npm run dev``` to start the server
+Now cd into the client directory and run ```npm start```

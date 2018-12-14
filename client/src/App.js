@@ -1,15 +1,11 @@
 import React, {Component} from 'react';
 import jwtDecode from 'jwt-decode'
-
 import Nav from './components/Nav';
 import Welcome from './components/Welcome';
 import HomePage from './components/HomePage';
 import Footer from './components/Footer';
 import UserProfile from './components/UserProfile';
 import './App.css';
-
-const { eventReq } = require('./AJAXRequests/eventReq');
-const { userReq } = require('./AJAXRequests/userReq');
 
 class App extends Component {
   constructor(props) {
