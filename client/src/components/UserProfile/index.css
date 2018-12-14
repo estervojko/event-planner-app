@@ -27,7 +27,9 @@
   color: #E5DADA;
 }
 
-.userimage{
+.userImage > img{
+  height: 100px;
+  width:100px;
   border-radius: 50px;
 
 }
