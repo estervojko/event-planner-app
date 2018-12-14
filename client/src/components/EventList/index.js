@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import EventItem from '../EventItem/index.js';
 import EventDetail from '../EventDetail/index.js';
 import './index.css';
 
-const { eventReq } = require('../../AJAXRequests/eventReq');
-const { attendeeReq } = require('../../AJAXRequests/attendeeReq');
-const { userReq } = require('../../AJAXRequests/userReq');
+const {eventReq} = require('../../AJAXRequests/eventReq');
+const {attendeeReq} = require('../../AJAXRequests/attendeeReq');
+const {userReq} = require('../../AJAXRequests/userReq');
 
 class EventList extends Component {
   constructor(props) {
@@ -25,7 +25,7 @@ class EventList extends Component {
     }
   }
 
-  async componentDidMount(){
+  async componentDidMount() {
     console.log(this.props.view)
     switch (this.props.view) {
       case 'userPage':
@@ -42,58 +42,36 @@ class EventList extends Component {
     }
   }
 
-  getUserEvents = async() => {
+  getUserEvents = async () => {
     const user = await userReq.getUser(this.props.user.id);
-    this.setState({
-      events: user.events
-    });
+    this.setState({events: user.events});
   }
 
-  getEvents = async() => {
+  getEvents = async () => {
     const events = await eventReq.getEvents();
-    this.setState({
-      events
-    });
+    this.setState({events});
   }
 
-  getView(){
+  getView() {
     if (this.state.selectedEvent) {
-      return (
-        <EventDetail
-          event={this.state.selectedEvent}
-          close={this.handleClose}
-          handleAttendance={this.handleAttendance}
-          loggedIn={this.isLoggedIn}
-        />
-      )
+      return (<EventDetail event={this.state.selectedEvent} close={this.handleClose} handleAttendance={this.handleAttendance} loggedIn={this.isLoggedIn}/>)
     } else {
-      return (
-        <div className="event-list-wrapper">
-          {this.state.events && this.state.events.map(event => (
-                <EventItem
-                  key={event.id}
-                  event={event}
-                  onSelect={(e) => {
-                    e.stopPropagation();
-                    this.handleEventSelect(event);
-                  }}
-                />
-            ))
-          }
-        </div>
-      )
+      return (<div className="event-list-wrapper">
+        {
+          this.state.events && this.state.events.map(event => (<EventItem key={event.id} event={event} onSelect={(e) => {
+              e.stopPropagation();
+              this.handleEventSelect(event);
+            }}/>))
+        }
+      </div>)
     }
   }
 
   handleEventSelect = (event) => {
     if (this.isLoggedIn()) {
-      //if an event has attendees
       if (event.users.length > 0) {
-        //find index of logged user in event
-        const i = event.users.find( user => user.id === this.props.user.id);
-        //if index is a positive number
+        const i = event.users.find(user => user.id === this.props.user.id);
         if (i.id > 0) {
-          //set isAttending to true
           this.setState((prevState) => ({
             selectedEvent: {
               ...prevState.selectedEvent,
@@ -130,9 +108,7 @@ class EventList extends Component {
   }
 
   handleClose = () => {
-    this.setState((prevState) => ({
-      selectedEvent: null
-    }))
+    this.setState((prevState) => ({selectedEvent: null}))
   }
 
   handleAttendance = async () => {
@@ -145,7 +121,7 @@ class EventList extends Component {
     }
   }
 
-  getAttendees = async() => {
+  getAttendees = async () => {
     const event_id = this.state.selectedEvent.details.id;
     try {
       const attendees = await attendeeReq.getAttendees(event_id);
@@ -155,7 +131,7 @@ class EventList extends Component {
     }
   }
 
-  setAttendee = async() => {
+  setAttendee = async () => {
     const TOKEN = this.props.token;
     const user_id = this.props.user.id
     const event_id = this.state.selectedEvent.details.id;
@@ -174,7 +150,7 @@ class EventList extends Component {
     }
   }
 
-  removeAttendee = async() => {
+  removeAttendee = async () => {
     const TOKEN = this.props.token;
     const user_id = this.props.user.id
     const event_id = this.state.selectedEvent.details.id;
@@ -193,11 +169,9 @@ class EventList extends Component {
   }
 
   render() {
-    return (
-      <div className='event-list'>
-        {this.getView()}
-      </div>
-    )
+    return (<div className='event-list'>
+      {this.getView()}
+    </div>)
   }
 }
 

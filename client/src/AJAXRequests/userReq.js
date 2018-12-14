@@ -7,7 +7,7 @@ const REGISTER = 'register';
 
 const userReq = {
 
-  getUsers: async function (){
+  getUsers: async function() {
     try {
       const resp = await axios.get(BASE_URL + USERS);
       const users = resp.data.users;
@@ -17,7 +17,7 @@ const userReq = {
     }
   },
 
-  getUser: async function (id){
+  getUser: async function(id) {
     try {
       const resp = await axios.get(BASE_URL + USERS + id);
       const user = resp.data.user;
@@ -27,7 +27,7 @@ const userReq = {
     }
   },
 
-  postUser: async function (data){
+  postUser: async function(data) {
     try {
       const resp = await axios.post(BASE_URL + REGISTER, data);
       const user = resp.data;
@@ -37,7 +37,7 @@ const userReq = {
     }
   },
 
-  deleteUser: async function (id) {
+  deleteUser: async function(id) {
     try {
       const resp = await axios.delete(BASE_URL + USERS + id);
       const user = resp.data.user;
@@ -47,7 +47,7 @@ const userReq = {
     }
   },
 
-  putUser: async function (id, data) {
+  putUser: async function(id, data) {
     try {
       const resp = await axios.put(BASE_URL + USERS + id, data);
       const user = resp.data.updatedUser;
