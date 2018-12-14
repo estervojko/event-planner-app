@@ -1,11 +1,11 @@
 .userProfile{
   width:1000px;
-  height:100%;
-  margin: 0 auto;
+  height:50%;
+  margin: 5px auto;
 }
 
 .userBody{
-  height:1000px;
+  height:900px;
   border-radius: 10px 0px 0px 10px;
   background-color: #002642;
   box-shadow: 10px, rgba(0,0,0,0, 0.1);

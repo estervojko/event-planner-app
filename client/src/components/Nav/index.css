@@ -19,6 +19,8 @@
   font-style: italic;
   font-family: 'Righteous', cursive;
   user-select: none;
+  cursor: pointer;
+  font-family: 'Righteous', cursive;
 }
 
 #nav-title:hover {
