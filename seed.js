@@ -2,44 +2,18 @@
 const { Event, User, Attendee, Comment} = require('./models.js');
 const moment = require('moment');
 
-async function createUsers() {
+async function createGuestUser() {
   try {
-    await User.bulkCreate([
-      {
-        username: 'username',
-        password: 12345,
-        first_name: 'first_name',
-        last_name: 'last_name',
-        address: 'address',
-        img: 'https://food.fnr.sndimg.com/content/dam/images/food/fullset/2012/7/25/0/FNM_090112-Mix-and-Match-Classic-Cookies-Recipe-03_s4x3.jpg.rend.hgtvcom.616.462.suffix/1371607143890.jpeg'
-      }, {
-        username: 'username',
-        password: 12345,
-        first_name: 'first_name',
-        last_name: 'last_name',
-        address: 'address'
-      }, {
-        username: 'username',
-        password: 12345,
-        first_name: 'first_name',
-        last_name: 'last_name',
-        address: 'address'
-      }, {
-        username: 'username',
-        password: 12345,
-        first_name: 'first_name',
-        last_name: 'last_name',
-        address: 'address'
-      }, {
-        username: 'username',
-        password: 12345,
-        first_name: 'first_name',
-        last_name: 'last_name',
-        address: 'address'
-      }
-    ])
+    await User.create({
+      username: 'guest',
+      password: 12345,
+      first_name: 'John',
+      last_name: 'Doe',
+      address:'123 Main St',
+      img:'https://food.fnr.sndimg.com/content/dam/images/food/fullset/2012/7/25/0/FNM_090112-Mix-and-Match-Classic-Cookies-Recipe-03_s4x3.jpg.rend.hgtvcom.616.462.suffix/1371607143890.jpeg'
+    })
   } catch (e) {
-    console.log('Could not create Users ', e)
+    console.log(e)
   }
 }
 
@@ -169,15 +143,15 @@ async function createComments(){
   try {
     const comments = await Comment.bulkCreate([
       {
-        content: 'commente',
+        content: 'comment',
         date: moment().format(),
       },
       {
-        content: 'commeme',
+        content: 'comment',
         date: moment().format(),
       },
       {
-        content: 'commente',
+        content: 'comment',
         date: moment().format(),
       },
       {
@@ -195,15 +169,6 @@ async function createComments(){
   }
 }
 
-async function assocUsersAndEvents(){
-  const usersPromise = User.findAll();
-
-  const eventsPromise = Event.findAll();
-
-  const [users, events] = await Promise.all([usersPromise, eventsPromise]);
-  await Promise.all(users.map(user => user.setEvents(events)));
-}
-
 async function assocEventAndComments(){
   const event = await Event.findOne({where: {title: "Blockchain Tech Summit"}})
   const comments = await Comment.findAll();
@@ -218,7 +183,6 @@ async function run(){
     await createEvents();
     await createComments();
     await assocEventAndComments();
-    //await assocUsersAndEvents();
   } catch (e) {
     console.log("Could not seed data ", e);
   } finally {
