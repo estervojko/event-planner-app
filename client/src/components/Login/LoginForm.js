@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import './index.css';
 
-const BASE_URL = `https://calm-springs-46291.herokuapp.com/`
+const BASE_URL = `https://calm-springs-46291.herokuapp.com`
 
 export default class LoginForm extends Component {
   constructor(props) {
