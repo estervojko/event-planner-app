@@ -1,51 +1,50 @@
 .userProfile {
-  width: 1000px;
-  height: 100%;
-  margin: 0 auto;
+  margin-left: 3%;
+  margin-right: 3%;
+  margin-top: 1%;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
 }
-
 .userBody {
-  height: 1000px;
-  border-radius: 10px 0px 0px 10px;
-  background-color: #002642;
-  box-shadow: 10px, rgba(0, 0, 0, 0, 0.1);
-  display: grid;
-  grid-template-areas:
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
 }
-
-.userBody h1 {
-  font-style: italic;
-  font-weight: bolder;
-  color: #E98A15;
-}
-
-.userBody h2 {
-  font-style: italic;
-  color: #840032;
-}
-
-.userBody p {
-  font-style: italic;
-  color: #E5DADA;
-}
-
-.userImage>img {
-  height: 300px;
-  width: 300px;
-  margin: 0;
-  border-radius: 50px;
+.user-info {
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  background: red;
+  align-items: center;
+  justify-content: center;
+  display: absolute;
 }
 
 .userList {
-  width: 100%;
-  height: 400px;
-  margin-left: 5px;
-  margin-right: -15px;
-  border: solid red 1px;
+  background: blue;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  width: auto;
 }
 
-.userimage{
-  border-radius: 50px;
-  width: 10px;
-  height: 10px;
+.user-details {
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  text-align: left;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.user-image {
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
 }

@@ -6,6 +6,7 @@ import EventForm from '../EventForm'
 const {userReq} = require('../../AJAXRequests/userReq');
 const {eventReq} = require('../../AJAXRequests/eventReq');
 const {attendeeReq} = require('../../AJAXRequests/attendeeReq');
+
 export default class UserProfile extends Component {
   constructor(props) {
     super(props);
@@ -23,9 +24,11 @@ export default class UserProfile extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
   async componentWillMount() {
     await this.getUser()
   }
+
   getUser = async () => {
     const user_id = this.props.user.id
     try {
@@ -35,6 +38,7 @@ export default class UserProfile extends Component {
       console.log(e)
     }
   }
+
   handleChange(e) {
     const {name, value} = e.target
     this.setState((prevState) => ({
@@ -44,6 +48,7 @@ export default class UserProfile extends Component {
       }
     }))
   }
+
   async handleSubmit(e) {
     e.preventDefault();
     const postedEvent = await eventReq.postEvent(this.state.eventFormData, this.props.token);
@@ -51,17 +56,17 @@ export default class UserProfile extends Component {
       isOrganizer: true
     }, this.props.token)
   }
+
   render() {
     return (<div className="userProfile">
-      <div className="userBody">
-        <div className="userImage">
+        <div className='user-info'>
+          <div className="user-image"></div>
+            <div>{this.state.user.username}</div>
+          <div className='user-details'>
+            <div>Name: {this.state.user.first_name} {this.state.user.last_name}</div>
+            <div>Address: {this.state.user.address}</div>
+          </div>
         </div>
-        <h1>
-          {this.state.user.username}
-        </h1>
-        <h2>First Name: {this.state.user.first_name}</h2>
-        <h2>Last Name: {this.state.user.last_name}</h2>
-        <h2>Address: {this.state.user.address}</h2>
         <div className="userList">
           {
             this.state.user
@@ -69,7 +74,6 @@ export default class UserProfile extends Component {
               : ''
           }
         </div>
-      </div>
       <EventForm event={this.state.eventFormData} handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
       <button>Delete Event</button>
     </div>)

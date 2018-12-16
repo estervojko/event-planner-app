@@ -1,0 +1,12 @@
+.footer	/Users/chris/wdi-project3/event-planner-app/client/src/components/Footer/index.css	/^.footer {$/;"	function	line:1
+.footer-text1	/Users/chris/wdi-project3/event-planner-app/client/src/components/Footer/index.css	/^.footer-text1 {$/;"	function	line:16
+.userProfile	/Users/chris/wdi-project3/event-planner-app/client/src/components/UserProfile/index.css	/^.userProfile {$/;"	function	line:1
+.userBody	/Users/chris/wdi-project3/event-planner-app/client/src/components/UserProfile/index.css	/^.userBody {$/;"	function	line:10
+.user-info	/Users/chris/wdi-project3/event-planner-app/client/src/components/UserProfile/index.css	/^.user-info {$/;"	function	line:16
+.userList	/Users/chris/wdi-project3/event-planner-app/client/src/components/UserProfile/index.css	/^.userList {$/;"	function	line:27
+.user-details	/Users/chris/wdi-project3/event-planner-app/client/src/components/UserProfile/index.css	/^.user-details {$/;"	function	line:34
+.user-image	/Users/chris/wdi-project3/event-planner-app/client/src/components/UserProfile/index.css	/^.user-image {$/;"	function	line:45
+constructor	/Users/chris/wdi-project3/event-planner-app/client/src/components/UserProfile/index.js	/^  constructor(props) {$/;"	function	line:11
+state.user	/Users/chris/wdi-project3/event-planner-app/client/src/components/UserProfile/index.js	/^    this.state = {$/;"	property	line:13
+handleChange	/Users/chris/wdi-project3/event-planner-app/client/src/components/UserProfile/index.js	/^  handleChange(e) {$/;"	function	line:42
+render	/Users/chris/wdi-project3/event-planner-app/client/src/components/UserProfile/index.js	/^  render() {$/;"	function	line:60
