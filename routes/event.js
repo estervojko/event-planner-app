@@ -1,153 +1,217 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const { Event, User, Attendee } = require('../models');
-
+const {Event, User, Attendee} = require('../models');
 const eventRouter = express.Router();
 eventRouter.use(bodyParser.json());
+const passport = require('../server.js');
+const sign = require('../server.js');
+const JwtStrategy = require('passport-jwt').Strategy;
+const ExtractJwt = require('passport-jwt').ExtractJwt;
 
-//EVENT ONLY ROUTES
-
-//GET all Events
 eventRouter.get('/', async (req, res) => {
   try {
-    const events = await Event.findAll();
-    res.json({
-      events
-    })
+    const events = await Event.findAll({
+      include: [
+        {
+          model: User,
+          attributes: {
+            exclude: ['password']
+          }
+        }
+      ]
+    });
+    res.json({events})
   } catch (e) {
     console.log('Server could not process request to GET events', e)
     res.sendStatus(404);
   }
 })
 
-//GET one Event
-eventRouter.get('/:id', async(req, res) => {
+eventRouter.get('/:id', async (req, res) => {
   try {
-    const event = await Event.findByPk(req.params.id);
-    res.json({
-      event
-    })
+    const event = await Event.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          attributes: {
+            exclude: ['password']
+          }
+        }
+      ]
+    });
+    res.json({event})
   } catch (e) {
     console.log('Server could not process request to GET event', e)
     res.sendStatus(404);
   }
 })
 
-//POST Event
-eventRouter.post('/', async(req, res) => {
+eventRouter.post('/', passport.authenticate('jwt', {session: false}), async (req, res) => {
   try {
     const event = await Event.create(req.body);
-    res.json({
-      event
-    })
+    res.json({event})
   } catch (e) {
     console.log('Server could not process request to POST event', e)
     res.sendStatus(404);
   }
 })
 
-//DELETE Event
-eventRouter.delete('/:id', async(req, res) => {
+eventRouter.delete('/:id', passport.authenticate('jwt', {session: false}), async (req, res) => {
   try {
     const event = await Event.findByPk(req.params.id);
     await event.destroy();
-    res.json({
-      event
-    })
+    res.json({event})
   } catch (e) {
     console.log('Server could not process request to DELETE event', e)
     res.sendStatus(404);
   }
 })
 
-eventRouter.put('/:id', async(req, res) => {
+eventRouter.put('/:id', passport.authenticate('jwt', {session: false}), async (req, res) => {
   try {
     const event = await Event.findByPk(req.params.id);
     await event.update(req.body);
     const updatedEvent = await Event.findByPk(req.params.id);
-    res.json({
-      updatedEvent
-    })
+    res.json({updatedEvent})
   } catch (e) {
-    console.log('Server could not process request to UPDATE event', e)
-    res.sendStatus(404);
+    res.status(404).json({e: 'Server could not process request to UPDATE event - Event may not exist'});
   }
 })
 
-//EVENT_USER(Attendee) ROUTES
-
-//GET all users associated with event
-eventRouter.get('/:id/users', async(req, res) => {
+eventRouter.get('/:id/users', async (req, res) => {
   try {
     const event = await Event.findByPk(req.params.id);
-    const users = await event.getUsers();
-    res.json({
-      users
-    })
+    const users = await event.getUsers({
+      attributes: {
+        exclude: ['password']
+      }
+    });
+    res.json({users})
   } catch (e) {
-    console.log('Server could not process request to GET attendees', e);
-    res.sendStatus(404);
+    res.status(404).json({e: 'Server could not process request to GET attendees - Event may not exist'});
   }
 })
 
-//GET one user associated with event
-eventRouter.get('/:id/users/:userId', async(req, res) => {
+eventRouter.get('/:id/users/:userId', async (req, res) => {
+  const event_id = req.params.id;
+  const user_id = req.params.userId;
   try {
-    const event = await Event.findByPk(req.params.id);
-    const user = await event.getUser(req.params.userId);
-    res.json({
-      user
-    })
+    const event = await Event.findByPk(event_id);
+    const users = await event.getUsers({
+      where: {
+        id: user_id
+      },
+      attributes: {
+        exclude: ['password']
+      }
+    });
+    res.json({users})
   } catch (e) {
-    console.log('Server could not process request to GET attendee', e);
-    res.sendStatus(404);
+    res.status(500).json({e: e.message, a: 'Server could not process request to GET attendee - Event or User may not exist'});
   }
 })
 
-//POST associate user with event
-eventRouter.post('/:id/users/:userId', async(req, res) => {
+eventRouter.post('/:id/users/:userId', passport.authenticate('jwt', {session: false}), async (req, res) => {
+  const event_id = req.params.id;
+  const user_id = req.params.userId;
+
   try {
-    const event = await Event.findByPk(req.params.id);
-    const user = await event.addUser(req.params.userId);
-    res.json({
-      user
-    })
+
+    const alreadyAttending = async () => {
+      try {
+        const event = await Event.findByPk(event_id);
+        const attendeePresent = await event.hasUser(user_id);
+        return attendeePresent;
+      } catch (e) {
+        res.status(500).json({e: e.message})
+      }
+    };
+
+    const isAlreadyAttending = await alreadyAttending();
+
+    if (!isAlreadyAttending) {
+      const attendee = await Attendee.create({
+        event_id: event_id,
+        user_id: user_id,
+        ...req.body
+      })
+      const updatedEvent = await Event.findByPk(req.params.id, {
+        include: {
+          model: User,
+          attributes: {
+            exclude: ['password']
+          }
+        }
+      });
+      res.json({updatedEvent})
+    } else {
+      res.json({msg: "User already associated with event - use PUT instead"})
+    }
   } catch (e) {
     console.log('Server could not process request to POST attendee', e);
     res.sendStatus(404);
   }
 })
 
-//DELETE remove attendee from event
-eventRouter.delete('/:id/users/:userId', async(req, res) => {
+eventRouter.delete('/:id/users/:userId', passport.authenticate('jwt', {session: false}), async (req, res) => {
+  const event_id = req.params.id;
+  const user_id = req.params.userId;
+
   try {
-    const event = await Event.findByPk(req.params.id);
-    const user = await event.removeUser(req.params.userId);
-    res.json({
-      user
-    })
+
+    const alreadyRemoved = async () => {
+      try {
+        const event = await Event.findByPk(event_id);
+        const attendeePresent = await event.hasUser(user_id);
+        return !attendeePresent;
+      } catch (e) {
+        res.status(500).json({e: e.message})
+      }
+    };
+
+    const isAlreadyRemoved = await alreadyRemoved();
+
+    if (!isAlreadyRemoved) {
+      const event = await Event.findByPk(req.params.id);
+      const attendee = await event.removeUser(user_id);
+      const updatedEvent = await Event.findByPk(req.params.id, {
+        include: {
+          model: User,
+          attributes: {
+            exclude: ['password']
+          }
+        }
+      });
+      res.json({updatedEvent})
+    } else {
+      res.json({msg: "User already removed or not present in event"})
+    }
   } catch (e) {
     console.log('Server could not process request to DELETE attendee', e);
     res.sendStatus(404);
   }
 })
 
-//PUT update attendee
-eventRouter.put('/:id/users/:userId', async(req, res) => {
+eventRouter.put('/:id/users/:userId', passport.authenticate('jwt', {session: false}), async (req, res) => {
   try {
     const user = await Attendee.find({
-      where:{
+      where: {
         event_id: req.params.id,
         user_id: req.params.userId
       }
     })
-    user.update(req.body);
-    res.json({
-      user
-    })
+    await user.update(req.body);
+    const updatedEvent = await Event.findByPk(req.params.id, {
+      include: {
+        model: User,
+        attributes: {
+          exclude: ['password']
+        }
+      }
+    });
+    res.json({updatedUser: user, updatedEvent})
   } catch (e) {
-    console.log('Server could not process request to UPDATE attendee', e);
-    res.sendStatus(404);
+    res.status(404).json({e: 'Server could not process request to UPDATE attendee - Event or User may not exist'});
   }
 })
 

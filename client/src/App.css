@@ -2,18 +2,7 @@
   text-align: center;
 }
 
-.navBar{
-  background-color: #002642;
-  color: #E5DADA;
-  display: flex;
-  flex-flow: row;
-  justify-content: space-around;
-  justify-content: flex-end;
-
-}
-
-.navBar input{
-  width:auto;
-  height:20px;
-  margin-top: 10px;
+body {
+  overscroll-behavior-y: none;
+  background: lightblue;
 }

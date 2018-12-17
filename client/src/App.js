@@ -1,54 +1,83 @@
 import React, {Component} from 'react';
-
+import jwtDecode from 'jwt-decode'
 import Nav from './components/Nav';
 import Welcome from './components/Welcome';
 import HomePage from './components/HomePage';
 import Footer from './components/Footer';
+import UserProfile from './components/UserProfile';
 import './App.css';
-import axios from 'axios';
-import RegisterForm from './components/Login/RegisterForm'
-
-
-const BASE_URL = 'http://localhost:3001';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      events: '',
       input: '',
-      logged: false
+      token: (localStorage.getItem('token') !== null)
+        ? localStorage.getItem('token')
+        : null,
+      user: (localStorage.getItem('token') !== null)
+        ? jwtDecode(localStorage.getItem('token'))
+        : {},
+      view: (localStorage.getItem('token') !== null)
+        ? "loggedIn"
+        : "welcome"
     }
-    this.getEvents = this.getEvents.bind(this);
-    this.handleChange = this.handleChange.bind(this);
+
+    this.setToken = this.setToken.bind(this);
+    this.setloggedUser = this.setloggedUser.bind(this);
   }
 
-  handleChange(e) {
+  async setToken(token) {
+    await this.setState((prevState) => ({
+      ...prevState,
+      token: token,
+      view: 'loggedIn'
+    }))
+  }
+
+  async setloggedUser(user) {
+    await this.setState((prevState) => ({
+      ...prevState,
+      user: user
+    }))
+  }
+
+  handleChange = (e) => {
     this.setState({input: e.target.value});
-    if (this.state.input.length > 2)
+    if (this.state.input.length > 2) {
       this.getEvents();
     }
+  }
 
-  handleEventSelect() {}
+  changeView = (view) => {
+    this.setState({view: view})
+  }
 
-  async getEvents() {
-    // const resp = await getEvents(this.state.input);
-    // this.setState({events: resp.data.results});
-    const resp = await axios.get(BASE_URL + '/events');
-    debugger;
-    this.setState({events: resp.data.events});
+  getView() {
+    switch (this.state.view) {
+      case "loggedIn":
+        return (<HomePage token={this.state.token} user={this.state.user} view={this.state.view}/>);
+      case "userPage":
+        return (<UserProfile token={this.state.token} user={this.state.user} view={this.state.view}/>);
+      case "welcome":
+        return (<Welcome view={this.state.view}/>);
+      default:
+    }
   }
 
   render() {
     return (<div className="App">
+{/* <<<<<<< HEAD
       <Nav/> {
         this.state.logged === false
           ? <Welcome/>
           : <HomePage/>
       }
       <RegisterForm/>
+======= */}
+      <Nav setToken={this.setToken} setloggedUser={this.setloggedUser} changeView={this.changeView} user={this.state.user} token={this.state.token}/> {this.getView()}
       <Footer/>
-    </div>);
+    </div>)
   }
 }
 

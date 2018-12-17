@@ -1,20 +1,22 @@
-.login-form-container {
+.register-form-container {
+  display: -webkit-flex;
+  display: -ms-flex;
   display: flex;
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
 }
 
-.login-submit-button {
+.register-submit-button {
   padding-top: 10px;
   padding-bottom: 10px;
   cursor: pointer;
 }
 
-.login-submit-button:hover {
+.register-submit-button:hover {
   background: springgreen;
 }
 
-.login-submit-button:focus {
+.register-submit-button:focus {
   outline: none;
 }

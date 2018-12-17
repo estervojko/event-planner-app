@@ -1,19 +1,42 @@
 .event-item {
-
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  border-radius: 5px;
+  width: 330px;
+  height: 330px;
+  font-family: 'Poppins', sans-serif;
+  overflow: scroll;
+  background: white;
+  box-shadow: 0px 7px 7px gray;
+  cursor: pointer;
 }
-
+.event-item:hover {
+  transform: translateY(-2px);
+}
+.event-item-image-container {}
+.event-item-text-container {}
 .event-item-image {
-
+  width: 330px;
+  height: 220px;
+  border-bottom: 1px solid grey;
 }
-
 .event-item-title {
-
+  font-size: 1.5em;
+  text-align: left;
+  padding-left: 15px;
+  padding-right: 2px;
+  margin: 0px;
+  color: #840032;
 }
-
 .event-item-start-date {
-
+  text-align: left;
+  padding-left: 10px;
+  font-size: .7em;
 }
-
 .event-item-address {
-  
+  -ms-text-align-last: auto;
+  text-align: left;
+  padding-left: 10px;
 }

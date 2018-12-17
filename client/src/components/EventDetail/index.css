@@ -1,31 +1,132 @@
 .event-detail {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto auto auto;
+  grid-template-areas:
+    'image'
+    'title'
+    'body'
+  ;
+  background-color: white;
+  min-width: 600px;
+  max-width: auto;
+  max-height: auto;
+  align-items: center;
+}
 
+.event-detail-text-container {
+  grid-area: body;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  justify-content: space-around;
+  align-content: center;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  width: 100%;
+  height: 100%;
+  text-align: left;
+  overflow: scroll;
+  user-select: none;
+}
+
+.event-detail-exit-button {
+  margin: 0;
+  padding: 0;
+  width: 80px;
+  height: 80px;
+  font-size: 2em;
+  background: rgba(0, 0, 0, 0);
+  color: grey;
+  outline: none;
+  border: none;
+  position: absolute;
+  top: 0%;
+  right: 0%;
+  z-index: 1;
+}
+
+.event-detail-exit-button:hover {
+  cursor: pointer;
+  background-color: rgba(35, 35, 35, 0.1);
+  color: white;
 }
 
 .event-detail-image {
-
+  grid-area: image;
+  height: auto;
+  max-width: 100%;
+  justify-self: center;
 }
 
 .event-detail-title {
-
+  grid-area: title;
+  font-size: 3em;
+  margin: 0;
+  max-width: 1200px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
-.event-detail-organizer {
-
+.event-detail-basic-info {
+  height: 100%;
+  padding: 0 10px;
+  width: 240px;
 }
 
-.event-detail-start-date {
-
+.event-detail-basic-info * {
+  margin: 0 0 10px 0;
+  text-align: center;
 }
 
-.event-detail-end-date {
-
+.event-detail-date-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0
 }
 
-.event-detail-address {
+.event-detail-date {
+  display: flex;
+}
 
+.event-detail-time {
+  display: flex;
+  padding: 0 5px;
+}
+
+.event-detail-time * {
+  padding: 0 3px;
 }
 
 .event-detail-description {
-  
+  max-width: 600px;
+  padding: 4px 10px;
+  font-size: 1.2em;
+}
+
+.event-detail-description * {
+  margin: 0;
+}
+
+.event-item-button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.event-item-button {
+  background: grey;
+  padding: 10px;
+  width: 240px;
+  height: 50px;
+  font-size: 2em;
+  border-radius: 3px;
+  text-align: center;
+}
+
+.event-item-button:active {
+  transform: translateY(2px);
 }

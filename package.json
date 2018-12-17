@@ -24,8 +24,6 @@
     "bcrypt": "^3.0.2",
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
-    "eslint-config-react": "^1.1.7",
-    "eslint-plugin-react": "^7.11.1",
     "express": "^4.16.4",
     "jsonwebtoken": "^8.4.0",
     "moment": "^2.22.2",
@@ -36,5 +34,6 @@
     "pg": "^7.7.1",
     "pg-hstore": "^2.3.2",
     "sequelize": "^4.41.2"
-  }
+  },
+  "devDependencies": {}
 }
