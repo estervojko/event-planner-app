@@ -15,6 +15,7 @@ export default class CommentList extends Component{
       comments: [],
       comment: {
         user_id: jwtDecode(localStorage.getItem('token')).id,
+        // username: jwtDecode(localStorage.getItem('token')).username,
         content: '',
         date: moment().format()
       }
@@ -40,8 +41,14 @@ export default class CommentList extends Component{
     const user = jwtDecode(localStorage.getItem('token'))
     const event = this.props.event;
     const commentPosted = await axios.post(`http://localhost:3000/users/${user.id}/events/${event.id}/comments`, this.state.comment)
-    console.log(commentPosted.data);
-    this.setState((prevState) => ({comments: [...prevState.comments, commentPosted.data].reverse()}));
+    const comment = commentPosted.data
+    const userId = comment.user_id
+    const commentUser = await userReq.getUser(userId);
+    console.log(commentUser)
+    const username = commentUser.username
+    Object.assign(comment, {username: username})
+
+    this.setState((prevState) => ({comments: [...prevState.comments, comment].reverse()}));
 
   }
 
@@ -60,7 +67,7 @@ export default class CommentList extends Component{
         console.log(c);
         return c
       }))
-      
+
     console.log("commentlist", comms);
     await this.setState({comments: comms});
   }
