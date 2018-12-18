@@ -93,8 +93,9 @@ class EventList extends Component {
   handleEventSelect = (event) => {
     if (this.isLoggedIn()) {
       if (event.users.length > 0) {
+        console.log(event.users)
         const i = event.users.find(user => user.id === this.props.user.id);
-        if (i.id > 0) {
+        if (i && i.id > 0) {
           this.setState((prevState) => ({
             selectedEvent: {
               ...prevState.selectedEvent,
