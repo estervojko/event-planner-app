@@ -104,7 +104,8 @@
 
 .event-detail-description {
   max-width: 600px;
-  padding: 4px 10px;
+  padding: 10px 10px;
+  padding-bottom: 40px;
   font-size: 1.2em;
 }
 
@@ -129,4 +130,15 @@
 
 .event-item-button:active {
   transform: translateY(2px);
+}
+
+.EventActions {
+  height: 300px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gird-template-rows: 20% 30% 70%
+}
+
+.CommentList {
+  margin-top: 20px;
 }

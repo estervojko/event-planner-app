@@ -5,12 +5,16 @@ import jwtDecode from 'jwt-decode';
 import axios from 'axios';
 import "./index.css";
 
+//importing userReq
+const {userReq} = require('../../AJAXRequests/userReq');
+
 export default class CommentList extends Component{
   constructor(props){
     super(props);
     this.state = {
       comments: [],
       comment: {
+        user_id: jwtDecode(localStorage.getItem('token')).id,
         content: '',
         date: moment().format()
       }
@@ -41,13 +45,25 @@ export default class CommentList extends Component{
 
   }
 
+
+  // I am trying to pull the username for each comment from the users table, by looking at the user_id in the comments table
   async componentDidMount(){
     const event = this.props.event;
-    const events = await axios.get(`http://localhost:3000/events/${event.id}/comments`);
-    console.log(events.data);
-    this.setState({comments: events.data});
+    const comments = await axios.get(`http://localhost:3000/events/${event.id}/comments`);
+    console.log(comments.data)
+    const comms = await Promise.all(comments.data.map( async c => {
+        const userId = c.user_id
+        const commentUser = await userReq.getUser(userId);
+        console.log(commentUser)
+        const username = commentUser.username
+        Object.assign(c, {username: username})
+        console.log(c);
+        return c
+      }))
+      
+    console.log("commentlist", comms);
+    await this.setState({comments: comms});
   }
-
 
   render(){
     return(
@@ -58,7 +74,7 @@ export default class CommentList extends Component{
             this.state.comments.map(c => {
               return(
                 <div key={c.id} >
-                  <p>{jwtDecode(localStorage.getItem('token')).username}</p>
+                  <p>{c.username}</p>
                   <p>{c.created_at}</p>
                   <p>{c.content}</p>
                 </div>

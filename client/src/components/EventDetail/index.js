@@ -86,34 +86,40 @@ export default class EventDetail extends Component {
         <h3 className="event-detail-title">{event.title}</h3>
 
         <div className="event-detail-text-container">
-          <div className="event-detail-description">
-            <p>{event.description}</p>
-          </div>
-          <div className="event-detail-basic-info">
-            {this.organizer() && <h5 className="event-detail-organizer">Organizer: {this.organizer()}</h5>}
-
-            <p className="event-detail-address">{event.address}</p>
-
-            <div className="event-detail-date-container">
-
-              <div className="event-detail-date">
-                {start_date}
-        </div>
-        <CommentList event={event}/>
-              </div>
-
-              {start_date !== end_date && <div className="event-detail-date">
-                - {end_date}
-              </div>}
-
-              <div className="event-detail-time">
-
-                <p>{moment(event.start_date).format("LT")}</p>
-                <p>{'-'}</p>
-                <p>{moment(event.end_date).format("LT")}</p>
-
-              </div>
+          {/* Extra div needed for grid layout */}
+          <div className="EventInfo">
+            {/*Detail description  */}
+            <div className="event-detail-description">
+              <p>{event.description}</p>
             </div>
+            {/*Basic info  */}
+            <div className="event-detail-basic-info">
+              {this.organizer() && <h5 className="event-detail-organizer">Organizer: {this.organizer()}</h5>}
+
+              <p className="event-detail-address">{event.address}</p>
+
+              <div className="event-detail-date-container">
+
+                <div className="event-detail-date">
+                  {start_date}
+                </div>
+              </div>
+
+                {start_date !== end_date && <div className="event-detail-date">
+                  - {end_date}
+                </div>}
+
+                <div className="event-detail-time">
+
+                  <p>{moment(event.start_date).format("LT")}</p>
+                  <p>{'-'}</p>
+                  <p>{moment(event.end_date).format("LT")}</p>
+
+                </div>
+            </div>
+          </div>
+          <div className="EventActions">
+            {/* Extra div needed for grid layout */}
             <div>
               <p>This event has {event.users.length} attendee(s).</p>
             </div>
@@ -142,8 +148,12 @@ export default class EventDetail extends Component {
                   {this.state.deleteStatus? "Delete?" : "Delete"}
                 </div>}
             </div>
+            <div className="CommentList">
+              <CommentList  event={event}/>
+            </div>
           </div>
         </div>
+      </div>
     )
   }
 }

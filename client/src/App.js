@@ -67,15 +67,8 @@ class App extends Component {
 
   render() {
     return (<div className="App">
-{/* <<<<<<< HEAD
-      <Nav/> {
-        this.state.logged === false
-          ? <Welcome/>
-          : <HomePage/>
-      }
-      <RegisterForm/>
-======= */}
-      <Nav setToken={this.setToken} setloggedUser={this.setloggedUser} changeView={this.changeView} user={this.state.user} token={this.state.token}/> {this.getView()}
+      <Nav setToken={this.setToken} setloggedUser={this.setloggedUser} changeView={this.changeView} user={this.state.user} token={this.state.token}/>
+      {this.getView()}
       <Footer/>
     </div>)
   }
