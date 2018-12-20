@@ -85,15 +85,16 @@ export default class CommentList extends Component{
             <CommentForm handleComment={this.handleComment} handleSubmit={this.handleSubmit} comment={this.state.comment}/>
             : null
         }
-
+        <h4>Comments</h4>
         <div className="CommentList">
-          <h4>Comments</h4>
           {
             this.state.comments.map(c => {
               return(
-                <div key={c.id} >
-                  <p>{c.username}</p>
-                  <p>{c.created_at}</p>
+                <div key={c.id} className="Comment">
+                  <div className="CommentHeader">
+                    <p className="CommentUsername">{c.username}</p>
+                    <p className="CommentDate">{c.created_at}</p>
+                  </div>
                   <p>{c.content}</p>
                 </div>
               )
