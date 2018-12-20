@@ -14,7 +14,7 @@ export default class CommentList extends Component{
     this.state = {
       comments: [],
       comment: {
-        user_id: jwtDecode(localStorage.getItem('token')).id,
+        user_id: (localStorage.getItem('token') !== null) ? jwtDecode(localStorage.getItem('token')).id : null,
         // username: jwtDecode(localStorage.getItem('token')).username,
         content: '',
         date: moment().format()
@@ -37,7 +37,6 @@ export default class CommentList extends Component{
 
   async handleSubmit(e){
     e.preventDefault()
-
     const user = jwtDecode(localStorage.getItem('token'))
     const event = this.props.event;
     const commentPosted = await axios.post(`http://localhost:3000/users/${user.id}/events/${event.id}/comments`, this.state.comment)
@@ -59,12 +58,18 @@ export default class CommentList extends Component{
     const comments = await axios.get(`http://localhost:3000/events/${event.id}/comments`);
     console.log(comments.data)
     const comms = await Promise.all(comments.data.map( async c => {
-        const userId = c.user_id
-        const commentUser = await userReq.getUser(userId);
-        console.log(commentUser)
-        const username = commentUser.username
-        Object.assign(c, {username: username})
-        console.log(c);
+        let userId = null
+        if (c.user_id) {
+          userId = c.user_id
+        }
+        if(userId){
+          const commentUser = await userReq.getUser(userId);
+          console.log(commentUser)
+          const username = commentUser.username
+          Object.assign(c, {username: username})
+          console.log(c);
+          return c
+        }
         return c
       }))
 
@@ -75,8 +80,14 @@ export default class CommentList extends Component{
   render(){
     return(
       <div>
-        <CommentForm handleComment={this.handleComment} handleSubmit={this.handleSubmit} comment={this.state.comment}/>
+        {
+          (localStorage.getItem('token') !== null) ?
+            <CommentForm handleComment={this.handleComment} handleSubmit={this.handleSubmit} comment={this.state.comment}/>
+            : null
+        }
+
         <div className="CommentList">
+          <h4>Comments</h4>
           {
             this.state.comments.map(c => {
               return(
