@@ -95,7 +95,7 @@ export default class CommentList extends Component{
                     <p className="CommentUsername">{c.username}</p>
                     <p className="CommentDate">{c.created_at}</p>
                   </div>
-                  <p>{c.content}</p>
+                  <p className="CommentContent">{c.content}</p>
                 </div>
               )
             })
