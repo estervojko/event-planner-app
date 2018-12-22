@@ -91,12 +91,24 @@ app.get('/events/:id/comments', async(req, res) => {
 //post a comment in an event
 app.post('/users/:id1/events/:id2/comments',async(req, res) => {
   try{
-    const user = await User.findOne({where: {id: parseInt(req.params.id1)}});
-    const event = await Event.findOne({where: {id: parseInt(req.params.id2)}});
-    const comment = await Comment.create(req.body);
-    await event.addComment(comment)
-    await user.addComment(comment)
-    res.json(comment);
+    console.log("userid", req.params.id1)
+    if(req.params.id1 !== 'anon') {
+      console.log("gets here")
+      const user = await User.findOne({where: {id: parseInt(req.params.id1)}});
+      const event = await Event.findOne({where: {id: parseInt(req.params.id2)}});
+      const comment = await Comment.create(req.body);
+      await event.addComment(comment)
+      await user.addComment(comment)
+      res.json(comment);
+    }
+    else {
+      console.log("gets belowww")
+      const event = await Event.findOne({where: {id: parseInt(req.params.id2)}});
+      const comment = await Comment.create(req.body);
+      await event.addComment(comment)
+      res.json(comment);
+    }
+
   }
   catch(e){
     res.status(500).json({

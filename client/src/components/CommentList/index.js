@@ -37,17 +37,32 @@ export default class CommentList extends Component{
 
   async handleSubmit(e){
     e.preventDefault()
-    const user = jwtDecode(localStorage.getItem('token'))
-    const event = this.props.event;
-    const commentPosted = await axios.post(`http://localhost:3000/users/${user.id}/events/${event.id}/comments`, this.state.comment)
-    const comment = commentPosted.data
-    const userId = comment.user_id
-    const commentUser = await userReq.getUser(userId);
-    console.log(commentUser)
-    const username = commentUser.username
-    Object.assign(comment, {username: username})
+    if(localStorage.getItem('token')){
+      const user = jwtDecode(localStorage.getItem('token'))
+      const event = this.props.event;
+      const commentPosted = await axios.post(`http://localhost:3000/users/${user.id}/events/${event.id}/comments`, this.state.comment)
+      const comment = commentPosted.data
+      const userId = comment.user_id
+      const commentUser = await userReq.getUser(userId);
+      console.log(commentUser)
+      const username = commentUser.username
+      Object.assign(comment, {username: username})
+      this.setState((prevState) => ({comments: [...prevState.comments, comment].reverse()}));
+    }
+    else{
+      const user = {}
+      user.id = 'anon'
+      const event = this.props.event;
+      const commentPosted = await axios.post(`http://localhost:3000/users/${user.id}/events/${event.id}/comments`, this.state.comment)
+      const comment = commentPosted.data
+      // const userId = comment.user_id
+      // const commentUser = await userReq.getUser(userId);
+      // console.log(commentUser)
+      // const username = commentUser.username
+      Object.assign(comment, {username: null})
+      this.setState((prevState) => ({comments: [...prevState.comments, comment].reverse()}));
+    }
 
-    this.setState((prevState) => ({comments: [...prevState.comments, comment].reverse()}));
 
   }
 
@@ -81,9 +96,7 @@ export default class CommentList extends Component{
     return(
       <div>
         {
-          (localStorage.getItem('token') !== null) ?
-            <CommentForm handleComment={this.handleComment} handleSubmit={this.handleSubmit} comment={this.state.comment}/>
-            : null
+          <CommentForm handleComment={this.handleComment} handleSubmit={this.handleSubmit} comment={this.state.comment}/>
         }
         <h4>Comments</h4>
         <div className="CommentList">
