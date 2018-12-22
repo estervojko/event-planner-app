@@ -27,15 +27,22 @@ class EventList extends Component {
     await this.updateEvents();
   }
 
+  async componentWillReceiveProps(){
+    this.handleClose();
+  }
+
   async updateEvents(){
+    console.log("gets ehre");
     switch (this.props.view) {
       case 'userPage':
         await this.getUserEvents();
         break;
       case 'loggedIn':
+        console.log("loggedddd")
         this.getEvents()
         break;
       case 'welcome':
+        console.log("welcccc")
         this.getEvents();
         break;
       default:
