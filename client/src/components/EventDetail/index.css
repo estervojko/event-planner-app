@@ -142,3 +142,8 @@
 .CommentList {
   margin-top: 20px;
 }
+
+.EventGoingDate{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
