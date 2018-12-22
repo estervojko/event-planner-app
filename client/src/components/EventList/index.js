@@ -32,17 +32,14 @@ class EventList extends Component {
   }
 
   async updateEvents(){
-    console.log("gets ehre");
     switch (this.props.view) {
       case 'userPage':
         await this.getUserEvents();
         break;
       case 'loggedIn':
-        console.log("loggedddd")
         this.getEvents()
         break;
       case 'welcome':
-        console.log("welcccc")
         this.getEvents();
         break;
       default:
@@ -100,7 +97,6 @@ class EventList extends Component {
   handleEventSelect = (event) => {
     if (this.isLoggedIn()) {
       if (event.users.length > 0) {
-        console.log(event.users)
         const i = event.users.find(user => user.id === this.props.user.id);
         if (i && i.id > 0) {
           this.setState((prevState) => ({
@@ -175,7 +171,6 @@ class EventList extends Component {
     const event_id = this.state.selectedEvent.details.id;
     try {
       const attendees = await attendeeReq.getAttendees(event_id);
-      console.log(attendees);
     } catch (e) {
       console.log(e)
     }

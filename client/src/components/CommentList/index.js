@@ -15,7 +15,6 @@ export default class CommentList extends Component{
       comments: [],
       comment: {
         user_id: (localStorage.getItem('token') !== null) ? jwtDecode(localStorage.getItem('token')).id : null,
-        // username: jwtDecode(localStorage.getItem('token')).username,
         content: '',
         date: moment().format()
       }
@@ -44,7 +43,6 @@ export default class CommentList extends Component{
       const comment = commentPosted.data
       const userId = comment.user_id
       const commentUser = await userReq.getUser(userId);
-      console.log(commentUser)
       const username = commentUser.username
       Object.assign(comment, {username: username})
       this.setState((prevState) => ({comments: [...prevState.comments, comment].reverse()}));
@@ -55,10 +53,6 @@ export default class CommentList extends Component{
       const event = this.props.event;
       const commentPosted = await axios.post(`http://localhost:3000/users/${user.id}/events/${event.id}/comments`, this.state.comment)
       const comment = commentPosted.data
-      // const userId = comment.user_id
-      // const commentUser = await userReq.getUser(userId);
-      // console.log(commentUser)
-      // const username = commentUser.username
       Object.assign(comment, {username: null})
       this.setState((prevState) => ({comments: [...prevState.comments, comment].reverse()}));
     }
@@ -71,7 +65,6 @@ export default class CommentList extends Component{
   async componentDidMount(){
     const event = this.props.event;
     const comments = await axios.get(`http://localhost:3000/events/${event.id}/comments`);
-    console.log(comments.data)
     const comms = await Promise.all(comments.data.map( async c => {
         let userId = null
         if (c.user_id) {
@@ -79,16 +72,12 @@ export default class CommentList extends Component{
         }
         if(userId){
           const commentUser = await userReq.getUser(userId);
-          console.log(commentUser)
           const username = commentUser.username
           Object.assign(c, {username: username})
-          console.log(c);
           return c
         }
         return c
       }))
-
-    console.log("commentlist", comms);
     await this.setState({comments: comms});
   }
 

@@ -87,7 +87,6 @@ export default class Nav extends Component {
       </React.Fragment>)
     } else if (this.props.token !== null) {
       return (<React.Fragment>
-        {console.log(this.props.user.username)}
         <div className='nav-buttons' id="userPortal" onClick={() => {
             this.props.changeView('userPage')
           }}>
