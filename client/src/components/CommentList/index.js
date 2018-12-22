@@ -39,7 +39,7 @@ export default class CommentList extends Component{
     if(localStorage.getItem('token')){
       const user = jwtDecode(localStorage.getItem('token'))
       const event = this.props.event;
-      const commentPosted = await axios.post(`http://localhost:3000/users/${user.id}/events/${event.id}/comments`, this.state.comment)
+      const commentPosted = await axios.post(`https://calm-springs-46291.herokuapp.com/users/${user.id}/events/${event.id}/comments`, this.state.comment)
       const comment = commentPosted.data
       const userId = comment.user_id
       const commentUser = await userReq.getUser(userId);
@@ -51,20 +51,18 @@ export default class CommentList extends Component{
       const user = {}
       user.id = 'anon'
       const event = this.props.event;
-      const commentPosted = await axios.post(`http://localhost:3000/users/${user.id}/events/${event.id}/comments`, this.state.comment)
+      const commentPosted = await axios.post(`https://calm-springs-46291.herokuapp.com/users/${user.id}/events/${event.id}/comments`, this.state.comment)
       const comment = commentPosted.data
       Object.assign(comment, {username: null})
       this.setState((prevState) => ({comments: [...prevState.comments, comment].reverse()}));
     }
-
-
   }
 
 
   // I am trying to pull the username for each comment from the users table, by looking at the user_id in the comments table
   async componentDidMount(){
     const event = this.props.event;
-    const comments = await axios.get(`http://localhost:3000/events/${event.id}/comments`);
+    const comments = await axios.get(`https://calm-springs-46291.herokuapp.com/events/${event.id}/comments`);
     const comms = await Promise.all(comments.data.map( async c => {
         let userId = null
         if (c.user_id) {

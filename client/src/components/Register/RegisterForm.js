@@ -3,7 +3,7 @@ import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 import './index.css';
 
-const BASE_URL = `http://localhost:3000`
+const BASE_URL = `https://calm-springs-46291.herokuapp.com`
 
 export default class RegisterForm extends Component {
   constructor(props) {
