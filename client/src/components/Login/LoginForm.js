@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import './index.css';
 
-const BASE_URL = `http://localhost:3000`
+const BASE_URL = `https://calm-springs-46291.herokuapp.com`
 
 export default class LoginForm extends Component {
   constructor(props) {
@@ -39,11 +39,9 @@ export default class LoginForm extends Component {
     const resp = await axios.post(`${BASE_URL}/login`, this.state.userData);
     if (resp.data.token !== null) {
       this.setState({token: resp.data.token, loggedIn: true})
-      console.log(resp.data);
       await this.props.setToken(resp.data.token)
       await this.props.setloggedUser(resp.data.user);
       localStorage.setItem('token', resp.data.token);
-      console.log('gets here');
     }
   }
 
@@ -54,7 +52,6 @@ export default class LoginForm extends Component {
         'Authorization': `Bearer ${TOKEN}`
       }
     });
-    console.log(resp.data);
   }
 
   render() {

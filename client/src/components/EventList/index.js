@@ -27,6 +27,10 @@ class EventList extends Component {
     await this.updateEvents();
   }
 
+  async componentWillReceiveProps(){
+    this.handleClose();
+  }
+
   async updateEvents(){
     switch (this.props.view) {
       case 'userPage':
@@ -93,7 +97,6 @@ class EventList extends Component {
   handleEventSelect = (event) => {
     if (this.isLoggedIn()) {
       if (event.users.length > 0) {
-        console.log(event.users)
         const i = event.users.find(user => user.id === this.props.user.id);
         if (i && i.id > 0) {
           this.setState((prevState) => ({
@@ -168,7 +171,6 @@ class EventList extends Component {
     const event_id = this.state.selectedEvent.details.id;
     try {
       const attendees = await attendeeReq.getAttendees(event_id);
-      console.log(attendees);
     } catch (e) {
       console.log(e)
     }

@@ -93,61 +93,65 @@ export default class EventDetail extends Component {
               <p>{event.description}</p>
             </div>
             {/*Basic info  */}
-            <div className="event-detail-basic-info">
-              {this.organizer() && <h5 className="event-detail-organizer">Organizer: {this.organizer()}</h5>}
+            <div className="EventGoingDate">
+              <div className="event-detail-basic-info">
+                {this.organizer() && <h5 className="event-detail-organizer">Organizer: {this.organizer()}</h5>}
 
-              <p className="event-detail-address">{event.address}</p>
+                <p className="event-detail-address">{event.address}</p>
 
-              <div className="event-detail-date-container">
+                <div className="event-detail-date-container">
 
-                <div className="event-detail-date">
-                  {start_date}
+                  <div className="event-detail-date">
+                    {start_date}
+                  </div>
+                </div>
+
+                  {start_date !== end_date && <div className="event-detail-date">
+                    - {end_date}
+                  </div>}
+
+                  <div className="event-detail-time">
+
+                    <p>{moment(event.start_date).format("LT")}</p>
+                    <p>{'-'}</p>
+                    <p>{moment(event.end_date).format("LT")}</p>
+
+                  </div>
+              </div>
+              <div className="EventGoingButton">
+                <div>
+                  <p>This event has {event.users.length} attendee(s).</p>
+                </div>
+                <div className="event-item-button-container">
+                  {this.props.loggedIn() && !this.organizerIsUser() &&
+                    <div
+                      className="event-item-button"
+                      onClick={(e) => {
+                      e.stopPropagation();
+                      this.props.handleAttendance();
+                      }}
+                      style={this.styleAttendance()}
+                    >
+                      {this.props.event.isAttending? "Going" : "Going?"}
+                    </div>}
+                  {this.props.loggedIn() && this.organizerIsUser() &&
+                    <div
+                      className="event-item-button"
+                      onClick={(e) => {
+                      e.stopPropagation();
+                      this.handleDelete();
+                      }}
+                      style={this.styleDelete()}
+                    >
+                      {this.state.deleteStatus? "Delete?" : "Delete"}
+                    </div>}
                 </div>
               </div>
-
-                {start_date !== end_date && <div className="event-detail-date">
-                  - {end_date}
-                </div>}
-
-                <div className="event-detail-time">
-
-                  <p>{moment(event.start_date).format("LT")}</p>
-                  <p>{'-'}</p>
-                  <p>{moment(event.end_date).format("LT")}</p>
-
-                </div>
             </div>
           </div>
           <div className="EventActions">
             {/* Extra div needed for grid layout */}
-            <div>
-              <p>This event has {event.users.length} attendee(s).</p>
-            </div>
 
-            <div className="event-item-button-container">
-              {this.props.loggedIn() && !this.organizerIsUser() &&
-                <div
-                  className="event-item-button"
-                  onClick={(e) => {
-                  e.stopPropagation();
-                  this.props.handleAttendance();
-                  }}
-                  style={this.styleAttendance()}
-                >
-                  {this.props.event.isAttending? "Going" : "Going?"}
-                </div>}
-              {this.props.loggedIn() && this.organizerIsUser() &&
-                <div
-                  className="event-item-button"
-                  onClick={(e) => {
-                  e.stopPropagation();
-                  this.handleDelete();
-                  }}
-                  style={this.styleDelete()}
-                >
-                  {this.state.deleteStatus? "Delete?" : "Delete"}
-                </div>}
-            </div>
             <div className="CommentList">
               <CommentList  event={event}/>
             </div>

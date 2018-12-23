@@ -3,7 +3,7 @@ import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 import './index.css';
 
-const BASE_URL = `http://localhost:3000`
+const BASE_URL = `https://calm-springs-46291.herokuapp.com`
 
 export default class RegisterForm extends Component {
   constructor(props) {
@@ -40,9 +40,7 @@ export default class RegisterForm extends Component {
     this.props.handleCloseModal();
     const resp = await axios.post(`${BASE_URL}/register`, this.state.user);
     if (resp.data.token !== null) {
-      console.log(resp.data);
       const decoded = jwtDecode(resp.data.token);
-      console.log(resp.data.token);
       localStorage.setItem('token', resp.data.token);
       this.props.setToken(resp.data.token)
       this.props.setloggedUser(decoded);
@@ -56,7 +54,6 @@ export default class RegisterForm extends Component {
         'Authorization': `Bearer ${TOKEN}`
       }
     });
-    console.log(resp.data);
   }
 
   render() {
