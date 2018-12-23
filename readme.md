@@ -2,6 +2,9 @@ Link to the deployed app:
 http://event-planner-app.surge.sh/
 
 # <center>Get Busy: Event Planner<center>
+
+### Description and How To Use
+
 This 3-days-to-production app is a quick implementation of the idea to make an event planner website. Similar to the concept of eventbrite, meetup etc, the app connects users with events. A guest user can either choose to explore the site as a guest, or register. A returning member can log in and view event details by clicking on one of the events he sees in his home screen. He can get out of this screen by either clicking on the "x" button in the upper-right or on the "Get Busy" text in the navigation bar. While in the event detail screen a member can sign up for an event by clicking on the going button and/or write a comment and see their comment immediately after they click post. Guest users can post comments too. Click on the going button for the second time, signs the user out of the event.
 
 To try the app, either register, or use this user to log in:
@@ -9,7 +12,8 @@ To try the app, either register, or use this user to log in:
 username: es
 password: es
 
-Work in progress:
+### Work in progress:
+
 Clicking on the username in the navigation bar displays the user's homepage. Information about the user is displayed here. The user can create an event, see the events he's created, and delete them. As post-mvp features we'd like to add functionality like being able to view popular events ranking them based on the number of attendees, viewing events near you, or based on location.
 
 How to interact join in and add features:
