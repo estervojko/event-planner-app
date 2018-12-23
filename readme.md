@@ -16,15 +16,19 @@ password: es
 
 Clicking on the username in the navigation bar displays the user's homepage. Information about the user is displayed here. The user can create an event, see the events he's created, and delete them. As post-mvp features we'd like to add functionality like being able to view popular events ranking them based on the number of attendees, viewing events near you, or based on location.
 
-How to interact join in and add features:
-* Clone this project
-* cd into the folder and run `npm install`
-* cd into the client and run `npm install` again to install client side dependencies
+## Getting Started
+#### How to join the project and add features
+
+clone this repo and cd into it.
+run ```npm install``` in the root directory as well as the client directory.
+Create a new postgres database called ```events_db```
+cd back into the root directory and run ```npm run resetDb``` and ```npm run seed```
+You can open a new terminal window and run ```npm run dev``` to start the server
+Now cd into the client directory and run ```npm start```
 
 ## Features
 * Login/logout using json web tokens and passport authentication
 * View user events
-* Search events
 * Add events to your profile
 * Login and register with server or Google
 
@@ -85,12 +89,3 @@ sequelize |
 ### Routes for users
 
 ![Routes for users](https://github.com/estervojko/event-planner-app/blob/ester-production/planning/Routes2.jpg?raw=true)
-
-## Getting Started
-
-clone this repo and cd into it.
-run ```npm install``` in the root directory as well as the client directory.
-Create a new postgres database called ```events_db```
-cd back into the root directory and run ```npm run resetDb``` and ```npm run seed```
-You can open a new terminal window and run ```npm run dev``` to start the server
-Now cd into the client directory and run ```npm start```
