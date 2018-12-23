@@ -1,9 +1,12 @@
+Link to the deployed app:
+http://event-planner-app.surge.sh/
+
 # <center>Get Busy: Event Planner<center>
-It's time to _GET BUSY_ - the brand new event planner that makes you the center of the party! Once you log in, you can search for events in your vicinity, join up on various events and presentations and even create your own events! You can even see all the events you made and organize yourself. Finally, our easy-to-use interface will always remind you when the next big shindig is happening soon!
+This 3-days-to-production app is a quick implementation of the idea to make an event planner website. Similar to the concept of eventbrite, meetup etc, the app connects users with events. A guest user can either choose to explore the site as a guest, or register. A returning member can log in.
 
 ## Features
-* View current local events
-* View popular events
+* Login/logout using json web tokens and passport authentication
+* View user events
 * Search events
 * Add events to your profile
 * Login and register with server or Google
