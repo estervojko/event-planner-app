@@ -6,9 +6,15 @@
 
 .userBody{
   height:900px;
-  border-radius: 10px 0px 0px 10px;
+  border-radius: 10px;
   background-color: #002642;
   box-shadow: 10px, rgba(0,0,0,0, 0.1);
+  display: grid;
+}
+
+.userInfo{
+  justify-content: flex-end;
+  flex-direction: column;
 }
 
 .userBody h1{
@@ -16,6 +22,7 @@
   font-weight: bolder;
   color: #E98A15;
   grid-area: username;
+  font-family: 'Righteous', cursive;
 }
 
 .userBody h2{
@@ -23,6 +30,9 @@
   color: #840032;
   grid-area: fn;
   grid-area: ln;
+  font-size: 20pt;
+  text-shadow: 1px 2px 4px rgba(43, 2, 9, 0.7);
+  font-family: 'Fira Sans', sans-serif;
 }
 
 .userBody p {
@@ -31,20 +41,24 @@
   grid-area: adrs;
 }
 
+.userImage{
+  justify-content: flex-start;
+}
+
 .userImage > img{
   height: 300px;
   width:300px;
   margin: 0;
-  border-radius: 50px;
+  border-radius: 100px;
   grid-area: im;
 
 }
 
 .userList{
   max-width:1000px;
-  height:400px;
+  height:350px;
   margin: 0;
-  border: solid red 1px;
+  /* border: solid red 1px; */
   overflow: scroll;
 }
 

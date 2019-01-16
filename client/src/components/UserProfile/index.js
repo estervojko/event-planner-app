@@ -77,16 +77,18 @@ constructor(props){
     return(
         <div className="userProfile">
         <div className="userBody"> {/*render the main body*/}
-        <div className="userImage"> {/*render the user image*/}
-         <img src = {ProfileImage} alt= "surprise" />
-        </div>
-          <h1>
-           {this.state.user.username}
-          </h1>{/*render the username*/}
-          <h2>First Name: {this.state.user.first_name}</h2>
-           <h2>Last Name: {this.state.user.last_name}</h2>{/*render the location*/}
-           <h2>Address: {this.state.user.address}</h2>
-           {/*<p>Active: {this.state.events.active}</p> <div className="activePoint"></div>*/}
+            <div className="userImage"> {/*render the user image*/}
+             <img src = {ProfileImage} alt= "surprise" />
+            </div>
+            <div className = "userInfo">
+              <h1>
+               {this.state.user.username}
+              </h1>{/*render the username*/}
+              <h2>First Name: {this.state.user.first_name}</h2>
+               <h2>Last Name: {this.state.user.last_name}</h2>{/*render the location*/}
+               <h2>Address: {this.state.user.address}</h2>
+             </div>
+
             <div className="userList">
             {this.state.user ? <EventList
              view={this.props.view}
@@ -95,13 +97,9 @@ constructor(props){
              {/*render the active dot*/}
              </div>
           </div>
-          {/*this.state.user ? <EventList
-            view={this.props.view}
-            user={this.props.user}
-            /> : ''*/}
-         <EventForm  event={this.state.eventFormData}
-            handleChange={this.handleChange}
-            handleSubmit={this.handleSubmit}/>
+           <EventForm  event={this.state.eventFormData}
+              handleChange={this.handleChange}
+              handleSubmit={this.handleSubmit}/>
           <button>Delete Event</button>
         </div>
     )
